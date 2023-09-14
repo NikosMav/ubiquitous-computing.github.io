@@ -1,0 +1,104 @@
+.cloud-poll{
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f5f4f2;
+}
+
+.poll-container {
+    max-width: 600px;
+    height: 90%;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.5s ease;
+}
+
+#erwthsh {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #007bff;
+}
+
+#apotelesmata {
+    color: #555;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+#your-vote {
+    color: #555;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 24px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #555;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+form label:hover {
+    color: #007bff;
+}
+
+form input[type="radio"] {
+    margin-right: 12px;
+    transform: scale(1.4);
+}
+
+form input[type="submit"] {
+    margin-top: 40px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 18px 36px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 24px;
+    transition: background-color 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+#message {
+    font-size: 20px;
+    font-weight: bold;
+    color: #008000;
+    margin-top: 20px;
+    display: none;
+    animation: fadeIn 1s ease;
+}
+
+.vote-container {
+    height: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.rectangle {
+    width: 45px;
+    height: 12px;
+    background-color: #ff1825;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

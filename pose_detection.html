@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ανίχνευση Πόζας</title>
+
+  <link href="css/ubiquitous-computing.webflow.css" rel="stylesheet" type="text/css">
+
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <!-- Load Posenet -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"></script>
+  <script defer src="js/poseRec.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="css/nav_styles.css">
+  <link rel="stylesheet" href="css/styles3.css">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="manifest" href="favicon/site.webmanifest">
+  <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+  <nav>
+    <ul>
+      <li><a href="face_recognition.html">Face Recognition</a></li>
+      <li><a href="hand_gestures.html">Hand Gestures</a></li>
+      <li><a href="pose_detection.html" class="active">Pose Detection</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1 class="app-title">Pose Detection</h1>
+  </header>
+  
+  <!-- Update note for model loading -->
+  <div id="updatenote" class="updatenote mb10">Loading models...</div>
+  
+  <div class="video-container">
+    <video id="video" class="video" width="640" height="480" autoplay muted></video>
+    <canvas id="canvas"></canvas>
+  </div>
+
+  <div id="instructions-wrapper" class="instructions-wrapper">
+    <div id="instructions" class="instructions">
+        <h3 class="mb10">Οδηγίες:</h3>
+      <p class="mb10">
+        Για να χρησιμοποιήσετε αυτήν την εφαρμογή σωστά, ακολουθήστε τα παρακάτω βήματα:
+      </p>
+      <ol class="mb10">
+          <li>Βεβαιωθείτε ότι έχετε καλό φωτισμό στο δωμάτιο.</li>
+          <li>Σταθείτε αρκετά μακριά από την κάμερα, ώστε ολόκληρο το σώμα σας να είναι ορατό.</li>
+          <li>Βεβαιωθείτε ότι δεν υπάρχουν εμπόδια στην προβολή της κάμερας.</li>
+          <li>Φορέστε ρούχα που έρχονται σε αντίθεση με το φόντο.</li>
+          <li>Διατηρήστε τις κινήσεις σας αργές και σταθερές για ακριβή παρακολούθηση.</li>
+      </ol>
+      <p>
+          Απολαύστε!
+      </p>
+    </div>
+    
+    <!-- Add a button to toggle the instructions next to the div -->
+    <button id="toggleInstructionsButton" onclick="toggleInstructions()">Εναλλαγή εμφάνισης οδηγιών</button>
+  </div>
+  
+</body>
+
+</html>

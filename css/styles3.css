@@ -1,0 +1,110 @@
+/* Reset box-sizing, margin, and padding for all elements */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Set body to take up full width and height of the viewport */
+body {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #161616;
+}
+
+.container {
+  text-align: center;
+}
+
+/* Style the header element */
+header {
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #08a65c;
+  color: black;
+  padding: 10px;
+  /* Use shorthand margin property instead of specifying margin-top and margin-bottom separately */
+  margin: 20px;
+}
+
+.app-title {
+  margin: 0px;
+  font-family: Nasalization rg, sans-serif, Arial, sans-serif;;
+  font-size: 2.5vh;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.video-container {
+  position: relative;
+  width: 80%;
+  max-width: 640px;
+}
+
+video {
+  width: 100%;
+  max-width: 100%;
+  border: 3px black solid;
+  border-radius: 10px;
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.mb10 {
+  margin-bottom: 10px;
+}
+
+.updatenote {
+  border-radius: 5px;
+  padding: 10px;
+  background: #08a65c;
+  color: black;
+  display: inline-block; /* Allows elements to be displayed inline, but also accept width and height properties */
+}
+
+.instructions {
+  padding: 10px; 
+  border-radius: 5px;
+}
+
+.instructions-wrapper {
+  display: block;
+  position: absolute;
+  top: 10vh;
+  left: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 5px;
+}
+
+#toggleInstructionsButton {
+  border: 1px black solid;
+  border-radius: 5px;
+  padding: 5px;
+  color:black;
+  background: #08a65c;
+}
+
+#toggleInstructionsButton:hover {
+  background-color: #066c48; /* Darker shade of green for hover effect */
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .app-title {
+    font-size: 4vh;
+  }
+
+  .instructions-wrapper {
+    top: 15vh;
+    width: 90%; /* Adjust width for smaller screens */
+  }
+}

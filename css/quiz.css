@@ -1,0 +1,129 @@
+.intro-quiz {
+  background-color: black;
+}
+
+.quiz-section {
+  background-color: #282a67;
+  min-height: 100vh; /* Set a minimum height for the section */
+  display: flex; /* Use Flexbox layout for the section's children */
+  align-items: center; /* Center content horizontally */
+  justify-content: center; /* Center content vertically */
+}
+
+.quiz-container {
+  background-color: #373a90;
+  width: 50%;
+  text-align: center;
+  padding: 4vh 10vh;
+  border: 5px solid #ffe19c;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#quiz-title {
+  font-family: Nasalization rg, sans-serif;
+  margin-bottom: 3vh;
+  font-size: 6vh;
+  line-height: 6vh;
+}
+
+#quiz-paragraph {
+  margin-top: 10vh;
+  font-size: 3vh;
+  line-height: 1.4;
+}
+
+#start-quiz-btn {
+  margin-top: 20vh;
+  font-size: 4vh;
+  line-height: 4vh;
+}
+
+/* Style for the quiz buttons */
+.quiz-button {
+  display: block;
+  width: 100%;
+  margin-bottom: 2vh;
+  padding: 2vh 1.5vh;
+  font-size: 2vh;
+  line-height: 1.4;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+  /* Add a transparent box-shadow for fade-in border effect */
+  box-shadow: 0 0 0 2px transparent;
+  /* Add transition for box-shadow */
+  transition: box-shadow 0.3s ease;
+}
+
+/* Apply the border and fade-in effect on hover */
+.quiz-button:hover {
+  /* Set box-shadow to display the border on hover */
+  box-shadow: 0 0 0 2px #ffe19c;
+}
+
+/* Style for the correct answer */
+.correct-answer {
+  background-color: green;
+}
+
+/* Style for the incorrect answer */
+.incorrect-answer {
+  background-color: red;
+}
+
+/* Style for the result message */
+#quiz-result {
+  font-size: 2.5vh;
+  font-weight: bold;
+  margin-top: 3vh;
+  opacity: 0; /* Set initial opacity to 0 to hide the result message */
+  transition: opacity 0.3s ease; /* Add transition for opacity */
+}
+
+/* Style for the question */
+#quiz-question {
+  font-size: 20px;
+  line-height: 1.3;
+  margin-bottom: 30px;
+}
+
+/* Style to disable hover when button is clicked */
+.quiz-button.disable-hover:hover {
+  background-color: #333;
+  border: none; /* Disable border on hover for the selected option */
+}
+
+/* Define the fade-out animation */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.fade-out {
+  animation: fadeOut 1s ease forwards;
+}
+
+.newbie-section,
+.moderate-section,
+.advanced-section {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.hidden {
+  opacity: 0;
+  display: none;
+}
+
+.result-score {
+  margin-top: 2vw;
+  font-size: 1.2vw;
+}

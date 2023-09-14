@@ -1,0 +1,13 @@
+#sticky-tag {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: white; /* Change the background color to a dark color */
+  color: black; /* Set the text color to white */
+  padding: 8px 12px;
+  border: 1px solid gray;
+  border-radius: 4px;
+  display: none; /* hide it by default */
+  z-index: 9999; /* Set a high z-index value to ensure it's on top of other elements */
+}
+  
