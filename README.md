@@ -1,6 +1,6 @@
 # Ubiquitous Computing Thesis Project
 
-This repository contains the code and resources for NikosMav's thesis project in Ubiquitous Computing, showcased at the Museum of IT in NKUA.
+This repository contains the code and resources for Nikolaos Mavrapidis thesis project in Ubiquitous Computing, showcased at the Museum of IT in NKUA.
 
 ## Introduction
 
@@ -8,10 +8,20 @@ Ubiquitous Computing, or Pervasive Computing, envisions a world where computing 
 
 ## Features
 
-- **Interactive Displays**: Engage with the various aspects of Ubiquitous Computing via touch and gesture-controlled displays.
-- **Augmented Reality Integration**: Dive into the world of AR to see real-time data visualizations and simulations.
-- **Voice Commands**: Navigate the museum's offerings using intuitive voice commands.
-- **Personalized Tour**: The exhibit recognizes and adapts to each visitor, offering a unique journey tailored to individual interests.
+- **Responsive & User-Friendly Design**: The project boasts a design that's intuitive and adapts beautifully across devices, ensuring a seamless user experience irrespective of the screen size.
+
+- **Interactive Design Elements**: Engage with the rich interactive design elements that make navigation and exploration a delight.
+
+- **Knowledge Quizzes & Polls**: Test your understanding and provide your feedback through engaging quizzes and polls integrated into the platform.
+
+- **Scenarios & Charts**: Dive deep into the realm of Ubiquitous Computing with well-crafted scenarios and illustrative charts that simplify complex data.
+
+- **Computer Vision Apps**: Experience cutting-edge interactive applications like:
+  - **Face Recognition**: Recognize and respond to user faces in real-time.
+  - **Hand Gestures**: Navigate and interact using simple hand movements.
+  - **Pose Detection**: Analyze and interpret human body positions with precision.
+
+- **Dynamic Content Customization**: The platform is not just static. It learns and adapts, presenting customized content tailored to every individual user's preferences and interactions.
 
 ## Installation and Setup
 
