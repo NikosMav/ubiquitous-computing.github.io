@@ -45,6 +45,6 @@ This project uses the MIT License. For details, view the [LICENSE](LICENSE.md) f
 
 ## Acknowledgments
 
-- [NKUA](https://www.nkua.gr/) for their unwavering support and for offering a space to showcase this innovative project.
+- [NKUA](https://en.uoa.gr) for their unwavering support and for offering a space to showcase this innovative project.
 - Thesis guide, Prof. Roussou Maria, whose insights and mentoring were invaluable.
 - The entire [Museum of IT](https://museum.di.uoa.gr/) for their hard work and collaboration.
