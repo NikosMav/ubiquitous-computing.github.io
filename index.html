@@ -1570,26 +1570,52 @@ body:hover .cursor-new {opacity:1.0;}
               </section>
               <section class="cloud-poll">
                 <div class="poll-container">
-                  <p id="erwthsh">Πόσο εξοικειωμένες/οι είστε με το Cloud Computing;</p>
-                  <form id="pollForm">
-                      <label><input type="radio" name="vote" value="Very_Familiar"> Εξπέρ των Νεφών</label>
-                      <label><input type="radio" name="vote" value="Somewhat_Familiar"> Έμπειρος στο Cloud</label>
-                      <label><input type="radio" name="vote" value="Not_Sure"> Έτσι και έτσι</label>
-                      <label><input type="radio" name="vote" value="Not_Very_Familiar"> Νέος στο Cloud</label>
-                      <label><input type="radio" name="vote" value="Not_Familiar_at_All"> Συννεφιασμένη Κυριακή</label>
-                      <input type="submit" value="Vote">
-                  </form>
-                  <div id="message"></div>
-                  <div id="results" style="display: none;">
-                      <p id="apotelesmata">Αποτελέσματα:</p>
-                      <div class="vote-container">
-                          <p id="your-vote">Η ψήφος σου:</p>
-                          <div class="rectangle"></div>
+                    <p id="erwthsh">Πόσο εξοικειωμένες/οι είστε με το Cloud Computing;</p>
+                    <form id="pollForm">
+                        <label for="Very_Familiar">
+                            <div class="radio-wrapper">
+                                <input type="radio" id="Very_Familiar" name="vote" value="Very_Familiar">
+                                <span>Εξπέρ των Νεφών</span>
+                            </div>
+                        </label>
+                        <label for="Somewhat_Familiar">
+                            <div class="radio-wrapper">
+                                <input type="radio" id="Somewhat_Familiar" name="vote" value="Somewhat_Familiar">
+                                <span>Έμπειρος στο Cloud</span>
+                            </div>
+                        </label>
+                        <label for="Not_Sure">
+                            <div class="radio-wrapper">
+                                <input type="radio" id="Not_Sure" name="vote" value="Not_Sure">
+                                <span>Έτσι και έτσι</span>
+                            </div>
+                        </label>
+                        <label for="Not_Very_Familiar">
+                            <div class="radio-wrapper">
+                                <input type="radio" id="Not_Very_Familiar" name="vote" value="Not_Very_Familiar">
+                                <span>Νέος στο Cloud</span>
+                            </div>
+                        </label>
+                        <label for="Not_Familiar_at_All">
+                            <div class="radio-wrapper">
+                                <input type="radio" id="Not_Familiar_at_All" name="vote" value="Not_Familiar_at_All">
+                                <span>Συννεφιασμένη Κυριακή</span>
+                            </div>
+                        </label>
+                        <input type="submit" value="Vote">
+                    </form>
+                    <div id="message"></div>
+                    <div id="results" style="display: none;">
+                        <p id="apotelesmata">Αποτελέσματα:</p>
+                        <div class="vote-container">
+                            <p id="your-vote">Η ψήφος σου:</p>
+                            <div class="rectangle"></div>
                         </div>
-                      <canvas id="chart" width="400" height="400"></canvas>
-                  </div>
+                        <canvas id="chart"></canvas>
+                    </div>
                 </div>
-              </section>
+            </section>
+                       
             </div>
             <section data-w-id="e061a9eb-aae0-b0b9-c4e7-9d7f4809555c" class="cloud-between-section"></section>
           </div>
@@ -2395,7 +2421,7 @@ body:hover .cursor-new {opacity:1.0;}
     </footer>
   </div>
 
-  <script src="node_modules\chart.js\dist\chart.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="js/poll.js"></script>
   <script src="js/introQuiz.js"></script>
   <script src="js/stickyTag.js"></script>

@@ -8,6 +8,22 @@ const fixedResults = {
 
 const totalVotes = Object.values(fixedResults).reduce((acc, value) => acc + value, 0);
 
+// Event listener for radio button changes (to highlight the selected option)
+const radioButtons = document.querySelectorAll('input[type="radio"]');
+radioButtons.forEach(radio => {
+    radio.addEventListener('change', function() {
+        const labels = document.querySelectorAll('form label');
+        labels.forEach(label => {
+            if (label.getAttribute('for') === this.value) {
+                label.classList.add('selected-option');
+            } else {
+                label.classList.remove('selected-option');
+            }
+        });
+    });
+});
+
+// Event listener for form submission
 document.getElementById("pollForm").onsubmit = function(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -23,20 +39,18 @@ document.getElementById("pollForm").onsubmit = function(event) {
     resultsElement.style.display = "block";
 
     // Calculate percentages and display the results
-    const percentage1 = ((fixedResults.Very_Familiar / totalVotes) * 100).toFixed(1);
-    const percentage2 = ((fixedResults.Somewhat_Familiar / totalVotes) * 100).toFixed(1);
-    const percentage3 = ((fixedResults.Not_Sure / totalVotes) * 100).toFixed(1);
-    const percentage4 = ((fixedResults.Not_Very_Familiar / totalVotes) * 100).toFixed(1);
-    const percentage5 = ((fixedResults.Not_Familiar_at_All / totalVotes) * 100).toFixed(1);
+    const percentages = Object.keys(fixedResults).map(key => 
+        ((fixedResults[key] / totalVotes) * 100).toFixed(1)
+    );
 
     // Highlight the selected option with a custom color
-    const highlightColor = "#ff1825"; // Choose your desired color here
+    const highlightColor = "#ff1825";
     const backgroundColors = ["#004c6d", "#256488", "#407da4", "#5997c1", "#72b2df"];
 
     const chartData = {
         labels: ["Εξπέρ των Νεφών", "Έμπειρος στο Cloud", "Έτσι και έτσι", "Νέος στο Cloud", "Συννεφιασμένη Κυριακή"],
         datasets: [{
-            data: [percentage1, percentage2, percentage3, percentage4, percentage5],
+            data: percentages.map(value => parseFloat(value)),
             backgroundColor: [
                 voteValue === "Very_Familiar" ? highlightColor : backgroundColors[0],
                 voteValue === "Somewhat_Familiar" ? highlightColor : backgroundColors[1],
@@ -44,8 +58,6 @@ document.getElementById("pollForm").onsubmit = function(event) {
                 voteValue === "Not_Very_Familiar" ? highlightColor : backgroundColors[3],
                 voteValue === "Not_Familiar_at_All" ? highlightColor : backgroundColors[4],
             ],
-            // borderColor: backgroundColors,
-            // borderWidth: 1,
         }],
     };
 
@@ -59,8 +71,19 @@ document.getElementById("pollForm").onsubmit = function(event) {
             title: {
                 display: true,
                 text: "Poll Results",
-                fontSize: 20,
+                fontSize: 20
             },
-        },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let value = context.parsed;
+                            let label = context.label;
+                            return label + ': ' + value + '%';
+                        }
+                    }
+                }
+            }
+        }
     });
 };
