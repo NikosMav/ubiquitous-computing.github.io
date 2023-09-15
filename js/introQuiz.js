@@ -225,7 +225,7 @@ function checkAnswer(selectedOption, correctAnswer, optionButton) {
 
     // Hide the result with a fade-out effect
     resultElement.style.opacity = 0;
-  }, 500); // Set the delay
+  }, 2500); // Set the delay
 }
 
 function showResult() {

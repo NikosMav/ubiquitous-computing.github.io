@@ -1,4 +1,9 @@
-.cloud-poll{
+/* Variables for easier customization */
+:root {
+    --primary-color: #007bff;
+}
+
+.cloud-poll {
     font-family: 'Arial', sans-serif;
     text-align: center;
     margin: 0;
@@ -23,7 +28,7 @@
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px;
-    color: #007bff;
+    color: var(--primary-color);
 }
 
 #apotelesmata {
@@ -38,28 +43,69 @@
     margin-top: 10px;
 }
 
+/* Custom Radio Buttons */
+form input[type="radio"] {
+    display: none;  /* Hide the default radio button */
+}
+
 form label {
     display: block;
+    position: relative;
+    padding-left: 35px;  /* Space for custom radio button */
     margin-bottom: 24px;
     font-weight: bold;
     font-size: 20px;
     color: #555;
     cursor: pointer;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, background-color 0.3s ease;
 }
 
-form label:hover {
-    color: #007bff;
+form label:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    transition: background 0.2s;
 }
 
-form input[type="radio"] {
-    margin-right: 12px;
-    transform: scale(1.4);
+form label:hover:before,
+form input[type="radio"]:checked + label:before {
+    background: rgba(0, 123, 255, 0.2);  /* A subtle highlight on hover or selection */
+}
+
+form label:after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    border-radius: 50%;
+    background: white;
+    transition: opacity 0.2s;
+    opacity: 0;  /* By default, this inner circle is hidden */
+}
+
+form input[type="radio"]:checked + label:after {
+    opacity: 1;  /* When the radio is checked, show the inner circle */
+}
+
+/* Feedback on selection */
+form label:hover,
+form input[type="radio"]:checked + label {
+    background-color: rgba(0, 123, 255, 0.2);  /* Same as the hover highlight */
+    border-radius: 8px;
 }
 
 form input[type="submit"] {
     margin-top: 40px;
-    background-color: #007bff;
+    background-color: var(--primary-color);
     color: #fff;
     border: none;
     padding: 18px 36px;
@@ -71,6 +117,18 @@ form input[type="submit"] {
 
 form input[type="submit"]:hover {
     background-color: #0056b3;
+}
+
+.selected-option {
+    background-color: #e0e0e0;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.radio-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 #message {
