@@ -6,11 +6,11 @@ const updateNote = document.getElementById("updatenote");
 async function loadModels() {
     try {
         await Promise.all([
-            faceapi.nets.tinyFaceDetector.load("/models"),
-            faceapi.nets.faceLandmark68Net.load("/models"),
-            faceapi.nets.faceRecognitionNet.load('/models'),
-            faceapi.nets.faceExpressionNet.load('/models'),
-            faceapi.nets.ageGenderNet.load('/models')
+            faceapi.nets.tinyFaceDetector.load("./models"),
+            faceapi.nets.faceLandmark68Net.load("./models"),
+            faceapi.nets.faceRecognitionNet.load('./models'),
+            faceapi.nets.faceExpressionNet.load('./models'),
+            faceapi.nets.ageGenderNet.load('./models')
         ]);
         startWebcam();
     } catch (error) {
