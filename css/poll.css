@@ -1,6 +1,8 @@
 /* Variables for easier customization */
 :root {
     --primary-color: #007bff;
+    --selected-text-color: #333;  /* Darker text color when selected/hovered */
+    --selected-dot-color: #888;  /* Darker inner dot color when selected */
 }
 
 .cloud-poll {
@@ -15,6 +17,7 @@
 }
 
 .poll-container {
+    flex: 2;
     max-width: 600px;
     height: 90%;
     padding: 30px;
@@ -24,23 +27,21 @@
     animation: fadeIn 0.5s ease;
 }
 
-#erwthsh {
-    font-size: 24px;
+#erwthsh, #apotelesmata {
+    font-size: 22px;
     font-weight: bold;
     margin-bottom: 20px;
     color: var(--primary-color);
 }
 
 #apotelesmata {
-    color: #555;
     font-size: 18px;
-    margin-top: 10px;
 }
 
 #your-vote {
-    color: #555;
-    margin-right: 10px;
-    margin-top: 10px;
+    font-size: 16px;
+    color: black;
+    margin-bottom: 0px;
 }
 
 /* Custom Radio Buttons */
@@ -51,13 +52,12 @@ form input[type="radio"] {
 form label {
     display: block;
     position: relative;
-    padding-left: 35px;  /* Space for custom radio button */
+    padding-left: 35px;
     margin-bottom: 24px;
     font-weight: bold;
     font-size: 20px;
     color: #555;
     cursor: pointer;
-    transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 form label:before {
@@ -70,37 +70,40 @@ form label:before {
     height: 20px;
     border: 2px solid var(--primary-color);
     border-radius: 50%;
+    background: radial-gradient(circle at center, white 40%, transparent 50%);
     transition: background 0.2s;
-}
-
-form label:hover:before,
-form input[type="radio"]:checked + label:before {
-    background: rgba(0, 123, 255, 0.2);  /* A subtle highlight on hover or selection */
 }
 
 form label:after {
     content: "";
     position: absolute;
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     top: 50%;
     left: 50%;
     transform: translateY(-50%) translateX(-50%);
     border-radius: 50%;
-    background: white;
-    transition: opacity 0.2s;
-    opacity: 0;  /* By default, this inner circle is hidden */
+    background: #888;
+    opacity: 0;  /* initially hidden */
 }
 
-form input[type="radio"]:checked + label:after {
-    opacity: 1;  /* When the radio is checked, show the inner circle */
+form label:hover:before,
+form input[type="radio"]:checked + label:before {
+    background: radial-gradient(circle at center, white 40%, var(--primary-color) 50%);
 }
 
-/* Feedback on selection */
 form label:hover,
-form input[type="radio"]:checked + label {
-    background-color: rgba(0, 123, 255, 0.2);  /* Same as the hover highlight */
+form label.selected-option {
+    background-color: rgba(0, 123, 255, 0.2);
     border-radius: 8px;
+    padding-left: 35px;
+    color: var(--selected-text-color);  /* Darker text on hover */
+}
+
+/* Modify the inner dot color for better contrast when selected */
+form input[type="radio"]:checked + label:after {
+    opacity: 1;
+    background: #888;
 }
 
 form input[type="submit"] {
@@ -117,12 +120,6 @@ form input[type="submit"] {
 
 form input[type="submit"]:hover {
     background-color: #0056b3;
-}
-
-.selected-option {
-    background-color: #e0e0e0;
-    padding: 5px 10px;
-    border-radius: 5px;
 }
 
 .radio-wrapper {
@@ -148,8 +145,9 @@ form input[type="submit"]:hover {
 
 .rectangle {
     width: 45px;
-    height: 12px;
+    height: 15px;
     background-color: #ff1825;
+    margin-left: 5px;
 }
 
 @keyframes fadeIn {
@@ -159,4 +157,26 @@ form input[type="submit"]:hover {
     to {
         opacity: 1;
     }
+}
+
+.poll-content-wrapper {
+    display: flex;
+    gap: 30px; /* Spacing between poll and the disclaimer */
+    max-width: 1000px; /* Adjust as needed */
+    margin: 0 auto; /* Centering the content-wrapper */
+}
+
+.data-info {
+    flex: 1; /* This makes the disclaimer take the remaining space. Adjust if you want a specific width */
+    font-size: 14px;
+    color: #777; /* A soft color for the disclaimer */
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.poll-disclaimer-par {
+    color: black;
+    font-size: 20;
 }
