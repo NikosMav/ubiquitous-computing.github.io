@@ -178,5 +178,13 @@ form input[type="submit"]:hover {
 
 .poll-disclaimer-par {
     color: black;
-    font-size: 20;
+    font-size: 2vh;
+    line-height: 1.5;
+}
+
+.poll-disclaimer-title {
+    color: black;
+    font-size: 4vh;
+    line-height: 1.5;
+    margin-top: 7vh;
 }

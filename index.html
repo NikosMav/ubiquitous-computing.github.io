@@ -40,7 +40,6 @@
         overflow-x: hidden;
       }
   </style>
-
 </head>
 
 <body class="body">
@@ -489,9 +488,6 @@ body:hover .cursor-new {opacity:1.0;}
           <p class="par1 paragraph-52">Ένα τεράστιο δίκτυο διασυνδεδεμένων συσκευών ενσωματώνεται στη ζωή μας.<br></p>
           <p class="par2 paragraph-52">Ο πανταχού παρών υπολογισμός, γνωστός και ως διάχυτος υπολογισμός ή Internet of Things (IoT), βρίσκεται στο επίκεντρο αυτού του μετασχηματισμού, αναδιαμορφώνοντας τον τρόπο αλληλεπίδρασης με την τεχνολογία και φέρνοντας επανάσταση στις καθημερινές μας εμπειρίες.</p>
         </div>
-        <!-- <div class="div-block-196">
-          <div class="div-block-197"></div><img src="images/robot-hand-side-view-background-presenting-technology-gesture.jpg" loading="lazy" sizes="(max-width: 479px) 0px, 100vw" srcset="images/robot-hand-side-view-background-presenting-technology-gesture-p-500.jpg 500w, images/robot-hand-side-view-background-presenting-technology-gesture-p-800.jpg 800w, images/robot-hand-side-view-background-presenting-technology-gesture-p-1080.jpg 1080w, images/robot-hand-side-view-background-presenting-technology-gesture-p-1600.jpg 1600w, images/robot-hand-side-view-background-presenting-technology-gesture-p-2000.jpg 2000w, images/robot-hand-side-view-background-presenting-technology-gesture-p-2600.jpg 2600w, images/robot-hand-side-view-background-presenting-technology-gesture-p-3200.jpg 3200w" alt="" class="image-174">
-        </div> -->
       </div>
       <div class="dy-inventor" data-section-name="Ο Εμπνευστής">
         <div class="mark-weiser">
@@ -1569,7 +1565,8 @@ body:hover .cursor-new {opacity:1.0;}
                 </div>
               </section>
               <section class="cloud-poll">
-                <div class="poll-container">
+                <div class="poll-content-wrapper">
+                  <div class="poll-container">
                     <p id="erwthsh">Πόσο εξοικειωμένες/οι είστε με το Cloud Computing;</p>
                     <form id="pollForm">
                         <label for="Very_Familiar">
@@ -1602,20 +1599,24 @@ body:hover .cursor-new {opacity:1.0;}
                                 <span>Συννεφιασμένη Κυριακή</span>
                             </div>
                         </label>
-                        <input type="submit" value="Vote">
+                        <input type="submit" value="Ψηφίστε" disabled id="submitBtn">
                     </form>
                     <div id="message"></div>
                     <div id="results" style="display: none;">
-                        <p id="apotelesmata">Αποτελέσματα:</p>
-                        <div class="vote-container">
-                            <p id="your-vote">Η ψήφος σου:</p>
-                            <div class="rectangle"></div>
-                        </div>
-                        <canvas id="chart"></canvas>
+                      <p id="apotelesmata">Αποτελέσματα:</p>
+                      <div class="vote-container">
+                        <p id="your-vote">Η ψήφος σου:</p>
+                        <div class="rectangle"></div>
+                      </div>
+                      <canvas id="chart"></canvas>
                     </div>
+                  </div>
+                  <div class="data-info">
+                    <h3 class="poll-disclaimer-title">Disclaimer:</h3>
+                    <p class="poll-disclaimer-par"><strong>Είστε περίεργοι για την επιλογή σας;</strong> Δείτε πού τοποθετείστε στο γράφημα πίτας με βάση το τι επέλεξαν οι άλλοι χρήστες. Τα δεδομένα που εμφανίζονται είναι σταθερά και βασίζονται σε πληροφορίες που βρήκαμε στο διαδίκτυο.</p>
+                  </div>
                 </div>
-            </section>
-                       
+              </section> 
             </div>
             <section data-w-id="e061a9eb-aae0-b0b9-c4e7-9d7f4809555c" class="cloud-between-section"></section>
           </div>

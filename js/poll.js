@@ -12,6 +12,8 @@ const totalVotes = Object.values(fixedResults).reduce((acc, value) => acc + valu
 const radioButtons = document.querySelectorAll('input[type="radio"]');
 radioButtons.forEach(radio => {
     radio.addEventListener('change', function() {
+        document.getElementById('submitBtn').disabled = false;
+        
         const labels = document.querySelectorAll('form label');
         labels.forEach(label => {
             if (label.getAttribute('for') === this.value) {
