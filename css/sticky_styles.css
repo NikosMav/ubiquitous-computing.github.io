@@ -9,5 +9,6 @@
   border-radius: 4px;
   display: none; /* hide it by default */
   z-index: 9999; /* Set a high z-index value to ensure it's on top of other elements */
+  cursor: pointer;
 }
   

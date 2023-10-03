@@ -2616,7 +2616,7 @@ a {
 
 .heading-47 {
   z-index: 2;
-  color: #fb4d68;
+  color: white;
   text-align: center;
   flex-direction: column;
   justify-content: center;
@@ -2636,7 +2636,7 @@ a {
 }
 
 .heading-48 {
-  color: #fb4d68;
+  color: white;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -4874,7 +4874,6 @@ a {
 .wireless-coms-fun-fact {
   height: 250vw;
   background-color: #131313;
-  background-image: linear-gradient(rgba(19, 19, 19, .6), rgba(19, 19, 19, .6)), radial-gradient(circle, rgba(0, 0, 0, .2), #131313 90%), url('../images/Grid-Visualization.svg');
   background-position: 0 0, 0 0, 50%;
   background-size: auto, auto, 170vw;
   flex-direction: column;
@@ -4890,7 +4889,7 @@ a {
   width: 116vh;
   height: 64vh;
   outline-offset: 0vw;
-  background-image: linear-gradient(#131313, #131313);
+  background-image: linear-gradient(rgba(19, 19, 19, .6), rgba(19, 19, 19, .6)), radial-gradient(circle, rgba(0, 0, 0, .2), #131313 90%), url('../images/Grid-Visualization.svg');
   border-radius: 5vw;
   outline: .5vw dashed #fff;
   flex-direction: column;
@@ -5849,7 +5848,7 @@ a {
 }
 
 .button-div.sensors {
-  border-color: #fb4d68;
+  border-color: white;
 }
 
 .button-div.nlp {
@@ -5920,13 +5919,14 @@ a {
 }
 
 .theory-button-show.sensors {
-  background-color: #fb4d68;
-  border-top-color: #fb4d68;
+  color: #2b00f2;
+  background-color: #fff;
+  border-top-color: #fff;
 }
 
 .theory-button-show.sensors:hover {
-  color: #fb4d68;
-  background-color: #fff;
+  color: #fff;
+  background-color: #2b00f2;
 }
 
 .theory-button-show.nlp {
@@ -6006,13 +6006,14 @@ a {
 }
 
 .theory-button-hide.sensors {
-  background-color: #fb4d68;
-  border-top-color: #fb4d68;
+  color: #2b00f2;
+  background-color: #fff;
+  border-top-color: #fff;
 }
 
 .theory-button-hide.sensors:hover {
-  color: #fb4d68;
-  background-color: #fff;
+  color: #fff;
+  background-color: #2b00f2;;
 }
 
 .theory-button-hide.nlp {
@@ -6078,8 +6079,9 @@ a {
 }
 
 .apps-button-show.sensors {
-  background-color: #fb4d68;
-  border-top-color: #fb4d68;
+  color: #2b00f2;
+  background-color: #fff;
+  border-top-color: #fff;
 }
 
 .apps-button-show.nlp {
@@ -6375,7 +6377,7 @@ a {
 .borders-5 {
   width: 100%;
   height: 100%;
-  border: 10px solid #fb4d68;
+  border: 10px solid white;
   display: flex;
   position: relative;
 }
@@ -6598,7 +6600,7 @@ a {
 }
 
 .line-4.sensors {
-  background-color: #fb4d68;
+  background-color: #fff;
 }
 
 .line-4.comp {
