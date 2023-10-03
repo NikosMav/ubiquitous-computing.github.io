@@ -27,14 +27,14 @@ function sendSouvenirEmail(userEmail) {
   const emailContent = `
       Αγαπητέ χρήστη,
 
-      Σας ευχαριστούμε που πήρατε το κουίζ μας! Εκτιμούμε τη συμμετοχή σας.
+      Σας ευχαριστούμε που ολοκληρώσατε το κουίζ μας! Εκτιμούμε τη συμμετοχή σας.
 
       Souvenir Value: ${souvenirValue}
       Βαθμολογία Κουίζ: ${quizScore}/${questions.length}
 
       Ελπίζουμε να σας άρεσε το κουίζ και ανυπομονούμε να σας έχουμε ξανά.
 
-      Τις καλύτερες ευχές,
+      Με εκτίμηση,
       Η ομάδα μας
   `;
 
@@ -153,50 +153,42 @@ function displayFinalScore() {
   displayFaceImage();
 }
 
-// Handle the email submission
 nextButton.addEventListener('click', () => {
-  const selectedOption = document.querySelector('.selected');
-  if (selectedOption) {
+  if (nextButton.textContent === 'Υποβολή') {
+    const selectedOption = document.querySelector('.selected');
+    if (selectedOption) {
       const currentQuestion = questions[currentQuestionIndex];
       const isCorrect = selectedOption.textContent === currentQuestion.correctAnswer;
-
       if (isCorrect) {
-          score++;
+        score++;
       }
-
       displayFeedback(isCorrect);
       selectedOption.classList.remove('selected');
       selectedOption.classList.add(isCorrect ? 'correct' : 'incorrect');
-
       disableOptions();
-
-      nextButton.disabled = true;
-
-      setTimeout(() => {
-          nextButton.disabled = false;
-          if (currentQuestionIndex < questions.length - 1) {
-              currentQuestionIndex++;
-              displayQuestion(currentQuestionIndex);
-              enableOptions();
-          } else {
-              currentQuestionIndex++;
-              optionsContainer.innerHTML = '';
-              feedback.textContent = '';
-              questionText.textContent = '';
-              nextButton.style.display = 'none';
-
-              // Add a delay before showing the score
-              setTimeout(() => {
-                  displayFinalScore();
-                  // Trigger email input form display here if needed
-                  displayEmailInputForm();
-              }, 2000);
-          }
-          updateProgressBar();
-      }, 1000);
-  } else {
+      nextButton.textContent = 'Επόμενη ερώτηση';
+    } else {
       feedback.textContent = 'Επιλέξτε μια απάντηση.';
       feedback.style.color = 'red';
+    }
+  } else if (nextButton.textContent === 'Επόμενη ερώτηση') {
+    if (currentQuestionIndex < questions.length - 1) {
+      currentQuestionIndex++;
+      displayQuestion(currentQuestionIndex);
+      enableOptions();
+      nextButton.textContent = 'Υποβολή';
+    } else {
+      currentQuestionIndex++;
+      optionsContainer.innerHTML = '';
+      feedback.textContent = '';
+      questionText.textContent = '';
+      nextButton.style.display = 'none';
+      setTimeout(() => {
+        displayFinalScore();
+        displayEmailInputForm();
+      }, 2000);
+    }
+    updateProgressBar();
   }
 });
 
@@ -228,7 +220,7 @@ function displayEmailInputForm() {
 async function initializeQuiz() {
   const fetchedQuestions = await fetchQuestions();
   if (fetchedQuestions.length > 0) {
-      questions = fetchedQuestions; // Store fetched questions in the 'questions' array
+      questions = fetchedQuestions;
       displayQuestion(currentQuestionIndex);
       updateProgressBar();
   } else {
@@ -236,5 +228,6 @@ async function initializeQuiz() {
   }
 }
 
-// Initialize the quiz by displaying the first question
+// Initialize the quiz
+nextButton.textContent = 'Υποβολή';
 initializeQuiz();
