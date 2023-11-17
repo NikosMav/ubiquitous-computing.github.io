@@ -1,6 +1,7 @@
 # Ubiquitous Computing Thesis Project
 
 This repository contains the code and resources for Nikolaos Mavrapidis thesis project in Ubiquitous Computing, showcased at the Museum of IT in NKUA.
+Click [here](https://pergamos.lib.uoa.gr/uoa/dl/object/3362706/file.pdf) to read the thesis paper.
 
 ## Introduction
 
