@@ -1,68 +1,8 @@
-<!DOCTYPE html>
-<html lang="el">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Αναγνώριση Προσώπου</title>
-
-  <link href="css/ubiquitous-computing.webflow.css" rel="stylesheet" type="text/css">
-
-  <!-- <script defer src="node_modules\face-api.js\dist\face-api.min.js"></script> -->
-  <script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api@1.7.12/dist/face-api.min.js"></script>
-  <script defer src="js/faceRec.js"></script>
-
-  <link rel="stylesheet" type="text/css" href="css/nav_styles.css">
-  <link rel="stylesheet" href="css/styles1.css">
-
-  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-  <link rel="manifest" href="favicon/site.webmanifest">
-  <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
-  <meta name="msapplication-TileColor" content="#da532c">
-  <meta name="theme-color" content="#ffffff">
-</head>
-
-<body>
-  <nav>
-    <ul>
-      <li><a href="face_recognition.html" class="active">Face Recognition</a></li>
-      <li><a href="hand_gestures.html">Hand Gestures</a></li>
-      <li><a href="pose_detection.html">Pose Detection</a></li>
-    </ul>
-  </nav>
-
-  <header>
-    <h1 class="app-title">Face Recognition</h1>
-  </header>
-  
-  <!-- Update note for model loading -->
-  <div id="updatenote" class="updatenote mb10">Loading models...</div>
-  
-  <div id="video-container" class="video-container">
-    <video id="video" class="video" width="640" height="480" autoplay muted></video>
-  </div>
-
-  <div id="instructions-wrapper" class="instructions-wrapper">
-    <div id="instructions" class="instructions">
-        <h3 class="mb10">Οδηγίες:</h3>
-      <p class="mb10">
-        Για να χρησιμοποιήσετε αυτήν την εφαρμογή σωστά, ακολουθήστε τα παρακάτω βήματα:
-      </p>
-      <ol class="mb10">
-          <li>Εξασφαλίστε καλό φωτισμό στο δωμάτιο για ακριβή αναγνώριση προσώπου.</li>
-          <li>Τοποθετήστε τον εαυτό σας μπροστά στην κάμερα.</li>
-          <li>Αφήστε την εφαρμογή να καταγράψει το πρόσωπό σας, ενώ παίρνετε διάφορες εκφράσεις.</li>
-          <li>Παρατηρήστε ότι η εφαρμογή κάνει εκτιμήσεις για το γένος σας, την ηλικία σας και την κάθε έκρασή σας.</li>
-      </ol>
-      <p>
-          Απολαύστε!
-      </p>
-    </div>
-    
-    <!-- Add a button to toggle the instructions next to the div -->
-    <button id="toggleInstructionsButton" onclick="toggleInstructions()">Εναλλαγή εμφάνισης οδηγιών</button>
-  </div>
-</body>
-
-</html>
+<!doctype html>
+<html lang="el"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Τα σημεία ενός προσώπου | Διάχυτη υπολογιστική</title><meta name="description" content="Ένα πείραμα υπολογιστικής όρασης που εκτελείται τοπικά στον browser.">
+<meta name="theme-color" content="#172b61"><link rel="icon" href="assets/exhibit/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/site.css"></head><body>
+<a class="skip" href="#main">Μετάβαση στο περιεχόμενο</a>
+<header class="site-header"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">◈</span> Διάχυτη υπολογιστική</a>
+<nav aria-label="Κύρια πλοήγηση"><a href="reading.html">Εξερεύνηση</a><a href="index.html#experiments">Εργαστήριο</a><a href="index.html#about">Η εργασία</a></nav></header><main id="main" class="demo-page" data-demo="face"><a class="back-link" href="index.html#experiments">Επιστροφή στο εργαστήριο</a><p class="kicker">Πείραμα υπολογιστικής όρασης</p><h1>Τα σημεία ενός προσώπου</h1><p class="demo-lead">Μετακίνησε αργά το κεφάλι σου. Παρατήρησε τα σημεία γύρω από τα μάτια, τη μύτη και το στόμα. Το μοντέλο εντοπίζει γεωμετρία, όχι ταυτότητα, ηλικία, φύλο ή συναισθήματα.</p><div class="demo-layout"><section aria-label="Κάμερα και αποτελέσματα"><div class="camera-stage"><video id="video" autoplay muted playsinline aria-label="Ζωντανή εικόνα κάμερας"></video><canvas id="overlay" aria-hidden="true"></canvas><p id="camera-placeholder">Η κάμερα είναι κλειστή.</p></div><div class="camera-controls"><button id="start-camera" type="button" disabled>Έναρξη κάμερας</button><button id="stop-camera" type="button" class="secondary" disabled>Διακοπή</button></div><p id="camera-status" role="status">Η κάμερα δεν έχει ενεργοποιηθεί.</p><p id="detection-summary" role="status" aria-live="polite"></p></section><aside class="demo-explanation"><h2>Πριν ξεκινήσεις</h2><ul><li>Χρησιμοποίησε καλό φωτισμό και σταθερή κάμερα.</li><li>Η πρώτη φόρτωση μπορεί να πάρει λίγο χρόνο.</li><li>Πάτησε «Διακοπή» όποτε θέλεις. Η κάμερα κλείνει και όταν αλλάξεις καρτέλα.</li></ul><h2>Τι συμβαίνει στην εικόνα;</h2><p>Ένα μοντέλο εκτιμά θέσεις σημείων σε κάθε εικόνα. Οι εκτιμήσεις μπορεί να χάσουν σημεία ή να είναι λανθασμένες, ειδικά με κακό φωτισμό ή απόκρυψη.</p><p>Δεν καταγράφουμε και δεν ανεβάζουμε εικόνες. Τα αρχεία του μοντέλου κατεβαίνουν από τη Google όταν ξεκινήσεις το πείραμα. Δεν γίνεται αποστολή του βίντεο.</p><p><a href="reading.html#comp-vis-fp">Η θεωρία της υπολογιστικής όρασης</a></p></aside></div><noscript><p>Το πείραμα χρειάζεται JavaScript. Η εξήγηση παραμένει διαθέσιμη χωρίς κάμερα.</p></noscript></main><script type="module" src="js/camera.js"></script><footer class="site-footer"><p>Νικόλαος Μαυραπίδης · Πτυχιακή εργασία, ΕΚΠΑ, 2023<br>Ανανεωμένη διαδικτυακή έκδοση, 2026</p><div><a href="https://pergamos.lib.uoa.gr/uoa/dl/object/3362706/file.pdf">Πλήρης εργασία (PDF)</a><a href="https://github.com/NikosMav/ubiquitous-computing.github.io">Κώδικας στο GitHub</a></div></footer></body></html>
