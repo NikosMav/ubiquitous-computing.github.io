@@ -1,73 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ανίχνευση Πόζας</title>
-
-  <link href="css/ubiquitous-computing.webflow.css" rel="stylesheet" type="text/css">
-
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
-  <!-- Load Posenet -->
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"></script>
-  <script defer src="js/poseRec.js"></script>
-
-  <link rel="stylesheet" type="text/css" href="css/nav_styles.css">
-  <link rel="stylesheet" href="css/styles3.css">
-
-  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-  <link rel="manifest" href="favicon/site.webmanifest">
-  <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
-  <meta name="msapplication-TileColor" content="#da532c">
-  <meta name="theme-color" content="#ffffff">
-</head>
-
-<body>
-  <nav>
-    <ul>
-      <li><a href="face_recognition.html">Face Recognition</a></li>
-      <li><a href="hand_gestures.html">Hand Gestures</a></li>
-      <li><a href="pose_detection.html" class="active">Pose Detection</a></li>
-    </ul>
-  </nav>
-
-  <header>
-    <h1 class="app-title">Pose Detection</h1>
-  </header>
-  
-  <!-- Update note for model loading -->
-  <div id="updatenote" class="updatenote mb10">Loading models...</div>
-  
-  <div class="video-container">
-    <video id="video" class="video" width="640" height="480" autoplay muted></video>
-    <canvas id="canvas"></canvas>
-  </div>
-
-  <div id="instructions-wrapper" class="instructions-wrapper">
-    <div id="instructions" class="instructions">
-        <h3 class="mb10">Οδηγίες:</h3>
-      <p class="mb10">
-        Για να χρησιμοποιήσετε αυτήν την εφαρμογή σωστά, ακολουθήστε τα παρακάτω βήματα:
+<html lang="el">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Η γεωμετρία του σώματος | Διάχυτη υπολογιστική</title>
+    <meta
+      content="Ένα πείραμα υπολογιστικής όρασης που εκτελείται τοπικά στον browser."
+      name="description"
+    />
+    <meta content="#172b61" name="theme-color" />
+    <link href="assets/exhibit/favicon.svg" rel="icon" type="image/svg+xml" />
+    <link href="css/site.css" rel="stylesheet" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Μετάβαση στο περιεχόμενο</a>
+    <header class="site-header">
+      <a class="brand" href="index.html"
+        ><span aria-hidden="true" class="brand-mark">◈</span> Διάχυτη υπολογιστική</a
+      >
+      <nav aria-label="Κύρια πλοήγηση">
+        <a href="reading.html">Εξερεύνηση</a><a href="index.html#experiments">Εργαστήριο</a
+        ><a href="index.html#about">Η εργασία</a>
+      </nav>
+    </header>
+    <main class="demo-page" data-demo="pose" id="main">
+      <a class="back-link" href="index.html#experiments">Επιστροφή στο εργαστήριο</a>
+      <p class="kicker">Πείραμα υπολογιστικής όρασης</p>
+      <h1>Η γεωμετρία του σώματος</h1>
+      <p class="demo-lead">
+        Στάσου αρκετά μακριά ώστε να φαίνεται το σώμα σου. Το μοντέλο εκτιμά 33 σημεία. Οι γραμμές
+        ενώνουν μόνο σημεία με επαρκή ορατότητα, χωρίς να αλλάζουν τη θέση τους στον σκελετό.
       </p>
-      <ol class="mb10">
-          <li>Βεβαιωθείτε ότι έχετε καλό φωτισμό στο δωμάτιο.</li>
-          <li>Σταθείτε αρκετά μακριά από την κάμερα, ώστε ολόκληρο το σώμα σας να είναι ορατό.</li>
-          <li>Βεβαιωθείτε ότι δεν υπάρχουν εμπόδια στην προβολή της κάμερας.</li>
-          <li>Φορέστε ρούχα που έρχονται σε αντίθεση με το φόντο.</li>
-          <li>Διατηρήστε τις κινήσεις σας αργές και σταθερές για ακριβή παρακολούθηση.</li>
-      </ol>
+      <div class="demo-layout">
+        <section aria-label="Κάμερα και αποτελέσματα">
+          <div class="camera-stage">
+            <video
+              aria-label="Ζωντανή εικόνα κάμερας"
+              autoplay=""
+              id="video"
+              muted=""
+              playsinline=""
+            ></video
+            ><canvas aria-hidden="true" id="overlay"></canvas>
+            <p id="camera-placeholder">Η κάμερα είναι κλειστή.</p>
+          </div>
+          <div class="camera-controls">
+            <button disabled="" id="start-camera" type="button">Έναρξη κάμερας</button
+            ><button class="secondary" disabled="" id="stop-camera" type="button">Διακοπή</button>
+          </div>
+          <p id="camera-status" role="status">Η κάμερα δεν έχει ενεργοποιηθεί.</p>
+          <p aria-live="polite" id="detection-summary" role="status"></p>
+        </section>
+        <aside class="demo-explanation">
+          <h2>Πριν ξεκινήσεις</h2>
+          <ul>
+            <li>Χρησιμοποίησε καλό φωτισμό και σταθερή κάμερα.</li>
+            <li>Η πρώτη φόρτωση μπορεί να πάρει λίγο χρόνο.</li>
+            <li>Πάτησε «Διακοπή» όποτε θέλεις. Η κάμερα κλείνει και όταν αλλάξεις καρτέλα.</li>
+          </ul>
+          <h2>Τι συμβαίνει στην εικόνα;</h2>
+          <p>
+            Ένα μοντέλο εκτιμά θέσεις σημείων σε κάθε εικόνα. Οι εκτιμήσεις μπορεί να χάσουν σημεία
+            ή να είναι λανθασμένες, ειδικά με κακό φωτισμό ή απόκρυψη.
+          </p>
+          <p>
+            Δεν καταγράφουμε και δεν ανεβάζουμε εικόνες. Τα αρχεία του μοντέλου κατεβαίνουν από τη
+            Google όταν ξεκινήσεις το πείραμα. Δεν γίνεται αποστολή του βίντεο.
+          </p>
+          <p><a href="reading.html#comp-vis-fp">Η θεωρία της υπολογιστικής όρασης</a></p>
+        </aside>
+      </div>
+      <noscript
+        ><p>
+          Το πείραμα χρειάζεται JavaScript. Η εξήγηση παραμένει διαθέσιμη χωρίς κάμερα.
+        </p></noscript
+      >
+    </main>
+    <script src="js/camera.js" type="module"></script>
+    <footer class="site-footer">
       <p>
-          Απολαύστε!
+        Νικόλαος Μαυραπίδης · Πτυχιακή εργασία, ΕΚΠΑ, 2023<br />Ανανεωμένη διαδικτυακή έκδοση, 2026
       </p>
-    </div>
-    
-    <!-- Add a button to toggle the instructions next to the div -->
-    <button id="toggleInstructionsButton" onclick="toggleInstructions()">Εναλλαγή εμφάνισης οδηγιών</button>
-  </div>
-  
-</body>
-
+      <div>
+        <a href="https://pergamos.lib.uoa.gr/uoa/dl/object/3362706/file.pdf">Πλήρης εργασία (PDF)</a
+        ><a href="https://github.com/NikosMav/ubiquitous-computing.github.io">Κώδικας στο GitHub</a>
+      </div>
+    </footer>
+  </body>
 </html>

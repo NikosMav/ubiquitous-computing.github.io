@@ -1,78 +1,91 @@
-<!-- This is an HTML document -->
+<!doctype html>
 
-<!DOCTYPE html>
 <html lang="el">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Αναγνώριση Χειρονομιών</title>
-
-  <link href="css/ubiquitous-computing.webflow.css" rel="stylesheet" type="text/css">
-
-  <!-- External JavaScript files for the hand tracking functionality -->
-  <!-- Defer loading to improve performance -->
-  <script src="https://cdn.jsdelivr.net/npm/handtrackjs@latest/dist/handtrack.min.js"></script>
-  <script defer src="js/handGestRec.js"></script>
-
-  <!-- External CSS files for navigation and styling -->
-  <link rel="stylesheet" type="text/css" href="css/nav_styles.css">
-  <link rel="stylesheet" href="css/styles2.css">
-
-  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-  <link rel="manifest" href="favicon/site.webmanifest">
-  <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
-  <meta name="msapplication-TileColor" content="#da532c">
-  <meta name="theme-color" content="#ffffff">
-</head>
-
-<body>
-  <!-- Navigation menu -->
-  <nav>
-    <ul>
-      <li><a href="face_recognition.html">Face Recognition</a></li>
-      <li><a href="hand_gestures.html" class="active">Hand Gestures</a></li>
-      <li><a href="pose_detection.html">Pose Detection</a></li>
-    </ul>
-  </nav>
-
-  <!-- Page header -->
-  <header>
-    <h1 class="app-title">Hand Gestures</h1>
-  </header>
-
-  <!-- Update note for model loading -->
-  <div id="updatenote" class="updatenote mb10">Loading models...</div>
-
-  <!-- Video container -->
-  <video id="video" autoplay muted></video>
-
-  <!-- Canvas for drawing hand gestures -->
-  <canvas id="canvasbox" class="canvasbox"></canvas>
-
-  <div id="instructions-wrapper" class="instructions-wrapper">
-    <div id="instructions" class="instructions">
-        <h3 class="mb10">Οδηγίες:</h3>
-      <p class="mb10">
-        Για να χρησιμοποιήσετε αυτήν την εφαρμογή σωστά, ακολουθήστε τα παρακάτω βήματα:
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Η κίνηση των χεριών | Διάχυτη υπολογιστική</title>
+    <meta
+      content="Ένα πείραμα υπολογιστικής όρασης που εκτελείται τοπικά στον browser."
+      name="description"
+    />
+    <meta content="#172b61" name="theme-color" />
+    <link href="assets/exhibit/favicon.svg" rel="icon" type="image/svg+xml" />
+    <link href="css/site.css" rel="stylesheet" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Μετάβαση στο περιεχόμενο</a>
+    <header class="site-header">
+      <a class="brand" href="index.html"
+        ><span aria-hidden="true" class="brand-mark">◈</span> Διάχυτη υπολογιστική</a
+      >
+      <nav aria-label="Κύρια πλοήγηση">
+        <a href="reading.html">Εξερεύνηση</a><a href="index.html#experiments">Εργαστήριο</a
+        ><a href="index.html#about">Η εργασία</a>
+      </nav>
+    </header>
+    <main class="demo-page" data-demo="hand" id="main">
+      <a class="back-link" href="index.html#experiments">Επιστροφή στο εργαστήριο</a>
+      <p class="kicker">Πείραμα υπολογιστικής όρασης</p>
+      <h1>Η κίνηση των χεριών</h1>
+      <p class="demo-lead">
+        Δείξε ένα ή δύο χέρια στην κάμερα και άνοιξε τα δάχτυλά σου. Το μοντέλο ακολουθεί 21 σημεία
+        ανά χέρι. Τα σημεία περιγράφουν θέση και δεν μεταφράζουν νοηματική γλώσσα.
       </p>
-      <ol class="mb10">
-          <li>Διασφαλίστε καλό φωτισμό για ακριβή αναγνώριση χειρονομιών.</li>
-          <li>Κράτα το χέρι σου μπροστά από την κάμερα.</li>
-          <li>Χειρονομία 1: Σηκώστε το χέρι σας στην κάμερα και ανοίξτε την παλάμη σας 🖐️</li>
-          <li>Χειρονομία 2: Σηκώστε το χέρι σας στην κάμερα και κλείστε την παλάμη σας ✊</li>
-          <li>Χειρονομία 3: Σηκώστε το χέρι σας στην κάμερα και σηκώστε μόνο ένα ή δύο δάχτυλα 👆</li>
-          <li>Χειρονομία 4: Σηκώστε το χέρι σας στην κάμερα και ενώστε τον αντιχειρά με τον δείκτη σας👌</li>
-      </ol>
+      <div class="demo-layout">
+        <section aria-label="Κάμερα και αποτελέσματα">
+          <div class="camera-stage">
+            <video
+              aria-label="Ζωντανή εικόνα κάμερας"
+              autoplay=""
+              id="video"
+              muted=""
+              playsinline=""
+            ></video
+            ><canvas aria-hidden="true" id="overlay"></canvas>
+            <p id="camera-placeholder">Η κάμερα είναι κλειστή.</p>
+          </div>
+          <div class="camera-controls">
+            <button disabled="" id="start-camera" type="button">Έναρξη κάμερας</button
+            ><button class="secondary" disabled="" id="stop-camera" type="button">Διακοπή</button>
+          </div>
+          <p id="camera-status" role="status">Η κάμερα δεν έχει ενεργοποιηθεί.</p>
+          <p aria-live="polite" id="detection-summary" role="status"></p>
+        </section>
+        <aside class="demo-explanation">
+          <h2>Πριν ξεκινήσεις</h2>
+          <ul>
+            <li>Χρησιμοποίησε καλό φωτισμό και σταθερή κάμερα.</li>
+            <li>Η πρώτη φόρτωση μπορεί να πάρει λίγο χρόνο.</li>
+            <li>Πάτησε «Διακοπή» όποτε θέλεις. Η κάμερα κλείνει και όταν αλλάξεις καρτέλα.</li>
+          </ul>
+          <h2>Τι συμβαίνει στην εικόνα;</h2>
+          <p>
+            Ένα μοντέλο εκτιμά θέσεις σημείων σε κάθε εικόνα. Οι εκτιμήσεις μπορεί να χάσουν σημεία
+            ή να είναι λανθασμένες, ειδικά με κακό φωτισμό ή απόκρυψη.
+          </p>
+          <p>
+            Δεν καταγράφουμε και δεν ανεβάζουμε εικόνες. Τα αρχεία του μοντέλου κατεβαίνουν από τη
+            Google όταν ξεκινήσεις το πείραμα. Δεν γίνεται αποστολή του βίντεο.
+          </p>
+          <p><a href="reading.html#comp-vis-fp">Η θεωρία της υπολογιστικής όρασης</a></p>
+        </aside>
+      </div>
+      <noscript
+        ><p>
+          Το πείραμα χρειάζεται JavaScript. Η εξήγηση παραμένει διαθέσιμη χωρίς κάμερα.
+        </p></noscript
+      >
+    </main>
+    <script src="js/camera.js" type="module"></script>
+    <footer class="site-footer">
       <p>
-          Απολαύστε!
+        Νικόλαος Μαυραπίδης · Πτυχιακή εργασία, ΕΚΠΑ, 2023<br />Ανανεωμένη διαδικτυακή έκδοση, 2026
       </p>
-    </div>
-    
-    <!-- Add a button to toggle the instructions next to the div -->
-    <button id="toggleInstructionsButton" onclick="toggleInstructions()">Εναλλαγή εμφάνισης οδηγιών</button>
-  </div>
-</body>
-
+      <div>
+        <a href="https://pergamos.lib.uoa.gr/uoa/dl/object/3362706/file.pdf">Πλήρης εργασία (PDF)</a
+        ><a href="https://github.com/NikosMav/ubiquitous-computing.github.io">Κώδικας στο GitHub</a>
+      </div>
+    </footer>
+  </body>
 </html>
