@@ -910,3 +910,72 @@ details > div a {
     margin: 1.5rem 0;
   }
 }
+/* The optional guide is a directory, not a second product landing page. */
+.guide-page h1,
+.guide-page h2 {
+  font-family: inherit;
+  letter-spacing: -0.02em;
+  font-weight: 650;
+}
+.guide-page h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  max-width: none;
+}
+.guide-page h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+.guide-page .hero {
+  display: block;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+.guide-page .lead {
+  max-width: 65ch;
+  font-size: 1rem;
+}
+.guide-page .hero-copy {
+  max-width: 850px;
+}
+.guide-page .section {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-top: 1px solid var(--line);
+}
+.guide-page .idea,
+.guide-page .lab,
+.guide-page .knowledge {
+  background: white;
+  color: var(--ink);
+}
+.guide-page .lab .section-heading > p,
+.guide-page .experiments p,
+.guide-page .lab-note {
+  color: var(--muted);
+}
+.guide-page .experiment-action {
+  color: var(--blue);
+}
+.guide-page .experiments > a {
+  border-color: var(--line);
+}
+.guide-page .experiments {
+  margin-top: 1.5rem;
+}
+.guide-page .experiments > a {
+  display: block;
+}
+.guide-page .knowledge .button {
+  background: var(--blue);
+}
+.guide-page .about {
+  grid-template-columns: 1fr 1.3fr;
+}
+@media (max-width: 700px) {
+  .guide-page .about {
+    grid-template-columns: 1fr;
+  }
+  .site-header nav {
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+  }
+}

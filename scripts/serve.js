@@ -14,6 +14,14 @@ const types = {
   '.wasm': 'application/wasm',
   '.jpg': 'image/jpeg',
   '.png': 'image/png',
+  '.jpeg': 'image/jpeg',
+  '.webp': 'image/webp',
+  '.webm': 'video/webm',
+  '.mp4': 'video/mp4',
+  '.woff': 'font/woff',
+  '.woff2': 'font/woff2',
+  '.ttf': 'font/ttf',
+  '.otf': 'font/otf',
 };
 http
   .createServer(async (req, res) => {

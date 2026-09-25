@@ -1,0 +1,7 @@
+.splide__arrow.splide__arrow--next, .splide__arrow.splide__arrow--prev,.splide__pagination {
+    display: none;
+  }
+  
+  .splide *:focus {
+    outline: none;
+  }
