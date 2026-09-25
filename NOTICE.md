@@ -12,7 +12,7 @@ Unused legacy media and model files were removed from the current tree; the orig
 
 ## Computer vision
 
-The build includes the lockfile-pinned `@mediapipe/tasks-vision` npm package, published by Google under Apache-2.0. See the [upstream repository and license](https://github.com/google-ai-edge/mediapipe).
+The build includes the lockfile-pinned `@mediapipe/tasks-vision` npm package, published by Google under Apache-2.0. The license is included in [assets/licenses/mediapipe-APACHE-2.0.txt](assets/licenses/mediapipe-APACHE-2.0.txt). See the [upstream repository](https://github.com/google-ai-edge/mediapipe).
 
 The application downloads the following versioned models only when a visitor starts a camera experiment:
 

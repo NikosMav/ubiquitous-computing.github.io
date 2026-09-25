@@ -717,7 +717,7 @@ details > div a {
     padding: 2.5rem 6% 3rem;
   }
   .hero h1 {
-    font-size: 3.35rem;
+    font-size: clamp(2.5rem, 12vw, 3.35rem);
     max-width: 12ch;
   }
   .lead {
