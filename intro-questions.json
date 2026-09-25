@@ -1,32 +1,17 @@
 [
   {
     "question": "Τι σημαίνει το www στις διευθύνσεις ιστοτόπων;",
-    "options": [
-      "World Wide Web",
-      "World Wide Widget",
-      "Webpage World Wide",
-      "World Wide Wizardry"
-    ],
+    "options": ["World Wide Web", "World Wide Widget", "Webpage World Wide", "World Wide Wizardry"],
     "answer": "World Wide Web"
   },
   {
     "question": "Ποια γλώσσα προγραμματισμού χρησιμοποιείται συχνά για την ανάπτυξη ιστού και είναι γνωστή για τη χρήση της στην ανάπτυξη front-end;",
-    "options": [
-      "Java",
-      "Python",
-      "C++",
-      "JavaScript"
-    ],
+    "options": ["Java", "Python", "C++", "JavaScript"],
     "answer": "JavaScript"
   },
   {
     "question": "Ποια εταιρεία ανέπτυξε το λειτουργικό σύστημα Windows;",
-    "options": [
-      "Microsoft",
-      "Apple",
-      "Google",
-      "Amazon"
-    ],
+    "options": ["Microsoft", "Apple", "Google", "Amazon"],
     "answer": "Microsoft"
   },
   {
@@ -41,22 +26,12 @@
   },
   {
     "question": "Ποιά τεχνολογία χρησιμοποιείται συνήθως για τον εντοπισμό και την απόκριση σε αλλαγές στο φυσικό περιβάλλον;",
-    "options": [
-      "Σάρωση γραμμωτού κώδικα",
-      "RFID",
-      "Κωδικοί QR",
-      "Αισθητήρες και ενεργοποιητές"
-    ],
+    "options": ["Σάρωση γραμμωτού κώδικα", "RFID", "Κωδικοί QR", "Αισθητήρες και ενεργοποιητές"],
     "answer": "Αισθητήρες και ενεργοποιητές"
   },
   {
     "question": "Ποιος επιστήμονας υπολογιστών είναι γνωστός ως ο πατέρας της επιστήμης των υπολογιστών και της τεχνητής νοημοσύνης;",
-    "options": [
-      "Alan Turing",
-      "Albert Einstein",
-      "Isaac Newton",
-      "Charles Babbage"
-    ],
+    "options": ["Alan Turing", "Albert Einstein", "Isaac Newton", "Charles Babbage"],
     "answer": "Alan Turing"
   },
   {

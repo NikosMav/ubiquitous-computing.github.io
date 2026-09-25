@@ -4,13 +4,23 @@
   "private": true,
   "type": "module",
   "description": "An accessible Greek learning exhibit and on-device computer vision lab, based on an NKUA thesis.",
-  "engines": { "node": ">=22" },
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "build": "node scripts/build.js",
     "start": "node scripts/serve.js",
     "test": "node --test tests/*.test.js",
-    "test:browser": "playwright test"
+    "test:browser": "playwright test",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
-  "dependencies": { "@mediapipe/tasks-vision": "1.0.1" },
-  "devDependencies": { "@playwright/test": "1.63.0", "@axe-core/playwright": "4.13.0" }
+  "dependencies": {
+    "@mediapipe/tasks-vision": "1.0.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@playwright/test": "1.63.0",
+    "prettier": "3.9.9"
+  }
 }

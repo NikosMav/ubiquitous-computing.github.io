@@ -7,9 +7,14 @@ const out = path.join(root, 'dist');
 await rm(out, { recursive: true, force: true });
 await mkdir(out, { recursive: true });
 for (const file of await readdir(root)) {
-  if (file.endsWith('.html') || ['questions.json', 'intro-questions.json', 'LICENSE.md', 'NOTICE.md'].includes(file)) await copyFile(path.join(root, file), path.join(out, file));
+  if (
+    file.endsWith('.html') ||
+    ['questions.json', 'intro-questions.json', 'LICENSE.md', 'NOTICE.md'].includes(file)
+  )
+    await copyFile(path.join(root, file), path.join(out, file));
 }
-for (const dir of ['css', 'js', 'assets']) await cp(path.join(root, dir), path.join(out, dir), { recursive: true });
+for (const dir of ['css', 'js', 'assets'])
+  await cp(path.join(root, dir), path.join(out, dir), { recursive: true });
 const vision = path.join(root, 'node_modules/@mediapipe/tasks-vision');
 const vendor = path.join(out, 'vendor/vision');
 await mkdir(vendor, { recursive: true });

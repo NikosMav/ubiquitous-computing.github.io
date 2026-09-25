@@ -15,7 +15,10 @@ test('sampling is without replacement and does not mutate the bank', () => {
   const bank = Array.from({ length: 12 }, (_, id) => ({ id }));
   const sampled = sampleQuestions(bank, 8, () => 0.25);
   assert.equal(new Set(sampled).size, 8);
-  assert.deepEqual(bank.map(q => q.id), Array.from({ length: 12 }, (_, id) => id));
+  assert.deepEqual(
+    bank.map((q) => q.id),
+    Array.from({ length: 12 }, (_, id) => id),
+  );
   assert.notDeepEqual(sampled, bank.slice(0, 8));
 });
 test('learning route boundaries retain the original three paths', () => {
@@ -25,7 +28,12 @@ test('learning route boundaries retain the original three paths', () => {
 });
 test('missing or hidden joints never shift the original skeleton indices', () => {
   const points = [{ visibility: 1 }, { visibility: 0.1 }, { visibility: 1 }, { visibility: 0.9 }];
-  const edges = [{ start: 0, end: 1 }, { start: 1, end: 2 }, { start: 2, end: 3 }, { start: 3, end: 4 }];
+  const edges = [
+    { start: 0, end: 1 },
+    { start: 1, end: 2 },
+    { start: 2, end: 3 },
+    { start: 3, end: 4 },
+  ];
   assert.deepEqual(visibleConnections(points, edges), [{ start: 2, end: 3 }]);
   assert.equal(points.length, 4);
 });

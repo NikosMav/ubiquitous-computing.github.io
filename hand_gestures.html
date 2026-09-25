@@ -1,8 +1,91 @@
 <!doctype html>
-<html lang="el"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Η κίνηση των χεριών | Διάχυτη υπολογιστική</title><meta name="description" content="Ένα πείραμα υπολογιστικής όρασης που εκτελείται τοπικά στον browser.">
-<meta name="theme-color" content="#172b61"><link rel="icon" href="assets/exhibit/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="css/site.css"></head><body>
-<a class="skip" href="#main">Μετάβαση στο περιεχόμενο</a>
-<header class="site-header"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">◈</span> Διάχυτη υπολογιστική</a>
-<nav aria-label="Κύρια πλοήγηση"><a href="reading.html">Εξερεύνηση</a><a href="index.html#experiments">Εργαστήριο</a><a href="index.html#about">Η εργασία</a></nav></header><main id="main" class="demo-page" data-demo="hand"><a class="back-link" href="index.html#experiments">Επιστροφή στο εργαστήριο</a><p class="kicker">Πείραμα υπολογιστικής όρασης</p><h1>Η κίνηση των χεριών</h1><p class="demo-lead">Δείξε ένα ή δύο χέρια στην κάμερα και άνοιξε τα δάχτυλά σου. Το μοντέλο ακολουθεί 21 σημεία ανά χέρι. Τα σημεία περιγράφουν θέση και δεν μεταφράζουν νοηματική γλώσσα.</p><div class="demo-layout"><section aria-label="Κάμερα και αποτελέσματα"><div class="camera-stage"><video id="video" autoplay muted playsinline aria-label="Ζωντανή εικόνα κάμερας"></video><canvas id="overlay" aria-hidden="true"></canvas><p id="camera-placeholder">Η κάμερα είναι κλειστή.</p></div><div class="camera-controls"><button id="start-camera" type="button" disabled>Έναρξη κάμερας</button><button id="stop-camera" type="button" class="secondary" disabled>Διακοπή</button></div><p id="camera-status" role="status">Η κάμερα δεν έχει ενεργοποιηθεί.</p><p id="detection-summary" role="status" aria-live="polite"></p></section><aside class="demo-explanation"><h2>Πριν ξεκινήσεις</h2><ul><li>Χρησιμοποίησε καλό φωτισμό και σταθερή κάμερα.</li><li>Η πρώτη φόρτωση μπορεί να πάρει λίγο χρόνο.</li><li>Πάτησε «Διακοπή» όποτε θέλεις. Η κάμερα κλείνει και όταν αλλάξεις καρτέλα.</li></ul><h2>Τι συμβαίνει στην εικόνα;</h2><p>Ένα μοντέλο εκτιμά θέσεις σημείων σε κάθε εικόνα. Οι εκτιμήσεις μπορεί να χάσουν σημεία ή να είναι λανθασμένες, ειδικά με κακό φωτισμό ή απόκρυψη.</p><p>Δεν καταγράφουμε και δεν ανεβάζουμε εικόνες. Τα αρχεία του μοντέλου κατεβαίνουν από τη Google όταν ξεκινήσεις το πείραμα. Δεν γίνεται αποστολή του βίντεο.</p><p><a href="reading.html#comp-vis-fp">Η θεωρία της υπολογιστικής όρασης</a></p></aside></div><noscript><p>Το πείραμα χρειάζεται JavaScript. Η εξήγηση παραμένει διαθέσιμη χωρίς κάμερα.</p></noscript></main><script type="module" src="js/camera.js"></script><footer class="site-footer"><p>Νικόλαος Μαυραπίδης · Πτυχιακή εργασία, ΕΚΠΑ, 2023<br>Ανανεωμένη διαδικτυακή έκδοση, 2026</p><div><a href="https://pergamos.lib.uoa.gr/uoa/dl/object/3362706/file.pdf">Πλήρης εργασία (PDF)</a><a href="https://github.com/NikosMav/ubiquitous-computing.github.io">Κώδικας στο GitHub</a></div></footer></body></html>
+
+<html lang="el">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Η κίνηση των χεριών | Διάχυτη υπολογιστική</title>
+    <meta
+      content="Ένα πείραμα υπολογιστικής όρασης που εκτελείται τοπικά στον browser."
+      name="description"
+    />
+    <meta content="#172b61" name="theme-color" />
+    <link href="assets/exhibit/favicon.svg" rel="icon" type="image/svg+xml" />
+    <link href="css/site.css" rel="stylesheet" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Μετάβαση στο περιεχόμενο</a>
+    <header class="site-header">
+      <a class="brand" href="index.html"
+        ><span aria-hidden="true" class="brand-mark">◈</span> Διάχυτη υπολογιστική</a
+      >
+      <nav aria-label="Κύρια πλοήγηση">
+        <a href="reading.html">Εξερεύνηση</a><a href="index.html#experiments">Εργαστήριο</a
+        ><a href="index.html#about">Η εργασία</a>
+      </nav>
+    </header>
+    <main class="demo-page" data-demo="hand" id="main">
+      <a class="back-link" href="index.html#experiments">Επιστροφή στο εργαστήριο</a>
+      <p class="kicker">Πείραμα υπολογιστικής όρασης</p>
+      <h1>Η κίνηση των χεριών</h1>
+      <p class="demo-lead">
+        Δείξε ένα ή δύο χέρια στην κάμερα και άνοιξε τα δάχτυλά σου. Το μοντέλο ακολουθεί 21 σημεία
+        ανά χέρι. Τα σημεία περιγράφουν θέση και δεν μεταφράζουν νοηματική γλώσσα.
+      </p>
+      <div class="demo-layout">
+        <section aria-label="Κάμερα και αποτελέσματα">
+          <div class="camera-stage">
+            <video
+              aria-label="Ζωντανή εικόνα κάμερας"
+              autoplay=""
+              id="video"
+              muted=""
+              playsinline=""
+            ></video
+            ><canvas aria-hidden="true" id="overlay"></canvas>
+            <p id="camera-placeholder">Η κάμερα είναι κλειστή.</p>
+          </div>
+          <div class="camera-controls">
+            <button disabled="" id="start-camera" type="button">Έναρξη κάμερας</button
+            ><button class="secondary" disabled="" id="stop-camera" type="button">Διακοπή</button>
+          </div>
+          <p id="camera-status" role="status">Η κάμερα δεν έχει ενεργοποιηθεί.</p>
+          <p aria-live="polite" id="detection-summary" role="status"></p>
+        </section>
+        <aside class="demo-explanation">
+          <h2>Πριν ξεκινήσεις</h2>
+          <ul>
+            <li>Χρησιμοποίησε καλό φωτισμό και σταθερή κάμερα.</li>
+            <li>Η πρώτη φόρτωση μπορεί να πάρει λίγο χρόνο.</li>
+            <li>Πάτησε «Διακοπή» όποτε θέλεις. Η κάμερα κλείνει και όταν αλλάξεις καρτέλα.</li>
+          </ul>
+          <h2>Τι συμβαίνει στην εικόνα;</h2>
+          <p>
+            Ένα μοντέλο εκτιμά θέσεις σημείων σε κάθε εικόνα. Οι εκτιμήσεις μπορεί να χάσουν σημεία
+            ή να είναι λανθασμένες, ειδικά με κακό φωτισμό ή απόκρυψη.
+          </p>
+          <p>
+            Δεν καταγράφουμε και δεν ανεβάζουμε εικόνες. Τα αρχεία του μοντέλου κατεβαίνουν από τη
+            Google όταν ξεκινήσεις το πείραμα. Δεν γίνεται αποστολή του βίντεο.
+          </p>
+          <p><a href="reading.html#comp-vis-fp">Η θεωρία της υπολογιστικής όρασης</a></p>
+        </aside>
+      </div>
+      <noscript
+        ><p>
+          Το πείραμα χρειάζεται JavaScript. Η εξήγηση παραμένει διαθέσιμη χωρίς κάμερα.
+        </p></noscript
+      >
+    </main>
+    <script src="js/camera.js" type="module"></script>
+    <footer class="site-footer">
+      <p>
+        Νικόλαος Μαυραπίδης · Πτυχιακή εργασία, ΕΚΠΑ, 2023<br />Ανανεωμένη διαδικτυακή έκδοση, 2026
+      </p>
+      <div>
+        <a href="https://pergamos.lib.uoa.gr/uoa/dl/object/3362706/file.pdf">Πλήρης εργασία (PDF)</a
+        ><a href="https://github.com/NikosMav/ubiquitous-computing.github.io">Κώδικας στο GitHub</a>
+      </div>
+    </footer>
+  </body>
+</html>
