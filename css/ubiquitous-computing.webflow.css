@@ -9203,6 +9203,8 @@ footer a:hover {
   font-weight: 400;
   font-style: normal;
   font-display: swap;
+  /* The trial release draws a watermark instead of digits and @: let them fall back. */
+  unicode-range: U+0000-002F, U+003A-003F, U+0041-10FFFF;
 }
 @font-face {
   font-family: 'Kirsty bd it';

@@ -103,7 +103,7 @@ export function mountCheckin(host, wave, { count = 3 } = {}) {
     const finish = () => {
       recordCheckin(wave, score, questions.length);
       const passed = score / questions.length >= 2 / 3;
-      const title = el('h3', 'checkin__title', `${score} / ${questions.length}`);
+      const title = el('h3', 'checkin__title checkin__score', `${score} / ${questions.length}`);
       title.tabIndex = -1;
       const again = el('button', 'checkin__button checkin__button--ghost', 'Νέες ερωτήσεις');
       again.type = 'button';

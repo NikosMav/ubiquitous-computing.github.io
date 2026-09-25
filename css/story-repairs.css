@@ -77,8 +77,46 @@ html {
   min-height: 52px;
   cursor: pointer;
 }
-#quiz-question {
-  line-height: 1.5;
+/* The legacy quiz text inherited a fixed line height; long answers overlapped. */
+.story-page :is(#quiz-question, #quiz-result, #quiz-paragraph) {
+  line-height: 1.45 !important;
+  text-wrap: balance;
+}
+.story-page #quiz-result {
+  font-size: clamp(16px, 2.2vh, 20px);
+}
+/* Route result: a card instead of a circle, so every line of text fits. */
+.story-page .result-div {
+  width: min(680px, calc(100% - 40px)) !important;
+  height: auto !important;
+  aspect-ratio: auto !important;
+  gap: 18px;
+  padding: clamp(32px, 5vw, 56px) clamp(22px, 5vw, 64px) !important;
+  border: 1px solid rgba(255, 225, 156, 0.6) !important;
+  border-radius: 28px !important;
+  text-align: center;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+}
+.story-page .result-text {
+  margin: 0 !important;
+  font-size: clamp(26px, 2.6vw, 40px) !important;
+  line-height: 1.2 !important;
+}
+.story-page .result-text-span {
+  display: block;
+  margin-top: 14px;
+  font: 400 clamp(16px, 1.3vw, 20px) / 1.6 var(--uc-font-body) !important;
+  color: var(--uc-soft);
+}
+.story-page .result-score {
+  margin: 0 !important;
+  font: clamp(15px, 1.2vw, 18px) / 1.4 var(--uc-font-ui) !important;
+  letter-spacing: 0.06em;
+  color: var(--uc-sun);
+}
+.story-page .result-face {
+  width: clamp(64px, 6vw, 96px) !important;
+  margin: 0 !important;
 }
 #story-next-question {
   margin-top: 20px;
@@ -226,7 +264,7 @@ html {
 .story-extra h2,
 .story-extra h3.story-extra__title {
   margin: 0;
-  font: 400 clamp(38px, 6vw, 88px) / 1 var(--uc-font-serif);
+  font: 400 clamp(38px, 6vw, 88px) / 1.1 var(--uc-font-serif);
   color: #fff;
 }
 .story-extra__lead {
@@ -425,4 +463,64 @@ html {
   .story-trends__list {
     grid-template-columns: 1fr;
   }
+}
+
+/* Era explanations behind the "περισσότερα" buttons. */
+.story-era {
+  width: min(560px, calc(100% - 32px));
+  padding: clamp(24px, 4vw, 40px);
+  border: 1px solid rgba(255, 225, 156, 0.45);
+  border-radius: 22px;
+  background: linear-gradient(160deg, rgba(65, 80, 240, 0.25), transparent 55%), var(--uc-deep);
+  color: var(--uc-ink);
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
+  animation: story-era-in 0.35s var(--uc-ease);
+}
+.story-era::backdrop {
+  background: rgba(8, 10, 31, 0.7);
+  backdrop-filter: blur(4px);
+}
+.story-era__title {
+  margin: 0 0 14px;
+  font: 400 clamp(28px, 3vw, 38px) / 1.15 var(--uc-font-serif);
+  color: var(--uc-sun);
+}
+.story-era p {
+  margin: 0;
+  font: 17px/1.7 var(--uc-font-body);
+  color: var(--uc-soft);
+}
+.story-era__close {
+  margin-top: 24px;
+  min-height: 46px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--uc-amber);
+  color: var(--uc-night);
+  font: 13px/1 var(--uc-font-ui);
+  letter-spacing: 0.05em;
+  cursor: pointer;
+}
+@keyframes story-era-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+.story-page .checkin__score {
+  font-family: var(--uc-font-ui);
+  font-size: 34px;
+  letter-spacing: 0.04em;
+  color: var(--uc-sun);
+}
+/* Multi-line display headings need room for Greek accents. */
+.story-page .heading-69 {
+  line-height: 1.2 !important;
+}
+.story-page .quiz-button.correct-answer {
+  background-color: #1d8a66;
+}
+.story-page .quiz-button.incorrect-answer {
+  background-color: #b3364b;
 }

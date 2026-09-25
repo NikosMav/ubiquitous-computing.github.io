@@ -29,6 +29,28 @@
       refresh();
     }),
   );
+  // "περισσότερα" on the computing eras opens the explanation in a dialog.
+  document.querySelectorAll('[data-era-toggle]').forEach((toggle) => {
+    const dialog = document.getElementById(toggle.getAttribute('aria-controls'));
+    toggle.addEventListener('click', (event) => {
+      event.preventDefault();
+      dialog.showModal();
+    });
+    dialog.querySelector('.story-era__close').addEventListener('click', () => dialog.close());
+    // A click on the dimmed backdrop closes it too.
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+  });
+  // Links acting as buttons also respond to the space bar.
+  document.querySelectorAll('a[role="button"]').forEach((toggle) =>
+    toggle.addEventListener('keydown', (event) => {
+      if (event.key === ' ') {
+        event.preventDefault();
+        toggle.click();
+      }
+    }),
+  );
   // Prevent old icon/disclosure anchors from jumping to the top of the document.
   document
     .querySelectorAll('a[href="#"]')

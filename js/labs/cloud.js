@@ -130,7 +130,8 @@ export function mount(host, { embedded, onComplete } = {}) {
     const hours = Math.floor(sim.t % 24);
     const minutes = Math.floor((sim.t % 1) * 60);
     out.time.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
-    out.servers.textContent = sim.servers + (sim.booting > 0 ? ' (+1 εκκινεί)' : '');
+    out.servers.textContent = sim.servers + (sim.booting > 0 ? ' +1' : '');
+    out.servers.title = sim.booting > 0 ? 'Ένας ακόμη διακομιστής εκκινεί' : '';
     const u = last.utilisation;
     out.util.textContent = `${Math.round(Math.min(u, 9.99) * 100)}%`;
     out.util.parentElement.className =
@@ -147,14 +148,20 @@ export function mount(host, { embedded, onComplete } = {}) {
 
   function draw(ctx, w, hgt) {
     ctx.clearRect(0, 0, w, hgt);
-    const pad = { l: 46, r: 14, t: 16, b: 30 };
-    const max = 6500;
+    const pad = { l: 46, r: 14, t: w < 560 ? 62 : 40, b: 30 };
+    // Leave headroom above the busiest moment of demand or capacity.
+    const peak = Math.max(
+      5200,
+      ...sim.history.map((p) => Math.max(p.load, p.capacity)),
+      sim.servers * CAPACITY,
+    );
+    const max = Math.ceil((peak * 1.1) / 2000) * 2000;
     const x = (t) => pad.l + ((w - pad.l - pad.r) * t) / 24;
     const y = (v) => hgt - pad.b - ((hgt - pad.t - pad.b) * Math.min(v, max)) / max;
     ctx.font = '11px "UC Gothic", sans-serif';
     ctx.fillStyle = '#8f95c4';
     ctx.strokeStyle = 'rgba(196,200,234,0.12)';
-    for (let v = 0; v <= 6000; v += 2000) {
+    for (let v = 0; v <= max; v += 2000) {
       ctx.beginPath();
       ctx.moveTo(pad.l, y(v));
       ctx.lineTo(w - pad.r, y(v));
@@ -197,11 +204,28 @@ export function mount(host, { embedded, onComplete } = {}) {
       ctx.stroke();
       ctx.lineWidth = 1;
     }
+    // Legend above the plot area, never over the data.
     ctx.textAlign = 'left';
-    ctx.fillStyle = '#fbb454';
-    ctx.fillText('— ζήτηση (αιτήματα/δευτ.)', pad.l + 8, pad.t + 8);
-    ctx.fillStyle = '#7482ff';
-    ctx.fillText('— χωρητικότητα διακομιστών', pad.l + 180, pad.t + 8);
+    ctx.font = '12px "UC Gothic", sans-serif';
+    const legend = [
+      ['#fbb454', 'ζήτηση (αιτήματα/δευτ.)'],
+      ['#7482ff', 'χωρητικότητα διακομιστών'],
+      ['rgba(255,122,138,0.8)', 'αιτήματα που απέτυχαν'],
+    ];
+    let lx = pad.l;
+    let ly = 12;
+    for (const [color, label] of legend) {
+      const width = 28 + ctx.measureText(label).width;
+      if (lx + width > w && lx > pad.l) {
+        lx = pad.l;
+        ly += 16;
+      }
+      ctx.fillStyle = color;
+      ctx.fillRect(lx, ly, 14, 4);
+      ctx.fillStyle = '#c4c8ea';
+      ctx.fillText(label, lx + 20, ly + 6);
+      lx += width;
+    }
   }
 
   loop(view.canvas, (dt) => {

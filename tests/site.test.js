@@ -69,3 +69,21 @@ test('the story no longer ships a reduced-motion mode', async () => {
       file,
     );
 });
+
+test('the trial display font never draws digits (it shows a watermark instead)', async () => {
+  for (const file of ['css/brand.css', 'css/ubiquitous-computing.webflow.css']) {
+    const css = await readFile(new URL(file, root), 'utf8');
+    const face = css.match(/@font-face\s*\{[^}]*Morbodoni-Trial[^}]*\}/)[0];
+    assert.match(face, /unicode-range: U\+0000-002F, U\+003A-003F, U\+0041-10FFFF/, file);
+  }
+});
+
+test('story images come from the repository, not from retired Webflow sites', async () => {
+  const story = await readFile(new URL('index.html', root), 'utf8');
+  const external = [...story.matchAll(/<img[^>]+src="(https?:[^"]+)"/g)].map((m) => m[1]);
+  // Only the background-video control icons are still loaded from Webflow.
+  assert.ok(
+    external.every((url) => /_(Pause|Play-24)\.svg$/.test(url)),
+    external.join('\n'),
+  );
+});

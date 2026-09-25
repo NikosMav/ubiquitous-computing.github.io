@@ -29,6 +29,8 @@
     margin: 0 !important;
     padding: 0 !important;
     grid-area: auto !important;
+    /* Scroll-scrubbed scaling belonged to pinned desktop scenes. */
+    transform: none !important;
     left: auto !important;
     right: auto !important;
     top: auto !important;
@@ -123,13 +125,39 @@
       .heading-29
     ) {
     font-size: clamp(56px, 19vw, 110px) !important;
-    line-height: 1 !important;
+    line-height: 1.05 !important;
   }
   .story-page :is(.heading-60, [class*='heading-60-copy'], .heading-64, .heading-66) {
     font-size: 15px !important;
     line-height: 1.5 !important;
     letter-spacing: 0.08em !important;
     padding: 0 20px !important;
+  }
+
+  /* Desktop offsets and fixed widths would push headings and paragraphs off a phone. */
+  .story-page
+    #the-content
+    :is(h1, h2, h3, h4, h5, h6):not(
+      :is(.lab, .checkin, .story-extra, .profile-step, .story-application, .cta_component) *
+    ) {
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    width: auto !important;
+    max-width: 100% !important;
+    transform: none !important;
+    white-space: normal !important;
+    letter-spacing: normal !important;
+  }
+  .story-page #the-content p:not(:is(.lab, .checkin, .story-extra, .profile-step) *) {
+    width: auto !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .story-page .paragraph-72 {
+    font-size: 18px !important;
+    line-height: 1.6 !important;
   }
 
   /* ---------- Scenes ---------- */
@@ -153,8 +181,18 @@
       .nlp,
       .deutero-kyma-content,
       .trito-kyma-content
-    ) {
+    ):not([class*='button']) {
     padding: 56px 20px !important;
+  }
+  /* The definition sat inside a drawn laptop screen; on a phone it becomes a card. */
+  .story-page .div-block-20 {
+    padding: 26px 22px !important;
+    margin: 40px 0 !important;
+    border-radius: 18px;
+    background: #f4f5fb !important;
+  }
+  .story-page .div-block-20 :is(p, h3) {
+    color: #10122e !important;
   }
   .story-page :is(.frame, .camera, .track, .track2) {
     position: relative !important;

@@ -180,3 +180,38 @@ const nearObserver = new IntersectionObserver(
 document
   .querySelectorAll('[data-uc-lab][data-uc-autoload]')
   .forEach((host) => nearObserver.observe(host));
+
+// ---------- Deep links ----------
+// The browser jumps to #anchor before pinned scenes, images and labs settle, so links
+// such as index.html#smart-car land in the wrong place. Once the layout is stable,
+// re-anchor with a short smooth approach so the scenes' entrance animations play.
+function settleHash() {
+  const id = decodeURIComponent(location.hash.slice(1));
+  const target = id && document.getElementById(id);
+  if (!target || interacted) return;
+  const y = target.getBoundingClientRect().top + scrollY;
+  scrollTo(0, Math.max(0, y - innerHeight));
+  target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // Labs that mount on the way can push the target further down: follow it.
+  let tries = 0;
+  const follow = () => {
+    const offset = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 64;
+    if (interacted || tries++ > 4 || Math.abs(target.getBoundingClientRect().top - offset) < 40)
+      return;
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setTimeout(follow, 900);
+  };
+  setTimeout(follow, 1200);
+}
+let interacted = false;
+for (const type of ['wheel', 'touchstart', 'keydown', 'pointerdown'])
+  addEventListener(type, () => (interacted = true), { once: true, passive: true });
+if (location.hash)
+  addEventListener(
+    'load',
+    () => {
+      window.ScrollTrigger?.refresh();
+      document.fonts.ready.then(() => setTimeout(settleHash, 400));
+    },
+    { once: true },
+  );

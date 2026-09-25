@@ -29,6 +29,8 @@
   font-family: 'UC Morbodoni';
   src: url('../fonts/Morbodoni-Trial.ttf') format('truetype');
   font-display: swap;
+  /* The trial release draws a watermark instead of digits and @: let them fall back. */
+  unicode-range: U+0000-002F, U+003A-003F, U+0041-10FFFF;
 }
 
 :root {
@@ -557,6 +559,8 @@
 .uc-footer {
   position: relative;
   z-index: 2;
+  padding: 0;
+  text-align: left;
   font-family: var(--uc-font-body);
   color: var(--uc-soft);
   background:
@@ -597,6 +601,7 @@
   margin-top: 8px;
 }
 .uc-footer a {
+  margin: 0;
   color: var(--uc-ink);
   font-size: 14px;
   text-decoration: none;
@@ -608,7 +613,7 @@
 .uc-footer .uc-brand {
   border: 0;
 }
-.uc-footer__base {
+.uc-footer .uc-footer__base {
   max-width: 1320px;
   margin: 0 auto;
   padding: 18px clamp(20px, 5vw, 64px) 28px;

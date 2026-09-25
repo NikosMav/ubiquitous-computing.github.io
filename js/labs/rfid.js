@@ -100,12 +100,22 @@ export function mount(host, { embedded, onComplete } = {}) {
   const inField = new Set();
   const cards = new Map();
   const reader = h('div', { class: 'lab-reader', 'aria-label': 'Πεδίο αναγνώστη' });
-  const slot = h('div', { class: 'lab-reader__slot' });
+  const slot = h('div', { class: 'lab-reader__slot', 'data-empty': 'Σύρε ετικέτες εδώ' });
   reader.append(
-    h('span', { class: 'lab-reader__field' }),
-    h('span', { class: 'lab-reader__field' }),
-    h('span', { class: 'lab-reader__field' }),
-    h('div', { class: 'lab-reader__device' }, 'ΑΝΑΓΝΩΣΤΗΣ', h('br'), h('span', { class: 'band' })),
+    h(
+      'div',
+      { class: 'lab-reader__stage' },
+      h('span', { class: 'lab-reader__field' }),
+      h('span', { class: 'lab-reader__field' }),
+      h('span', { class: 'lab-reader__field' }),
+      h(
+        'div',
+        { class: 'lab-reader__device' },
+        'ΑΝΑΓΝΩΣΤΗΣ',
+        h('br'),
+        h('span', { class: 'band' }),
+      ),
+    ),
     slot,
   );
   const tray = h('div', {
@@ -246,7 +256,7 @@ export function mount(host, { embedded, onComplete } = {}) {
 
   function setBand(value) {
     band = value;
-    reader.style.setProperty('--range', bands[value].far ? '520px' : '240px');
+    reader.style.setProperty('--range', bands[value].far ? '420px' : '170px');
     reader.querySelector('.band').textContent = bands[value].label;
     bandNote.innerHTML = '';
     bandNote.append(
