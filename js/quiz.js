@@ -1,4 +1,6 @@
-import { sampleQuestions, learningRoute, validateBank } from './quiz-core.js';
+import { sampleQuestions, learningRoute, validateBank, levelFor } from './quiz-core.js';
+import { recordIntro, recordFinal } from './progress.js';
+import { renderProfileStep } from './profile-step.js';
 
 const root = document.querySelector('#quiz');
 const status = document.querySelector('#quiz-status');
@@ -136,6 +138,13 @@ function renderResult() {
   actions.append(link, download, restart);
   result.append(actions);
   content.append(result);
+  if (mode === 'intro') {
+    recordIntro(score, questions.length, levelFor(score, questions.length));
+    const step = document.createElement('div');
+    step.className = 'quiz-profile';
+    result.append(step);
+    renderProfileStep(step);
+  } else recordFinal(score, questions.length);
   title.focus();
 }
 

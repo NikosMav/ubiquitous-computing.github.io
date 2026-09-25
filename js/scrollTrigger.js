@@ -32,8 +32,7 @@ $(document).ready(function () {
     let context;
     function setupScenes() {
       context?.revert();
-      if (document.documentElement.classList.contains('story-compact') || innerWidth < minWidth)
-        return;
+      if (innerWidth < minWidth) return;
       context = gsap.context(() => {
         // show spacer
         trSpacer.show();
@@ -206,6 +205,13 @@ $(document).ready(function () {
       });
     }
     setupScenes();
-    window.addEventListener('story:mode', setupScenes);
+    // Crossing the desktop breakpoint switches between pinned scenes and the linear layout.
+    let wide = innerWidth >= minWidth;
+    window.addEventListener('resize', () => {
+      if (wide !== innerWidth >= minWidth) {
+        wide = !wide;
+        setupScenes();
+      }
+    });
   });
 });

@@ -10,7 +10,9 @@ await mkdir(out, { recursive: true });
 for (const file of await readdir(root)) {
   if (
     file.endsWith('.html') ||
-    ['questions.json', 'intro-questions.json', 'LICENSE.md', 'NOTICE.md'].includes(file)
+    ['questions.json', 'intro-questions.json', 'checkins.json', 'LICENSE.md', 'NOTICE.md'].includes(
+      file,
+    )
   )
     await copyFile(path.join(root, file), path.join(out, file));
 }

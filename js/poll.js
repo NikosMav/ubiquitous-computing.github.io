@@ -1,96 +1,88 @@
-const fixedResults = {
-  Very_Familiar: 5,
-  Somewhat_Familiar: 20,
-  Not_Sure: 30,
-  Not_Very_Familiar: 25,
-  Not_Familiar_at_All: 20,
-};
-
-const totalVotes = Object.values(fixedResults).reduce((acc, value) => acc + value, 0);
-
-// Event listener for radio button changes (to highlight the selected option)
-const radioButtons = document.querySelectorAll('#pollForm input[type="radio"]');
-radioButtons.forEach((radio) => {
-  radio.addEventListener('change', function () {
-    document.getElementById('submitBtn').disabled = false;
-
-    const labels = document.querySelectorAll('#pollForm label');
-    labels.forEach((label) => {
-      if (label.getAttribute('for') === this.value) {
-        label.classList.add('selected-option');
-      } else {
-        label.classList.remove('selected-option');
-      }
-    });
-  });
-});
-
-// Event listener for form submission
-document.getElementById('pollForm').onsubmit = function (event) {
-  event.preventDefault();
-  const formData = new FormData(event.target);
-  const voteValue = formData.get('vote');
-
-  // Update the UI with a thank-you message and show fixed results
-  document.getElementById('pollForm').style.display = 'none';
-  const messageElement = document.getElementById('message');
-  messageElement.style.display = 'block';
-  messageElement.innerHTML =
-    'Επίδειξη γραφήματος: τα ποσοστά είναι υποθετικά. Η επιλογή σας επισημαίνεται με κόκκινο και δεν αποθηκεύεται.';
-
-  const resultsElement = document.getElementById('results');
-  resultsElement.style.display = 'block';
-
-  // Calculate percentages and display the results
-  const percentages = Object.keys(fixedResults).map((key) =>
-    ((fixedResults[key] / totalVotes) * 100).toFixed(1),
-  );
-
-  // Highlight the selected option with a custom color
-  const highlightColor = '#ff1825';
-  const backgroundColors = ['#004c6d', '#256488', '#407da4', '#5997c1', '#72b2df'];
-
-  const chartData = {
-    labels: [
-      'Εξπέρ των Νεφών',
-      'Έμπειρος στο Cloud',
-      'Έτσι και έτσι',
-      'Νέος στο Cloud',
-      'Συννεφιασμένη Κυριακή',
-    ],
-    datasets: [
-      {
-        data: percentages.map((value) => parseFloat(value)),
-        backgroundColor: [
-          voteValue === 'Very_Familiar' ? highlightColor : backgroundColors[0],
-          voteValue === 'Somewhat_Familiar' ? highlightColor : backgroundColors[1],
-          voteValue === 'Not_Sure' ? highlightColor : backgroundColors[2],
-          voteValue === 'Not_Very_Familiar' ? highlightColor : backgroundColors[3],
-          voteValue === 'Not_Familiar_at_All' ? highlightColor : backgroundColors[4],
-        ],
-      },
-    ],
+// Cloud familiarity poll. Votes are tallied per station (this device), like a kiosk in
+// the museum, and shown as a pie chart with the visitor's own choice highlighted.
+(() => {
+  const form = document.getElementById('pollForm');
+  if (!form) return;
+  const KEY = 'uc-station-poll-cloud-v1';
+  const labels = {
+    Very_Familiar: 'Εξπέρ των Νεφών',
+    Somewhat_Familiar: 'Έμπειρος στο Cloud',
+    Not_Sure: 'Έτσι και έτσι',
+    Not_Very_Familiar: 'Νέος στο Cloud',
+    Not_Familiar_at_All: 'Συννεφιασμένη Κυριακή',
+  };
+  const read = () => {
+    try {
+      return JSON.parse(localStorage.getItem(KEY)) ?? {};
+    } catch {
+      return {};
+    }
+  };
+  const write = (tally) => {
+    try {
+      localStorage.setItem(KEY, JSON.stringify(tally));
+    } catch {
+      /* Storage unavailable: the chart still shows this visit. */
+    }
   };
 
-  // Display the chart
-  const ctx = document.getElementById('chart').getContext('2d');
-  const chart = new Chart(ctx, {
-    type: 'pie',
-    data: chartData,
-    options: {
-      responsive: true,
-      plugins: {
-        title: { display: true, text: 'Υποθετικό παράδειγμα, όχι αποτελέσματα επισκεπτών' },
-        tooltip: {
-          callbacks: {
-            label: function (context) {
-              let value = context.parsed;
-              let label = context.label;
-              return label + ': ' + value + '%';
+  form.querySelectorAll('input[type="radio"]').forEach((radio) =>
+    radio.addEventListener('change', () => {
+      document.getElementById('submitBtn').disabled = false;
+      form
+        .querySelectorAll('label')
+        .forEach((label) =>
+          label.classList.toggle('selected-option', label.getAttribute('for') === radio.value),
+        );
+    }),
+  );
+
+  let chart;
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const choice = new FormData(form).get('vote');
+    if (!choice) return;
+    const tally = read();
+    tally[choice] = (tally[choice] ?? 0) + 1;
+    write(tally);
+    import('./progress.js').then((progress) => progress.vote('cloud-familiarity', choice));
+
+    const keys = Object.keys(labels);
+    const total = keys.reduce((sum, key) => sum + (tally[key] ?? 0), 0);
+    form.style.display = 'none';
+    const message = document.getElementById('message');
+    message.style.display = 'block';
+    message.textContent = `Ευχαριστούμε! Ψήφοι σε αυτόν τον σταθμό: ${total}. Η δική σου επιλογή φαίνεται με πορτοκαλί.`;
+    document.getElementById('results').style.display = 'block';
+
+    const palette = ['#2b36a8', '#4150f0', '#7482ff', '#a9b1ff', '#d7dbff'];
+    chart?.destroy();
+    chart = new Chart(document.getElementById('chart').getContext('2d'), {
+      type: 'pie',
+      data: {
+        labels: keys.map((key) => labels[key]),
+        datasets: [
+          {
+            data: keys.map((key) => tally[key] ?? 0),
+            backgroundColor: keys.map((key, i) => (key === choice ? '#fbb454' : palette[i])),
+            borderColor: '#10122e',
+            borderWidth: 2,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { labels: { color: '#ffffff' } },
+          title: { display: true, text: 'Οι ψήφοι αυτού του σταθμού', color: '#ffffff' },
+          tooltip: {
+            callbacks: {
+              label: (context) =>
+                `${context.label}: ${context.parsed} (${Math.round((context.parsed / total) * 100)}%)`,
             },
           },
         },
       },
-    },
+    });
   });
-};
+})();

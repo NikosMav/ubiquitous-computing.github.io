@@ -9,21 +9,77 @@
       content="Η ελληνική εκπαιδευτική αφήγηση της πτυχιακής εργασίας, σε προσβάσιμα κεφάλαια."
       name="description"
     />
-    <meta content="#172b61" name="theme-color" />
-    <link href="assets/exhibit/favicon.svg" rel="icon" type="image/svg+xml" />
+    <!-- uc:head -->
+    <link href="favicon/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
+    <link href="favicon/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link href="favicon/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="favicon/favicon.ico" rel="icon" sizes="any" />
+    <link href="favicon/site.webmanifest" rel="manifest" />
+    <link color="#4150f0" href="favicon/safari-pinned-tab.svg" rel="mask-icon" />
+    <meta content="#4150f0" name="msapplication-TileColor" />
+    <meta content="favicon/browserconfig.xml" name="msapplication-config" />
+    <meta content="#080a1f" name="theme-color" />
+    <link href="css/brand.css" rel="stylesheet" />
+    <noscript
+      ><style>
+        .uc-menu {
+          display: none !important;
+        }
+        .uc-nav {
+          position: static !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+          transform: none !important;
+          flex-direction: row !important;
+          overflow-x: auto;
+          max-height: none !important;
+          padding: 0 !important;
+          background: none !important;
+          border: 0 !important;
+          font-size: 12px !important;
+        }
+        .uc-nav a {
+          min-height: 40px !important;
+          padding: 0 10px !important;
+          white-space: nowrap;
+        }
+      </style></noscript
+    >
     <link href="css/site.css" rel="stylesheet" />
+    <!-- /uc:head -->
   </head>
   <body>
-    <a class="skip" href="#main">Μετάβαση στο περιεχόμενο</a>
-    <header class="site-header">
-      <a class="brand" href="guide.html"
-        ><span aria-hidden="true" class="brand-mark">◈</span> Διάχυτη υπολογιστική</a
-      >
-      <nav aria-label="Κύρια πλοήγηση">
-        <a href="index.html">Scrollytelling</a> <a href="reading.html">Εξερεύνηση</a
-        ><a href="guide.html#experiments">Εργαστήριο</a><a href="guide.html#about">Η εργασία</a>
-      </nav>
+    <!-- uc:header -->
+    <a class="uc-skip" href="#main">Μετάβαση στο περιεχόμενο</a>
+    <header class="uc-bar has-crumbs" data-uc-bar>
+      <div class="uc-bar__inner">
+        <a class="uc-brand" href="index.html" aria-label="Διάχυτη Υπολογιστική, αρχή της αφήγησης"
+          ><img alt="" height="34" src="favicon/android-chrome-192x192.png" width="34" /><span
+            class="uc-brand__word"
+            aria-hidden="true"
+            ><span>Διάχυτη</span><span>Υπολογιστική</span></span
+          ></a
+        >
+        <nav aria-label="Βρίσκεσαι εδώ" class="uc-crumbs">
+          <ol data-uc-crumbs>
+            <li><span aria-current="page">Κεφάλαια</span></li>
+          </ol>
+        </nav>
+        <button aria-controls="uc-nav" aria-expanded="false" class="uc-menu" type="button">
+          <span class="uc-menu__icon" aria-hidden="true"></span
+          ><span class="uc-menu__label">Μενού</span>
+        </button>
+        <nav aria-label="Κύρια πλοήγηση" class="uc-nav" id="uc-nav">
+          <a href="index.html">Αφήγηση</a><a href="reading.html" aria-current="page">Κεφάλαια</a
+          ><a href="lab.html">Εργαστήριο</a><a href="knowledge_quiz.html">Quiz</a
+          ><a class="uc-journey" href="journey.html"
+            >Η διαδρομή μου <span class="uc-xp" data-uc-xp hidden></span
+          ></a>
+        </nav>
+      </div>
+      <div aria-hidden="true" class="uc-progress"><span></span></div>
     </header>
+    <!-- /uc:header -->
     <main class="reading-layout" id="main">
       <aside class="chapter-nav">
         <h2>Τα κεφάλαια</h2>
@@ -35,7 +91,8 @@
         ><a href="#comp-vis-fp">Υπολογιστική όραση</a><a href="#lbs-fp">Υπηρεσίες τοποθεσίας</a
         ><a href="#nlp-fp">Επεξεργασία φυσικής γλώσσας</a
         ><a href="#applications">Συνδεδεμένη καθημερινότητα</a
-        ><a href="#future">Μια μέρα στο μέλλον</a><a href="knowledge_quiz.html">Τελικό quiz</a>
+        ><a href="#future">Μια μέρα στο μέλλον</a><a href="#trends">Τάσεις για το μέλλον</a
+        ><a href="knowledge_quiz.html">Τελικό quiz</a>
       </aside>
       <div>
         <header class="page-intro">
@@ -354,6 +411,10 @@
             Ειδικές συσκευές για την ανάγνωση ψηφιακών βιβλίων και εγγράφων, που παρέχουν εστιασμένη
             εμπειρία ανάγνωσης.
           </p>
+          <p class="chapter-actions">
+            <a href="index.html#mobile-fp">Στην αφήγηση</a
+            ><a href="lab-mobile.html">Εργαστήριο: Τι κρύβει η τσέπη σου;</a>
+          </p>
         </section>
         <section class="reading-chapter" id="wireless-com-fp">
           <h2>Ασύρματη επικοινωνία</h2>
@@ -406,6 +467,10 @@
             συνδεσιμότητα σε διάφορους τομείς, συμπεριλαμβανομένων των έξυπνων κατοικιών, της
             υγειονομικής περίθαλψης, των μεταφορών, της ψυχαγωγίας και άλλων.
           </p>
+          <p class="chapter-actions">
+            <a href="index.html#wireless-com-fp">Στην αφήγηση</a
+            ><a href="lab-wireless.html">Εργαστήριο: Στείλε ένα πακέτο</a>
+          </p>
         </section>
         <section class="reading-chapter" id="rfid-fp">
           <h2>RFID</h2>
@@ -441,6 +506,10 @@
             χρόνο, βελτιωμένη ακρίβεια και αυξημένη απόδοση σε διάφορες εφαρμογές. Η υιοθέτησή της
             ήταν καθοριστική για την απρόσκοπτη αναγνώριση, παρακολούθηση και διαχείριση δεδομένων
             σε όλους τους κλάδους.
+          </p>
+          <p class="chapter-actions">
+            <a href="index.html#rfid-fp">Στην αφήγηση</a
+            ><a href="lab-rfid.html">Εργαστήριο: Ο αναγνώστης RFID</a>
           </p>
         </section>
         <section class="reading-chapter" id="cloud-fp">
@@ -492,6 +561,10 @@
             Είστε περίεργοι για την επιλογή σας; Δείτε πού τοποθετείστε στο γράφημα πίτας με βάση το
             τι επέλεξαν οι άλλοι χρήστες. Τα δεδομένα που εμφανίζονται είναι σταθερά και βασίζονται
             σε πληροφορίες που βρήκαμε στο διαδίκτυο.
+          </p>
+          <p class="chapter-actions">
+            <a href="index.html#cloud-fp">Στην αφήγηση</a
+            ><a href="lab-cloud.html">Εργαστήριο: Κλιμάκωσε το νέφος</a>
           </p>
         </section>
         <section class="reading-chapter" id="sensors-fp">
@@ -561,6 +634,10 @@
             στην τάση. Χρησιμοποιούνται σε βελτιστοποιημένους μηχανισμούς και συσκευές απτικής
             ανάδρασης.
           </p>
+          <p class="chapter-actions">
+            <a href="index.html#sensors-fp">Στην αφήγηση</a
+            ><a href="lab-sensors.html">Εργαστήριο: Ο βρόχος ανάδρασης</a>
+          </p>
         </section>
         <section class="reading-chapter" id="comp-vis-fp">
           <h2>Υπολογιστική όραση</h2>
@@ -590,6 +667,10 @@
             μέλλον.
           </p>
           <p><a class="button" href="guide.html#experiments">Δοκίμασε την υπολογιστική όραση</a></p>
+          <p class="chapter-actions">
+            <a href="index.html#comp-vis-fp">Στην αφήγηση</a
+            ><a href="lab.html#vision">Εργαστήριο: Υπολογιστική όραση</a>
+          </p>
         </section>
         <section class="reading-chapter" id="lbs-fp">
           <h2>Υπηρεσίες τοποθεσίας</h2>
@@ -671,6 +752,10 @@
             συμμετάσχουν σε μάχες, δημιουργώντας μια καθηλωτική εμπειρία παιχνιδιού με επίγνωση της
             τοποθεσίας.
           </p>
+          <p class="chapter-actions">
+            <a href="index.html#lbs-fp">Στην αφήγηση</a
+            ><a href="lab-lbs.html">Εργαστήριο: Πού βρίσκομαι;</a>
+          </p>
         </section>
         <section class="reading-chapter" id="nlp-fp">
           <h2>Επεξεργασία φυσικής γλώσσας</h2>
@@ -710,47 +795,78 @@
             συλλέγουν πληροφορίες και να λαμβάνουν τεκμηριωμένες αποφάσεις με βάση το συναίσθημα των
             χρηστών.
           </p>
+          <p class="chapter-actions">
+            <a href="index.html#nlp-fp">Στην αφήγηση</a
+            ><a href="lab-nlp.html">Εργαστήριο: Μίλα με την Aria</a>
+          </p>
         </section>
         <section class="reading-chapter" id="applications">
           <h2>Συνδεδεμένη καθημερινότητα</h2>
-          <h3>Αναπτυσσόμενη συνδεσιμότητα: Ο άνθρωπος στο επίκεντρο</h3>
-          <h3>01. Έξυπνο Σπίτι</h3>
+          <p class="kicker">Δεύτερο κύμα · Ο άνθρωπος στο επίκεντρο</p>
           <p>
-            Ένα έξυπνο σπίτι είναι μια κατοικία στην οποία χρησιμοποιούνται σύγχρονες τεχνολογίες,
-            συστήματα και συσκευές που επιτρέπουν την αυτοματοποιημένη διαχείριση διαφόρων
-            λειτουργιών...
+            Το δεύτερο κύμα της διάχυτης υπολογιστικής φέρνει μια πιο ισχυρή αίσθηση εξατομίκευσης.
+            Με την αύξηση της συνδεσιμότητας, η τεχνολογία ενσωματώνεται όλο και περισσότερο στην
+            καθημερινή μας ζωή. Έξυπνα ρολόγια, έξυπνα γυαλιά και άλλες φορητές συσκευές μάς
+            επιτρέπουν να αλληλεπιδρούμε με την τεχνολογία πιο φυσικά και άμεσα.
           </p>
           <p>
-            Χρησιμοποιεί ειδικά gadget και υπολογιστές για να εκτελεί λειτουργίες όπως να σβήνει τα
-            φώτα όταν δεν βρίσκεστε σε ένα δωμάτιο, να ρυθμίζει τη θερμοκρασία όπως σας αρέσει,
-            ακόμη και να σας επιτρέπει να του μιλάτε για να παίξετε μουσική ή να ανοίξετε πόρτες.
+            Η τεχνητή νοημοσύνη και η μηχανική μάθηση επιτρέπουν στις συσκευές να κατανοούν και να
+            προβλέπουν τις ανάγκες μας: η τεχνολογία προσαρμόζεται στον χρήστη, και όχι το
+            αντίστροφο. Γι' αυτό μετρά τόσο ο σχεδιασμός εμπειριών που σέβονται τον άνθρωπο.
+          </p>
+          <h3 id="smart-house">01. Έξυπνο σπίτι</h3>
+          <p>
+            Ένα έξυπνο σπίτι είναι ένα σύνολο συσκευών που συνεργάζονται για άνεση, ασφάλεια και
+            ενεργειακή αποδοτικότητα. Θερμοστάτες ρυθμίζουν αυτόματα τη θερμοκρασία, συστήματα
+            ασφαλείας χρησιμοποιούν κάμερες και αισθητήρες, και οι συσκευές ελέγχονται από μακριά.
           </p>
           <p>
-            Το παν είναι να κάνετε το σπίτι σας να λειτουργεί καλύτερα για εσάς με τη βοήθεια της
-            τεχνολογίας.
+            Στην καρδιά του βρίσκονται <strong>κανόνες</strong> που συνδέουν αισθητήρες με
+            ενεργοποιητές: «αν δεν υπάρχει κανείς στο δωμάτιο, σβήσε το φως», «αν το σπίτι αδειάσει,
+            κλείδωσε την πόρτα και χαμήλωσε τη θέρμανση». Όσο καλύτεροι οι κανόνες, τόσο λιγότερο
+            χρειάζεται να σκεφτόμαστε το ίδιο το σπίτι.
           </p>
-          <h3>02. Έξυπνο Αυτοκίνητο</h3>
-          <p>
-            Ένα έξυπνο αυτοκίνητο είναι σαν ένα όχημα υψηλής τεχνολογίας που μπορεί να κάνει
-            περισσότερα από την απλή οδήγηση...
+          <p class="chapter-actions">
+            <a href="index.html#smart-house">Στην αφήγηση</a
+            ><a href="lab-smarthome.html">Εργαστήριο: Προγραμμάτισε το σπίτι</a>
           </p>
+          <h3 id="smart-car">02. Έξυπνο αυτοκίνητο</h3>
           <p>
-            Χρησιμοποιεί υπολογιστές και αισθητήρες για να σας βοηθήσει να παρκάρετε, να παραμένετε
-            στη λωρίδα σας και να αποφύγετε ατυχήματα.
-          </p>
-          <p>Είναι σαν να έχεις συγκυβερνήτη που σε προσέχει ενώ είσαι στο δρόμο.</p>
-          <h3>03. Έξυπνα Ρούχα</h3>
-          <p>Είναι σαν τα κανονικά ρούχα, αλλά με μια τεχνολογική ανατροπή...</p>
-          <p>
-            Έχουν ειδικούς αισθητήρες και μικροσκοπικούς υπολογιστές υφασμένους μέσα τους. Αυτοί οι
-            αισθητήρες μπορούν να παρακολουθούν πράγματα όπως τον καρδιακό σας ρυθμό, πόσα βήματα
-            κάνετε, ακόμη και τη θερμοκρασία του σώματός σας.
+            Τα έξυπνα αυτοκίνητα ενσωματώνουν αισθητήρες, τεχνητή νοημοσύνη και συνδεσιμότητα για
+            ασφαλή, αποτελεσματική και βιώσιμη μεταφορά. Βοηθούν στο παρκάρισμα, κρατούν το όχημα
+            στη λωρίδα του και φρενάρουν μόνα τους για να αποφύγουν ένα ατύχημα.
           </p>
           <p>
-            Αυτές οι πληροφορίες μπορούν να σας βοηθήσουν να παρακολουθείτε την υγεία και τη
-            δραστηριότητά σας. Είναι σαν να φοράς ρούχα που μπορούν επίσης να είναι ο προσωπικός σου
-            βοηθός υγείας.
+            Η αυτονομία έρχεται σε βαθμίδες: από το επίπεδο 0, όπου οδηγεί ο άνθρωπος, στα συστήματα
+            υποβοήθησης και ως το επίπεδο 5, όπου δεν χρειάζεται οδηγός. Κάμερες, ραντάρ και lidar
+            συνδυάζονται (<em>sensor fusion</em>), επειδή κανένας αισθητήρας δεν «βλέπει» τέλεια σε
+            βροχή, ομίχλη ή σκοτάδι. Και η φυσική έχει πάντα τον τελευταίο λόγο: σε παγωμένο δρόμο,
+            καμία τεχνολογία δεν μικραίνει την απόσταση φρεναρίσματος.
           </p>
+          <p class="chapter-actions">
+            <a href="index.html#smart-car">Στην αφήγηση</a
+            ><a href="lab-smartcar.html">Εργαστήριο: Αυτόνομο φρενάρισμα</a>
+          </p>
+          <h3 id="smart-clothes">03. Έξυπνα ρούχα</h3>
+          <p>
+            Τα έξυπνα ρούχα, γνωστά και ως <em>wearables</em>, ενσωματώνουν αισθητήρες και
+            μικροσκοπικούς υπολογιστές στο ύφασμα. Παρακολουθούν τον καρδιακό ρυθμό, τα βήματα, την
+            αναπνοή ή τη θερμοκρασία του σώματος, συνδέονται στο διαδίκτυο και επικοινωνούν με άλλες
+            συσκευές.
+          </p>
+          <p>
+            Μπορούν να προειδοποιήσουν έγκαιρα για ένα πρόβλημα υγείας. Τα δεδομένα τους όμως είναι
+            από τα πιο προσωπικά που υπάρχουν. Ποιος έχει πρόσβαση σε αυτά (ο γιατρός, μια εφαρμογή
+            γυμναστικής, μια ασφαλιστική ή ένας εργοδότης) πρέπει να το αποφασίζει ο χρήστης.
+          </p>
+          <p class="chapter-actions">
+            <a href="index.html#smart-clothes">Στην αφήγηση</a
+            ><a href="lab-wearables.html">Εργαστήριο: Το έξυπνο μπλουζάκι</a>
+          </p>
+          <blockquote>
+            Η τεχνολογία δεν είναι απλώς ένα εργαλείο, αλλά ένας αναπόσπαστος σύντροφος στη ζωή μας.
+            <cite>Από την πτυχιακή εργασία, ενότητα 3.4.2</cite>
+          </blockquote>
         </section>
         <section class="reading-chapter" id="future">
           <h2>Μια μέρα στο μέλλον</h2>
@@ -805,6 +921,48 @@
             εξυπηρετεί απρόσκοπτα κάθε πτυχή της ζωής του.
           </p>
         </section>
+        <section class="reading-chapter" id="trends">
+          <h2>Τάσεις και ερωτήματα για το μέλλον</h2>
+          <p class="kicker">Τρίτο κύμα</p>
+          <p>
+            Το μέλλον του διάχυτου υπολογισμού ανοίγει τον δρόμο για μια εποχή όπου οι υπολογιστές
+            θα γίνουν ακόμη πιο αόρατοι. Συσκευές και αισθητήρες θα ενσωματωθούν σε ρούχα,
+            επιφάνειες και κοινόχρηστα αντικείμενα, και θα διαμορφώσουν τις πόλεις, την υγεία και
+            την εκπαίδευση. Μαζί τους έρχονται σημαντικές προκλήσεις ασφάλειας, δεοντολογίας και
+            ηθικής.
+          </p>
+          <h3>Αύξηση της συνδεσιμότητας</h3>
+          <p>
+            Το 5G και το Internet of Things θα διευκολύνουν την επικοινωνία ανάμεσα στις συσκευές.
+          </p>
+          <h3>Υψηλός αυτοματισμός</h3>
+          <p>
+            Οι ενσωματωμένοι υπολογιστές θα ανιχνεύουν τις ανάγκες μας και θα παρέχουν υπηρεσίες
+            χωρίς ανθρώπινη παρέμβαση.
+          </p>
+          <h3>Εξατομικευμένη εμπειρία</h3>
+          <p>Υπηρεσίες και περιεχόμενο θα προσαρμόζονται στις προτιμήσεις του καθενός.</p>
+          <h3>Υγεία και ευεξία</h3>
+          <p>Συστήματα παρακολούθησης θα βοηθούν στην πρόληψη ασθενειών.</p>
+          <h3>Εκπαίδευση και μάθηση</h3>
+          <p>Η πρόσβαση σε εκπαιδευτικό περιεχόμενο θα γίνεται από παντού.</p>
+          <h3>Ασφάλεια και ιδιωτικότητα</h3>
+          <p>
+            Όσο περισσότερα δεδομένα συλλέγουν οι συσκευές, τόσο πιο σύνθετες γίνονται οι προκλήσεις
+            για την προστασία τους.
+          </p>
+          <h3>Περιβάλλον και βιωσιμότητα</h3>
+          <p>Έξυπνες συσκευές μπορούν να εξοικονομούν ενέργεια και πόρους.</p>
+          <h3>Ηθικές και κοινωνικές πτυχές</h3>
+          <p>
+            Η κοινωνία θα χρειαστεί να απαντήσει ποιος ελέγχει την τεχνολογία και πώς διασφαλίζεται
+            ότι κανείς δεν μένει εκτός.
+          </p>
+          <p class="chapter-actions">
+            <a href="index.html#future-trends">Στην αφήγηση</a
+            ><a href="lab-future.html">Εργαστήριο: Ψήφισε το μέλλον</a>
+          </p>
+        </section>
         <section class="reading-chapter">
           <h2>Τι έμεινε από τη διαδρομή;</h2>
           <p>Έλεγξε όσα έμαθες με επτά ερωτήσεις. Δεν χρειάζεται λογαριασμός.</p>
@@ -812,14 +970,63 @@
         </section>
       </div>
     </main>
-    <footer class="site-footer">
-      <p>
-        Νικόλαος Μαυραπίδης · Πτυχιακή εργασία, ΕΚΠΑ, 2023<br />Ανανεωμένη διαδικτυακή έκδοση, 2026
-      </p>
-      <div>
-        <a href="https://pergamos.lib.uoa.gr/uoa/dl/object/3362706/file.pdf">Πλήρης εργασία (PDF)</a
-        ><a href="https://github.com/NikosMav/ubiquitous-computing.github.io">Κώδικας στο GitHub</a>
+    <!-- uc:footer -->
+    <footer class="uc-footer">
+      <div class="uc-footer__inner">
+        <div>
+          <a class="uc-brand" href="index.html" aria-label="Διάχυτη Υπολογιστική"
+            ><img
+              alt=""
+              height="34"
+              loading="lazy"
+              src="favicon/android-chrome-192x192.png"
+              width="34"
+            /><span class="uc-brand__word" aria-hidden="true"
+              ><span>Διάχυτη</span><span>Υπολογιστική</span></span
+            ></a
+          >
+          <p>
+            Ψηφιακό έκθεμα για τη διάχυτη υπολογιστική, σχεδιασμένο ως πρόταση για το υπό ίδρυση
+            Μουσείο Πληροφορικής και Τηλεπικοινωνιών του ΕΚΠΑ.
+          </p>
+          <p>Η πρόοδός σου αποθηκεύεται μόνο σε αυτή τη συσκευή.</p>
+        </div>
+        <div>
+          <h2>Εξερεύνηση</h2>
+          <ul>
+            <li><a href="index.html">Αφήγηση</a></li>
+            <li><a href="reading.html">Κεφάλαια</a></li>
+            <li><a href="lab.html">Εργαστήριο</a></li>
+            <li><a href="knowledge_quiz.html">Τελικό quiz</a></li>
+            <li><a href="journey.html">Η διαδρομή μου</a></li>
+            <li><a href="guide.html">Οδηγός επίσκεψης</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Η εργασία</h2>
+          <ul>
+            <li><a href="guide.html#about">Σχετικά με την εργασία</a></li>
+            <li>
+              <a href="https://pergamos.lib.uoa.gr/uoa/dl/object/3362706/file.pdf"
+                >Πλήρες κείμενο (PDF)</a
+              >
+            </li>
+            <li><a href="https://museum.di.uoa.gr/">Μουσείο Πληροφορικής ΕΚΠΑ</a></li>
+            <li>
+              <a href="https://github.com/NikosMav/ubiquitous-computing.github.io"
+                >Κώδικας στο GitHub</a
+              >
+            </li>
+          </ul>
+        </div>
       </div>
+      <p class="uc-footer__base">
+        Νικόλαος Μαυραπίδης · Πτυχιακή εργασία, Τμήμα Πληροφορικής και Τηλεπικοινωνιών, ΕΚΠΑ, 2023 ·
+        Επιβλέπουσα: Μαρία Ρούσσου · Ολοκληρωμένη έκδοση 2026
+      </p>
     </footer>
+    <!-- /uc:footer -->
+    <script src="js/shell.js" type="module"></script>
+    <script src="js/reading.js" type="module"></script>
   </body>
 </html>

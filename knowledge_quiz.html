@@ -6,21 +6,78 @@
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <title>Τι ανακάλυψες; | Διάχυτη υπολογιστική</title>
     <meta content="Επτά ερωτήσεις για όσα συνάντησες στη διαδρομή." name="description" />
-    <meta content="#172b61" name="theme-color" />
-    <link href="assets/exhibit/favicon.svg" rel="icon" type="image/svg+xml" />
+    <!-- uc:head -->
+    <link href="favicon/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
+    <link href="favicon/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link href="favicon/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="favicon/favicon.ico" rel="icon" sizes="any" />
+    <link href="favicon/site.webmanifest" rel="manifest" />
+    <link color="#4150f0" href="favicon/safari-pinned-tab.svg" rel="mask-icon" />
+    <meta content="#4150f0" name="msapplication-TileColor" />
+    <meta content="favicon/browserconfig.xml" name="msapplication-config" />
+    <meta content="#080a1f" name="theme-color" />
+    <link href="css/brand.css" rel="stylesheet" />
+    <noscript
+      ><style>
+        .uc-menu {
+          display: none !important;
+        }
+        .uc-nav {
+          position: static !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+          transform: none !important;
+          flex-direction: row !important;
+          overflow-x: auto;
+          max-height: none !important;
+          padding: 0 !important;
+          background: none !important;
+          border: 0 !important;
+          font-size: 12px !important;
+        }
+        .uc-nav a {
+          min-height: 40px !important;
+          padding: 0 10px !important;
+          white-space: nowrap;
+        }
+      </style></noscript
+    >
     <link href="css/site.css" rel="stylesheet" />
+    <!-- /uc:head -->
   </head>
   <body>
-    <a class="skip" href="#main">Μετάβαση στο περιεχόμενο</a>
-    <header class="site-header">
-      <a class="brand" href="guide.html"
-        ><span aria-hidden="true" class="brand-mark">◈</span> Διάχυτη υπολογιστική</a
-      >
-      <nav aria-label="Κύρια πλοήγηση">
-        <a href="index.html">Scrollytelling</a> <a href="reading.html">Εξερεύνηση</a
-        ><a href="guide.html#experiments">Εργαστήριο</a><a href="guide.html#about">Η εργασία</a>
-      </nav>
+    <!-- uc:header -->
+    <a class="uc-skip" href="#main">Μετάβαση στο περιεχόμενο</a>
+    <header class="uc-bar has-crumbs" data-uc-bar>
+      <div class="uc-bar__inner">
+        <a class="uc-brand" href="index.html" aria-label="Διάχυτη Υπολογιστική, αρχή της αφήγησης"
+          ><img alt="" height="34" src="favicon/android-chrome-192x192.png" width="34" /><span
+            class="uc-brand__word"
+            aria-hidden="true"
+            ><span>Διάχυτη</span><span>Υπολογιστική</span></span
+          ></a
+        >
+        <nav aria-label="Βρίσκεσαι εδώ" class="uc-crumbs">
+          <ol data-uc-crumbs>
+            <li><span aria-current="page">Τελικό quiz</span></li>
+          </ol>
+        </nav>
+        <button aria-controls="uc-nav" aria-expanded="false" class="uc-menu" type="button">
+          <span class="uc-menu__icon" aria-hidden="true"></span
+          ><span class="uc-menu__label">Μενού</span>
+        </button>
+        <nav aria-label="Κύρια πλοήγηση" class="uc-nav" id="uc-nav">
+          <a href="index.html">Αφήγηση</a><a href="reading.html">Κεφάλαια</a
+          ><a href="lab.html">Εργαστήριο</a
+          ><a href="knowledge_quiz.html" aria-current="page">Quiz</a
+          ><a class="uc-journey" href="journey.html"
+            >Η διαδρομή μου <span class="uc-xp" data-uc-xp hidden></span
+          ></a>
+        </nav>
+      </div>
+      <div aria-hidden="true" class="uc-progress"><span></span></div>
     </header>
+    <!-- /uc:header -->
     <main class="quiz-page" id="main">
       <a class="back-link" href="guide.html#journey">Επιστροφή στην εξερεύνηση</a>
       <p class="kicker">Τελικό quiz</p>
@@ -41,14 +98,62 @@
       >
     </main>
     <script src="js/quiz.js" type="module"></script>
-    <footer class="site-footer">
-      <p>
-        Νικόλαος Μαυραπίδης · Πτυχιακή εργασία, ΕΚΠΑ, 2023<br />Ανανεωμένη διαδικτυακή έκδοση, 2026
-      </p>
-      <div>
-        <a href="https://pergamos.lib.uoa.gr/uoa/dl/object/3362706/file.pdf">Πλήρης εργασία (PDF)</a
-        ><a href="https://github.com/NikosMav/ubiquitous-computing.github.io">Κώδικας στο GitHub</a>
+    <!-- uc:footer -->
+    <footer class="uc-footer">
+      <div class="uc-footer__inner">
+        <div>
+          <a class="uc-brand" href="index.html" aria-label="Διάχυτη Υπολογιστική"
+            ><img
+              alt=""
+              height="34"
+              loading="lazy"
+              src="favicon/android-chrome-192x192.png"
+              width="34"
+            /><span class="uc-brand__word" aria-hidden="true"
+              ><span>Διάχυτη</span><span>Υπολογιστική</span></span
+            ></a
+          >
+          <p>
+            Ψηφιακό έκθεμα για τη διάχυτη υπολογιστική, σχεδιασμένο ως πρόταση για το υπό ίδρυση
+            Μουσείο Πληροφορικής και Τηλεπικοινωνιών του ΕΚΠΑ.
+          </p>
+          <p>Η πρόοδός σου αποθηκεύεται μόνο σε αυτή τη συσκευή.</p>
+        </div>
+        <div>
+          <h2>Εξερεύνηση</h2>
+          <ul>
+            <li><a href="index.html">Αφήγηση</a></li>
+            <li><a href="reading.html">Κεφάλαια</a></li>
+            <li><a href="lab.html">Εργαστήριο</a></li>
+            <li><a href="knowledge_quiz.html">Τελικό quiz</a></li>
+            <li><a href="journey.html">Η διαδρομή μου</a></li>
+            <li><a href="guide.html">Οδηγός επίσκεψης</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Η εργασία</h2>
+          <ul>
+            <li><a href="guide.html#about">Σχετικά με την εργασία</a></li>
+            <li>
+              <a href="https://pergamos.lib.uoa.gr/uoa/dl/object/3362706/file.pdf"
+                >Πλήρες κείμενο (PDF)</a
+              >
+            </li>
+            <li><a href="https://museum.di.uoa.gr/">Μουσείο Πληροφορικής ΕΚΠΑ</a></li>
+            <li>
+              <a href="https://github.com/NikosMav/ubiquitous-computing.github.io"
+                >Κώδικας στο GitHub</a
+              >
+            </li>
+          </ul>
+        </div>
       </div>
+      <p class="uc-footer__base">
+        Νικόλαος Μαυραπίδης · Πτυχιακή εργασία, Τμήμα Πληροφορικής και Τηλεπικοινωνιών, ΕΚΠΑ, 2023 ·
+        Επιβλέπουσα: Μαρία Ρούσσου · Ολοκληρωμένη έκδοση 2026
+      </p>
     </footer>
+    <!-- /uc:footer -->
+    <script src="js/shell.js" type="module"></script>
   </body>
 </html>

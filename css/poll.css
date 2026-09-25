@@ -45,11 +45,11 @@
 }
 
 /* Custom Radio Buttons */
-form input[type="radio"] {
+#pollForm input[type="radio"] {
     display: none;  /* Hide the default radio button */
 }
 
-form label {
+#pollForm label {
     display: block;
     position: relative;
     padding-left: 35px;
@@ -60,7 +60,7 @@ form label {
     cursor: pointer;
 }
 
-form label:before {
+#pollForm label:before {
     content: "";
     position: absolute;
     left: 0;
@@ -74,7 +74,7 @@ form label:before {
     transition: background 0.2s;
 }
 
-form label:after {
+#pollForm label:after {
     content: "";
     position: absolute;
     width: 12px;
@@ -87,13 +87,13 @@ form label:after {
     opacity: 0;  /* initially hidden */
 }
 
-form label:hover:before,
-form input[type="radio"]:checked + label:before {
+#pollForm label:hover:before,
+#pollForm input[type="radio"]:checked + label:before {
     background: radial-gradient(circle at center, white 40%, var(--primary-color) 50%);
 }
 
-form label:hover,
-form label.selected-option {
+#pollForm label:hover,
+#pollForm label.selected-option {
     background-color: rgba(0, 123, 255, 0.2);
     border-radius: 8px;
     padding-left: 35px;
@@ -101,12 +101,12 @@ form label.selected-option {
 }
 
 /* Modify the inner dot color for better contrast when selected */
-form input[type="radio"]:checked + label:after {
+#pollForm input[type="radio"]:checked + label:after {
     opacity: 1;
     background: #888;
 }
 
-form input[type="submit"] {
+#pollForm input[type="submit"] {
     margin-top: 40px;
     background-color: var(--primary-color);
     color: #fff;
@@ -118,7 +118,7 @@ form input[type="submit"] {
     transition: background-color 0.3s ease;
 }
 
-form input[type="submit"]:hover {
+#pollForm input[type="submit"]:hover {
     background-color: #0056b3;
 }
 
@@ -146,7 +146,7 @@ form input[type="submit"]:hover {
 .rectangle {
     width: 45px;
     height: 15px;
-    background-color: #ff1825;
+    background-color: #fbb454;
     margin-left: 5px;
 }
 

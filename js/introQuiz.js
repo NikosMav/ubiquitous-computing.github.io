@@ -1,10 +1,16 @@
-import { sampleQuestions, validateBank } from './quiz-core.js';
+import { sampleQuestions, validateBank, levelFor } from './quiz-core.js';
+import { recordIntro } from './progress.js';
+import { renderProfileStep } from './profile-step.js';
 
 const start = document.querySelector('#start-quiz-btn');
 const question = document.querySelector('#quiz-question');
 const options = document.querySelector('#quiz-options');
 const feedback = document.querySelector('#quiz-result');
 const next = document.querySelector('#story-next-question');
+const container = document.querySelector('.quiz-container');
+const meter = document.createElement('div');
+meter.className = 'quiz-meter';
+meter.setAttribute('aria-hidden', 'true');
 let bank = [],
   questions = [],
   position = 0,
@@ -27,8 +33,20 @@ function showAll() {
   refreshStory();
 }
 
+function renderMeter() {
+  meter.replaceChildren(
+    ...questions.map((_, i) => {
+      const dot = document.createElement('span');
+      if (i < position) dot.className = 'is-done';
+      if (i === position) dot.className = 'is-current';
+      return dot;
+    }),
+  );
+}
+
 function renderQuestion() {
   answered = false;
+  renderMeter();
   question.textContent = `${position + 1} / ${questions.length} — ${questions[position].question}`;
   options.replaceChildren();
   feedback.textContent = '';
@@ -74,6 +92,7 @@ start.addEventListener('click', async () => {
     score = 0;
     start.hidden = true;
     document.querySelector('#quiz-paragraph').hidden = true;
+    question.before(meter);
     renderQuestion();
   } catch {
     feedback.textContent = 'Οι ερωτήσεις δεν φορτώθηκαν. Δοκίμασε ξανά ή συνέχισε χωρίς quiz.';
@@ -90,9 +109,11 @@ next.addEventListener('click', () => {
     return;
   }
   options.replaceChildren();
+  meter.remove();
   next.hidden = true;
   question.textContent = `Το σκορ σου: ${score}/${questions.length}`;
-  const level = score >= 7 ? 'advanced' : score >= 5 ? 'moderate' : 'newbie';
+  const level = levelFor(score, questions.length);
+  recordIntro(score, questions.length, level);
   for (const id of ['newbie-section', 'moderate-section', 'advanced-section'])
     document.getElementById(id).style.display = 'none';
   const result = document.getElementById(`${level}-section`);
@@ -110,6 +131,7 @@ next.addEventListener('click', () => {
     ).style.display = 'block';
     if (level === 'advanced') document.getElementById('dy').style.display = 'none';
   }
+  renderProfileStep(container, { onDone: refreshStory });
   refreshStory();
   result.tabIndex = -1;
   result.focus();

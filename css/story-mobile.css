@@ -1,0 +1,336 @@
+/*
+ * Phone and tablet layout for the story (below the 992px desktop breakpoint).
+ * The Webflow scenes were composed for large screens with fixed sizes, pinned tracks and
+ * absolutely positioned artwork. Here every scene becomes a vertical flow, typography is
+ * rescaled for small screens and the pinned sequences switch to linear versions. The
+ * entrance animations keep running.
+ */
+@media (max-width: 991px) {
+  .story-page {
+    overflow-x: hidden;
+  }
+  .story-page .the-content,
+  .story-page .front-page {
+    overflow-x: clip;
+  }
+
+  /* ---------- Flow ---------- */
+  .story-page .story-flow {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    display: block !important;
+    overflow: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    grid-area: auto !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+  }
+  .story-page .story-flow[style*='display: none'],
+  .story-page .story-flow[style*='display:none'] {
+    display: none !important;
+  }
+  .story-page .story-flow img {
+    position: relative !important;
+    inset: auto !important;
+    width: auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: 60vh !important;
+    object-fit: contain !important;
+    display: block;
+    margin: 24px auto !important;
+  }
+  .story-page .w-layout-layout,
+  .story-page .w-layout-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+  }
+  .story-page .w-layout-cell {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+  .story-page .w-container,
+  .story-page [class*='container'] {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  /* ---------- Typography ---------- */
+  .story-page
+    :is(#istoria, #dy, #dy-2, #the-content)
+    :is(p, li, [class*='paragraph'], [class*='text-block'], .list-3, .button-paragraph):not(
+      :is(.lab, .checkin, .story-extra, .profile-step) *
+    ) {
+    font-size: 17px !important;
+    line-height: 1.7 !important;
+    letter-spacing: normal !important;
+    max-width: 100% !important;
+    overflow-wrap: break-word;
+  }
+  .story-page
+    :is(#istoria, #dy, #dy-2, #the-content)
+    :is(h2, h3, h4, h5, h6):not(
+      :is(.lab, .checkin, .story-extra, .profile-step, .story-application) *
+    ) {
+    font-size: clamp(26px, 8vw, 44px) !important;
+    line-height: 1.2 !important;
+    letter-spacing: normal !important;
+    max-width: 100% !important;
+    overflow-wrap: break-word;
+  }
+  /* Text blocks inside the flattened scenes span the full width of the phone. */
+  .story-page
+    .story-flow
+    > :is(p, h2, h3, h4, h5, h6, [class*='paragraph'], [class*='heading'], [class*='text-block']) {
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    float: none !important;
+    width: auto !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  .story-page
+    :is(#istoria, #dy, #dy-2, #the-content)
+    :is(p, li, h2, h3, h4, h5, h6, [class*='paragraph'], [class*='text-block'])
+    span {
+    font-size: inherit !important;
+    line-height: inherit !important;
+  }
+  /* Giant display titles of the waves: "Πρώτο Κύμα", "Δεύτερο Κύμα" and the endings. */
+  .story-page
+    :is(
+      [class*='heading-52'],
+      [class*='heading-65'],
+      [class*='heading-67'],
+      .custom-heading,
+      .heading-29
+    ) {
+    font-size: clamp(56px, 19vw, 110px) !important;
+    line-height: 1 !important;
+  }
+  .story-page :is(.heading-60, [class*='heading-60-copy'], .heading-64, .heading-66) {
+    font-size: 15px !important;
+    line-height: 1.5 !important;
+    letter-spacing: 0.08em !important;
+    padding: 0 20px !important;
+  }
+
+  /* ---------- Scenes ---------- */
+  .story-page
+    :is(
+      .timeline,
+      .istoria-ypologistwn-wrapper,
+      .epoxes-ypologistwn-content,
+      .dy-intro,
+      .dy-inventor,
+      .dy-orismos,
+      .assdy,
+      .stadia-dy-content,
+      .forhtes-suskeues,
+      .wireless-com,
+      .rfid,
+      .cloud,
+      .sensors-actuators,
+      .comp-vision,
+      .lbs,
+      .nlp,
+      .deutero-kyma-content,
+      .trito-kyma-content
+    ) {
+    padding: 56px 20px !important;
+  }
+  .story-page :is(.frame, .camera, .track, .track2) {
+    position: relative !important;
+    height: auto !important;
+    display: block !important;
+    overflow: visible !important;
+    transform: none !important;
+  }
+  .story-page [class*='frame-item'] {
+    padding: 32px 20px !important;
+    margin-bottom: 20px !important;
+  }
+  .story-page .story-flow a {
+    font-size: 17px !important;
+    line-height: 1.6 !important;
+  }
+  .story-page .story-flow :is(ul, ol) {
+    padding-left: 24px !important;
+    margin: 20px 0 !important;
+  }
+  .story-page .story-flow :is(iframe, spline-viewer) {
+    max-width: 100%;
+    min-height: 320px;
+  }
+  .story-page [class*='between-section'],
+  .story-page .xronodiagramma,
+  .story-page .xronodiagramma-2 {
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .story-page .story-flow :is(.timeline-year, .text-block-6) {
+    font-size: 22px !important;
+    line-height: 1.5 !important;
+  }
+  /* The opening journey through the sky is shorter on a phone. */
+  .story-page .intro-sky {
+    height: 380vh !important;
+  }
+  .story-page .text-effect-wrapper {
+    height: 170vh !important;
+  }
+
+  /* ---------- Hero ---------- */
+  .story-page .intro-video-wrapper {
+    height: 100svh;
+    min-height: 560px;
+  }
+  .story-page .intro-video {
+    height: 100%;
+  }
+  .story-page .intro-video .container {
+    width: 100%;
+    min-width: 0;
+    top: 0;
+    padding: calc(var(--uc-bar-h) + var(--uc-crumb-h) + 24px) 22px 24px;
+    align-items: stretch;
+  }
+  .story-page .main-heading {
+    width: 100%;
+    min-width: 0;
+    font-size: min(8.2vw, 64px) !important;
+    line-height: 1.2 !important;
+    padding: 0 !important;
+  }
+  .story-page .paragraph-34 {
+    font-size: clamp(18px, 5vw, 30px) !important;
+    line-height: 1.7 !important;
+    padding: 0 !important;
+  }
+  .story-page .text-span-12 {
+    font-size: 1em !important;
+  }
+  .story-page .w-background-video--control {
+    bottom: 20px;
+    right: 20px;
+  }
+
+  /* ---------- Diagnostic quiz ---------- */
+  .story-page .quiz-container {
+    width: calc(100% - 32px) !important;
+    padding: 32px 20px !important;
+  }
+  .story-page .intro-quiz-1 {
+    height: auto !important;
+    min-height: 70vh;
+    padding: 80px 20px !important;
+  }
+  .story-page .quiz-button {
+    width: 100%;
+  }
+  .story-page .result-div {
+    width: min(100%, 420px) !important;
+    height: auto !important;
+    aspect-ratio: auto !important;
+    border-radius: 28px !important;
+    padding: 32px 22px !important;
+  }
+
+  /* ---------- Alex's day ---------- */
+  .story-page .cta_component {
+    display: none !important;
+  }
+  .story-page .story-scenes-linear {
+    display: block;
+    padding: 40px 16px;
+    background: var(--uc-night);
+  }
+  .story-scenes-linear figure {
+    position: relative;
+    max-width: 720px;
+    margin: 0 auto 48px;
+  }
+  .story-scenes-linear img {
+    position: static !important;
+    transform: none !important;
+    display: block;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 18px;
+  }
+  .story-scenes-linear figcaption {
+    padding: 18px 4px 0;
+    font: 17px/1.7 var(--uc-font-body);
+    color: var(--uc-soft);
+  }
+  .story-scenes-linear figure::before {
+    counter-increment: scene;
+    content: counter(scene) ' / 7';
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 1;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(8, 10, 31, 0.8);
+    color: var(--uc-amber);
+    font: 12px var(--uc-font-ui);
+  }
+  .story-scenes-linear {
+    counter-reset: scene;
+  }
+
+  /* Theory / application choice cards: the buttons join the flow under the text. */
+  .story-page [class*='button-div'] {
+    padding: 20px 18px !important;
+    text-align: center;
+  }
+  .story-page [class*='button-div'] .w-button {
+    position: relative !important;
+    inset: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    max-width: 320px;
+    height: auto !important;
+    min-height: 48px;
+    margin: 16px auto 0 !important;
+    white-space: normal;
+  }
+
+  /* ---------- Labs, polls and additions ---------- */
+  .story-application {
+    padding: 48px 16px !important;
+  }
+  /* Wave-two labs sit inside padded scenes; let them use the full phone width. */
+  .story-page .story-wave2-lab {
+    margin: 32px -20px 0 !important;
+    padding: 40px 10px !important;
+  }
+  .story-extra {
+    padding: 64px 20px !important;
+  }
+  .story-page .cursor-new {
+    display: none !important;
+  }
+}

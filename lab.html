@@ -1,0 +1,360 @@
+<!doctype html>
+
+<html lang="el">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Εργαστήριο | Διάχυτη υπολογιστική</title>
+    <meta
+      content="Δεκατέσσερα διαδραστικά εργαστήρια για τις τεχνολογίες της διάχυτης υπολογιστικής: από ασύρματα δίκτυα και RFID ως υπολογιστική όραση και έξυπνα σπίτια."
+      name="description"
+    />
+    <!-- uc:head -->
+    <link href="favicon/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
+    <link href="favicon/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link href="favicon/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="favicon/favicon.ico" rel="icon" sizes="any" />
+    <link href="favicon/site.webmanifest" rel="manifest" />
+    <link color="#4150f0" href="favicon/safari-pinned-tab.svg" rel="mask-icon" />
+    <meta content="#4150f0" name="msapplication-TileColor" />
+    <meta content="favicon/browserconfig.xml" name="msapplication-config" />
+    <meta content="#080a1f" name="theme-color" />
+    <link href="css/brand.css" rel="stylesheet" />
+    <noscript
+      ><style>
+        .uc-menu {
+          display: none !important;
+        }
+        .uc-nav {
+          position: static !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+          transform: none !important;
+          flex-direction: row !important;
+          overflow-x: auto;
+          max-height: none !important;
+          padding: 0 !important;
+          background: none !important;
+          border: 0 !important;
+          font-size: 12px !important;
+        }
+        .uc-nav a {
+          min-height: 40px !important;
+          padding: 0 10px !important;
+          white-space: nowrap;
+        }
+      </style></noscript
+    >
+    <link href="css/site.css" rel="stylesheet" />
+    <!-- /uc:head -->
+  </head>
+  <body>
+    <!-- uc:header -->
+    <a class="uc-skip" href="#main">Μετάβαση στο περιεχόμενο</a>
+    <header class="uc-bar has-crumbs" data-uc-bar>
+      <div class="uc-bar__inner">
+        <a class="uc-brand" href="index.html" aria-label="Διάχυτη Υπολογιστική, αρχή της αφήγησης"
+          ><img alt="" height="34" src="favicon/android-chrome-192x192.png" width="34" /><span
+            class="uc-brand__word"
+            aria-hidden="true"
+            ><span>Διάχυτη</span><span>Υπολογιστική</span></span
+          ></a
+        >
+        <nav aria-label="Βρίσκεσαι εδώ" class="uc-crumbs">
+          <ol data-uc-crumbs>
+            <li><span aria-current="page">Εργαστήριο</span></li>
+          </ol>
+        </nav>
+        <button aria-controls="uc-nav" aria-expanded="false" class="uc-menu" type="button">
+          <span class="uc-menu__icon" aria-hidden="true"></span
+          ><span class="uc-menu__label">Μενού</span>
+        </button>
+        <nav aria-label="Κύρια πλοήγηση" class="uc-nav" id="uc-nav">
+          <a href="index.html">Αφήγηση</a><a href="reading.html">Κεφάλαια</a
+          ><a href="lab.html" aria-current="page">Εργαστήριο</a
+          ><a href="knowledge_quiz.html">Quiz</a
+          ><a class="uc-journey" href="journey.html"
+            >Η διαδρομή μου <span class="uc-xp" data-uc-xp hidden></span
+          ></a>
+        </nav>
+      </div>
+      <div aria-hidden="true" class="uc-progress"><span></span></div>
+    </header>
+    <!-- /uc:header -->
+    <main id="main">
+      <section class="page-hero">
+        <p class="kicker">Εργαστήριο</p>
+        <h1>Μάθε κάνοντας.</h1>
+        <p class="lead">
+          Κάθε τεχνολογία της διάχυτης υπολογιστικής έχει το δικό της εργαστήριο. Δεν διαβάζεις
+          απλώς για έναν αισθητήρα ή ένα δίκτυο: το ρυθμίζεις, το δοκιμάζεις και βλέπεις αμέσως τι
+          αλλάζει. Κάθε εργαστήριο έχει αποστολές και σε ανταμείβει με πόντους και σήματα.
+        </p>
+        <p class="page-hero__progress" data-lab-progress hidden></p>
+      </section>
+      <section aria-labelledby="labs-wave1" class="section lab-wave">
+        <div class="section-heading">
+          <p class="kicker">Τα δομικά στοιχεία</p>
+          <h2 id="labs-wave1">Πρώτο κύμα</h2>
+        </div>
+        <ul class="lab-cards">
+          <li>
+            <a class="lab-card" data-lab="mobile" href="lab-mobile.html"
+              ><span aria-hidden="true" class="lab-card__icon">📱</span
+              ><span class="lab-card__meta">Φορητές συσκευές</span
+              ><strong class="lab-card__title">Τι κρύβει η τσέπη σου;</strong
+              ><span class="lab-card__text"
+                >Σύγκρινε τον υπολογιστή του Apollo με ένα σημερινό κινητό και ανακάλυψε τους
+                αισθητήρες της συσκευής σου.</span
+              ><span class="lab-card__status" data-lab-status>Άνοιγμα</span></a
+            >
+          </li>
+          <li>
+            <a class="lab-card" data-lab="wireless" href="lab-wireless.html"
+              ><span aria-hidden="true" class="lab-card__icon">📡</span
+              ><span class="lab-card__meta">Ασύρματη επικοινωνία</span
+              ><strong class="lab-card__title">Στείλε ένα πακέτο</strong
+              ><span class="lab-card__text"
+                >Τοποθέτησε συσκευές, διάλεξε Bluetooth, Wi-Fi ή 5G και δες εμβέλεια, ταχύτητα και
+                καθυστέρηση.</span
+              ><span class="lab-card__status" data-lab-status>Άνοιγμα</span></a
+            >
+          </li>
+          <li>
+            <a class="lab-card" data-lab="rfid" href="lab-rfid.html"
+              ><span aria-hidden="true" class="lab-card__icon">🏷️</span
+              ><span class="lab-card__meta">Τεχνολογία RFID</span
+              ><strong class="lab-card__title">Ο αναγνώστης RFID</strong
+              ><span class="lab-card__text"
+                >Φέρε ετικέτες κοντά στον αναγνώστη, διάβασε τα δεδομένα τους και ολοκλήρωσε ένα
+                δάνειο βιβλιοθήκης.</span
+              ><span class="lab-card__status" data-lab-status>Άνοιγμα</span></a
+            >
+          </li>
+          <li>
+            <a class="lab-card" data-lab="cloud" href="lab-cloud.html"
+              ><span aria-hidden="true" class="lab-card__icon">☁️</span
+              ><span class="lab-card__meta">Cloud computing</span
+              ><strong class="lab-card__title">Κλιμάκωσε το νέφος</strong
+              ><span class="lab-card__text"
+                >Κράτησε μια υπηρεσία όρθια όταν έρχεται κύμα επισκεπτών, ισορροπώντας απόδοση και
+                κόστος.</span
+              ><span class="lab-card__status" data-lab-status>Άνοιγμα</span></a
+            >
+          </li>
+          <li>
+            <a class="lab-card" data-lab="sensors" href="lab-sensors.html"
+              ><span aria-hidden="true" class="lab-card__icon">🌡️</span
+              ><span class="lab-card__meta">Αισθητήρες και ενεργοποιητές</span
+              ><strong class="lab-card__title">Ο βρόχος ανάδρασης</strong
+              ><span class="lab-card__text"
+                >Ένας θερμοστάτης: αισθητήρας, ελεγκτής, ενεργοποιητής. Ρύθμισέ τον ώστε το δωμάτιο
+                να μείνει άνετο.</span
+              ><span class="lab-card__status" data-lab-status>Άνοιγμα</span></a
+            >
+          </li>
+          <li>
+            <a class="lab-card" data-lab="lbs" href="lab-lbs.html"
+              ><span aria-hidden="true" class="lab-card__icon">🛰️</span
+              ><span class="lab-card__meta">Συστήματα που βασίζονται στη θέση</span
+              ><strong class="lab-card__title">Πού βρίσκομαι;</strong
+              ><span class="lab-card__text"
+                >Εντόπισε μια θέση με τριπλευρισμό από δορυφόρους και βρες τη συντομότερη διαδρομή
+                στο μουσείο.</span
+              ><span class="lab-card__status" data-lab-status>Άνοιγμα</span></a
+            >
+          </li>
+          <li>
+            <a class="lab-card" data-lab="nlp" href="lab-nlp.html"
+              ><span aria-hidden="true" class="lab-card__icon">💬</span
+              ><span class="lab-card__meta">Επεξεργασία φυσικής γλώσσας</span
+              ><strong class="lab-card__title">Μίλα με την Aria</strong
+              ><span class="lab-card__text"
+                >Ένα chatbot που δείχνει πώς «διαβάζει»: λέξεις-κλειδιά, πρόθεση και συναίσθημα κάθε
+                μηνύματος.</span
+              ><span class="lab-card__status" data-lab-status>Άνοιγμα</span></a
+            >
+          </li>
+        </ul>
+      </section>
+      <section aria-labelledby="labs-vision" class="section lab-wave" id="vision">
+        <div class="section-heading">
+          <p class="kicker">Πρώτο κύμα · Υπολογιστική όραση</p>
+          <h2 id="labs-vision">Πειράματα με την κάμερα</h2>
+          <p>
+            Τρία πειράματα που εκτελούνται στη συσκευή σου. Η κάμερα ανοίγει μόνο όταν το επιλέξεις
+            και η εικόνα δεν αποστέλλεται πουθενά. Τα μοντέλα εντοπίζουν σημεία, όχι ταυτότητα,
+            ηλικία, φύλο ή συναισθήματα.
+          </p>
+        </div>
+        <ul class="lab-cards">
+          <li>
+            <a class="lab-card" data-lab="vision" href="face_recognition.html"
+              ><span aria-hidden="true" class="lab-card__icon">🙂</span
+              ><span class="lab-card__meta">Κάμερα · στη συσκευή σου</span
+              ><strong class="lab-card__title">Τα σημεία ενός προσώπου</strong
+              ><span class="lab-card__status" data-lab-status>Άνοιγμα</span></a
+            >
+          </li>
+          <li>
+            <a class="lab-card" data-lab="vision" href="hand_gestures.html"
+              ><span aria-hidden="true" class="lab-card__icon">✋</span
+              ><span class="lab-card__meta">Κάμερα · στη συσκευή σου</span
+              ><strong class="lab-card__title">Χέρια και χειρονομίες</strong
+              ><span class="lab-card__status" data-lab-status>Άνοιγμα</span></a
+            >
+          </li>
+          <li>
+            <a class="lab-card" data-lab="vision" href="pose_detection.html"
+              ><span aria-hidden="true" class="lab-card__icon">🧍</span
+              ><span class="lab-card__meta">Κάμερα · στη συσκευή σου</span
+              ><strong class="lab-card__title">Στάση σώματος</strong
+              ><span class="lab-card__status" data-lab-status>Άνοιγμα</span></a
+            >
+          </li>
+        </ul>
+      </section>
+      <section aria-labelledby="labs-wave2" class="section lab-wave">
+        <div class="section-heading">
+          <p class="kicker">Ο άνθρωπος στο επίκεντρο</p>
+          <h2 id="labs-wave2">Δεύτερο κύμα</h2>
+        </div>
+        <ul class="lab-cards">
+          <li>
+            <a class="lab-card" data-lab="smarthome" href="lab-smarthome.html"
+              ><span aria-hidden="true" class="lab-card__icon">🏠</span
+              ><span class="lab-card__meta">Έξυπνο σπίτι</span
+              ><strong class="lab-card__title">Προγραμμάτισε το σπίτι</strong
+              ><span class="lab-card__text"
+                >Φτιάξε κανόνες «αν… τότε…» και δες ένα σπίτι να αντιδρά σε όσα συμβαίνουν μέσα σε
+                μια μέρα.</span
+              ><span class="lab-card__status" data-lab-status>Άνοιγμα</span></a
+            >
+          </li>
+          <li>
+            <a class="lab-card" data-lab="smartcar" href="lab-smartcar.html"
+              ><span aria-hidden="true" class="lab-card__icon">🚗</span
+              ><span class="lab-card__meta">Έξυπνο αυτοκίνητο</span
+              ><strong class="lab-card__title">Αυτόνομο φρενάρισμα</strong
+              ><span class="lab-card__text"
+                >Ρύθμισε αισθητήρες και χρόνο αντίδρασης και δες πότε ένα αυτοκίνητο προλαβαίνει να
+                σταματήσει.</span
+              ><span class="lab-card__status" data-lab-status>Άνοιγμα</span></a
+            >
+          </li>
+          <li>
+            <a class="lab-card" data-lab="wearables" href="lab-wearables.html"
+              ><span aria-hidden="true" class="lab-card__icon">👕</span
+              ><span class="lab-card__meta">Έξυπνα ρούχα</span
+              ><strong class="lab-card__title">Το έξυπνο μπλουζάκι</strong
+              ><span class="lab-card__text"
+                >Ένα ρούχο με αισθητήρες καταγράφει σφυγμό και κίνηση. Διάλεξε τι μοιράζεσαι και με
+                ποιον.</span
+              ><span class="lab-card__status" data-lab-status>Άνοιγμα</span></a
+            >
+          </li>
+        </ul>
+      </section>
+      <section aria-labelledby="labs-wave3" class="section lab-wave">
+        <div class="section-heading">
+          <p class="kicker">Το μέλλον</p>
+          <h2 id="labs-wave3">Τρίτο κύμα</h2>
+        </div>
+        <ul class="lab-cards">
+          <li>
+            <a class="lab-card" data-lab="future" href="lab-future.html"
+              ><span aria-hidden="true" class="lab-card__icon">🔮</span
+              ><span class="lab-card__meta">Τάσεις και ερωτήματα για το μέλλον</span
+              ><strong class="lab-card__title">Ψήφισε το μέλλον</strong
+              ><span class="lab-card__text"
+                >Οκτώ τάσεις του τρίτου κύματος. Ζύγισε οφέλη και κινδύνους και δες πώς ψήφισαν όσοι
+                πέρασαν από εδώ.</span
+              ><span class="lab-card__status" data-lab-status>Άνοιγμα</span></a
+            >
+          </li>
+        </ul>
+      </section>
+      <section class="section lab-principles">
+        <div class="section-heading">
+          <h2>Πώς σχεδιάστηκαν</h2>
+        </div>
+        <ul class="principles">
+          <li>
+            <strong>Θεωρία και πράξη μαζί.</strong> Κάθε εργαστήριο συνδέεται με το κεφάλαιό του
+            στην αφήγηση και στα κείμενα.
+          </li>
+          <li>
+            <strong>Καθοδηγούμενες προκλήσεις.</strong> Οι αποστολές σε οδηγούν στις σημαντικές
+            ιδέες, χωρίς να κλειδώνουν την εξερεύνηση.
+          </li>
+          <li>
+            <strong>Άμεση ανατροφοδότηση.</strong> Κάθε αλλαγή φαίνεται αμέσως, με εξήγηση για το
+            γιατί.
+          </li>
+          <li>
+            <strong>Τίποτα δεν φεύγει από τη συσκευή.</strong> Οι προσομοιώσεις εκτελούνται στον
+            browser σου.
+          </li>
+        </ul>
+      </section>
+    </main>
+    <!-- uc:footer -->
+    <footer class="uc-footer">
+      <div class="uc-footer__inner">
+        <div>
+          <a class="uc-brand" href="index.html" aria-label="Διάχυτη Υπολογιστική"
+            ><img
+              alt=""
+              height="34"
+              loading="lazy"
+              src="favicon/android-chrome-192x192.png"
+              width="34"
+            /><span class="uc-brand__word" aria-hidden="true"
+              ><span>Διάχυτη</span><span>Υπολογιστική</span></span
+            ></a
+          >
+          <p>
+            Ψηφιακό έκθεμα για τη διάχυτη υπολογιστική, σχεδιασμένο ως πρόταση για το υπό ίδρυση
+            Μουσείο Πληροφορικής και Τηλεπικοινωνιών του ΕΚΠΑ.
+          </p>
+          <p>Η πρόοδός σου αποθηκεύεται μόνο σε αυτή τη συσκευή.</p>
+        </div>
+        <div>
+          <h2>Εξερεύνηση</h2>
+          <ul>
+            <li><a href="index.html">Αφήγηση</a></li>
+            <li><a href="reading.html">Κεφάλαια</a></li>
+            <li><a href="lab.html">Εργαστήριο</a></li>
+            <li><a href="knowledge_quiz.html">Τελικό quiz</a></li>
+            <li><a href="journey.html">Η διαδρομή μου</a></li>
+            <li><a href="guide.html">Οδηγός επίσκεψης</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Η εργασία</h2>
+          <ul>
+            <li><a href="guide.html#about">Σχετικά με την εργασία</a></li>
+            <li>
+              <a href="https://pergamos.lib.uoa.gr/uoa/dl/object/3362706/file.pdf"
+                >Πλήρες κείμενο (PDF)</a
+              >
+            </li>
+            <li><a href="https://museum.di.uoa.gr/">Μουσείο Πληροφορικής ΕΚΠΑ</a></li>
+            <li>
+              <a href="https://github.com/NikosMav/ubiquitous-computing.github.io"
+                >Κώδικας στο GitHub</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <p class="uc-footer__base">
+        Νικόλαος Μαυραπίδης · Πτυχιακή εργασία, Τμήμα Πληροφορικής και Τηλεπικοινωνιών, ΕΚΠΑ, 2023 ·
+        Επιβλέπουσα: Μαρία Ρούσσου · Ολοκληρωμένη έκδοση 2026
+      </p>
+    </footer>
+    <!-- /uc:footer -->
+    <script src="js/shell.js" type="module"></script>
+    <script src="js/lab-hub.js" type="module"></script>
+  </body>
+</html>

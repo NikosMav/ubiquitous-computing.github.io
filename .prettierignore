@@ -7,6 +7,9 @@ index.html
 css/*
 !css/site.css
 !css/story-repairs.css
+!css/story-mobile.css
+!css/brand.css
+!css/labs.css
 js/webflow.js
 js/faceRec.js
 js/poseRec.js

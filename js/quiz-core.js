@@ -46,3 +46,9 @@ export function validateBank(bank) {
   }
   return bank;
 }
+
+// Maps a diagnostic score to the three routes of the original presentation.
+export function levelFor(score, total) {
+  const ratio = score / total;
+  return ratio >= 7 / 8 ? 'advanced' : ratio >= 5 / 8 ? 'moderate' : 'newbie';
+}

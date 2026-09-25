@@ -1,0 +1,300 @@
+<!doctype html>
+
+<html lang="el">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Η διαδρομή μου | Διάχυτη υπολογιστική</title>
+    <meta
+      content="Η προσωπική σου διαδρομή μάθησης: πρόοδος, πόντοι, σήματα, έλεγχοι γνώσεων και πιστοποιητικό εξερεύνησης."
+      name="description"
+    />
+    <!-- uc:head -->
+    <link href="favicon/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
+    <link href="favicon/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link href="favicon/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="favicon/favicon.ico" rel="icon" sizes="any" />
+    <link href="favicon/site.webmanifest" rel="manifest" />
+    <link color="#4150f0" href="favicon/safari-pinned-tab.svg" rel="mask-icon" />
+    <meta content="#4150f0" name="msapplication-TileColor" />
+    <meta content="favicon/browserconfig.xml" name="msapplication-config" />
+    <meta content="#080a1f" name="theme-color" />
+    <link href="css/brand.css" rel="stylesheet" />
+    <noscript
+      ><style>
+        .uc-menu {
+          display: none !important;
+        }
+        .uc-nav {
+          position: static !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+          transform: none !important;
+          flex-direction: row !important;
+          overflow-x: auto;
+          max-height: none !important;
+          padding: 0 !important;
+          background: none !important;
+          border: 0 !important;
+          font-size: 12px !important;
+        }
+        .uc-nav a {
+          min-height: 40px !important;
+          padding: 0 10px !important;
+          white-space: nowrap;
+        }
+      </style></noscript
+    >
+    <link href="css/site.css" rel="stylesheet" />
+    <!-- /uc:head -->
+  </head>
+  <body>
+    <!-- uc:header -->
+    <a class="uc-skip" href="#main">Μετάβαση στο περιεχόμενο</a>
+    <header class="uc-bar has-crumbs" data-uc-bar>
+      <div class="uc-bar__inner">
+        <a class="uc-brand" href="index.html" aria-label="Διάχυτη Υπολογιστική, αρχή της αφήγησης"
+          ><img alt="" height="34" src="favicon/android-chrome-192x192.png" width="34" /><span
+            class="uc-brand__word"
+            aria-hidden="true"
+            ><span>Διάχυτη</span><span>Υπολογιστική</span></span
+          ></a
+        >
+        <nav aria-label="Βρίσκεσαι εδώ" class="uc-crumbs">
+          <ol data-uc-crumbs>
+            <li><span aria-current="page">Η διαδρομή μου</span></li>
+          </ol>
+        </nav>
+        <button aria-controls="uc-nav" aria-expanded="false" class="uc-menu" type="button">
+          <span class="uc-menu__icon" aria-hidden="true"></span
+          ><span class="uc-menu__label">Μενού</span>
+        </button>
+        <nav aria-label="Κύρια πλοήγηση" class="uc-nav" id="uc-nav">
+          <a href="index.html">Αφήγηση</a><a href="reading.html">Κεφάλαια</a
+          ><a href="lab.html">Εργαστήριο</a><a href="knowledge_quiz.html">Quiz</a
+          ><a class="uc-journey" href="journey.html" aria-current="page"
+            >Η διαδρομή μου <span class="uc-xp" data-uc-xp hidden></span
+          ></a>
+        </nav>
+      </div>
+      <div aria-hidden="true" class="uc-progress"><span></span></div>
+    </header>
+    <!-- /uc:header -->
+    <main class="journey-page" id="main">
+      <section aria-labelledby="journey-title" class="journey-hero">
+        <div>
+          <p class="kicker">Η διαδρομή μου</p>
+          <h1 id="journey-title">
+            <span data-level-title>Επισκέπτης</span>
+          </h1>
+          <p class="lead" data-level-lead>
+            Κάθε κεφάλαιο, εργαστήριο και quiz σε φέρνει πιο κοντά στο επόμενο επίπεδο.
+          </p>
+          <div class="journey-level" aria-hidden="true"><span data-level-bar></span></div>
+          <p class="journey-level__text" data-level-text>0 XP</p>
+        </div>
+        <dl class="journey-stats">
+          <div>
+            <dt>Κεφάλαια</dt>
+            <dd data-stat="chapters">0</dd>
+          </div>
+          <div>
+            <dt>Εργαστήρια</dt>
+            <dd data-stat="labs">0</dd>
+          </div>
+          <div>
+            <dt>Σήματα</dt>
+            <dd data-stat="badges">0</dd>
+          </div>
+          <div>
+            <dt>Τελικό quiz</dt>
+            <dd data-stat="quiz">—</dd>
+          </div>
+        </dl>
+      </section>
+      <noscript>
+        <p class="note">
+          Η προσωπική διαδρομή χρειάζεται JavaScript. Όλο το περιεχόμενο είναι διαθέσιμο στα
+          <a href="reading.html">κεφάλαια</a>.
+        </p>
+      </noscript>
+
+      <section aria-labelledby="path-title" class="section journey-path" id="path">
+        <div class="section-heading">
+          <p class="kicker">Εξατομικευμένη διαδρομή μάθησης</p>
+          <h2 id="path-title">Το επόμενο βήμα σου</h2>
+          <p>
+            Η διαδρομή προσαρμόζεται στις γνώσεις, στα ενδιαφέροντα και στον τρόπο που προτιμάς να
+            μαθαίνεις. Μπορείς να παραλείψεις βήματα ή να αλλάξεις το προφίλ σου όποτε θέλεις.
+          </p>
+        </div>
+        <div data-path></div>
+      </section>
+
+      <section aria-labelledby="profile-title" class="section journey-profile" id="profile">
+        <div class="section-heading">
+          <p class="kicker">Προφίλ</p>
+          <h2 id="profile-title">Πες μας για σένα</h2>
+          <p>
+            Διάλεξε μόνος σου ή κάνε το
+            <a href="intro_quiz.html">διαγνωστικό quiz</a> για να βρεθεί το σημείο εκκίνησης.
+          </p>
+        </div>
+        <form class="profile-form" data-profile-form>
+          <fieldset>
+            <legend>Πόσο εξοικειωμένος/η είσαι με την τεχνολογία;</legend>
+            <label class="choice"
+              ><input name="level" type="radio" value="newbie" /><span
+                ><strong>Ξεκινώ τώρα</strong> Θέλω την ιστορία από την αρχή.</span
+              ></label
+            >
+            <label class="choice"
+              ><input name="level" type="radio" value="moderate" /><span
+                ><strong>Έχω μια ιδέα</strong> Ξέρω τα βασικά των υπολογιστών.</span
+              ></label
+            >
+            <label class="choice"
+              ><input name="level" type="radio" value="advanced" /><span
+                ><strong>Γνωρίζω αρκετά</strong> Πήγαινέ με κατευθείαν στις τεχνολογίες.</span
+              ></label
+            >
+          </fieldset>
+          <fieldset>
+            <legend>Τι σε ενδιαφέρει περισσότερο;</legend>
+            <div class="chips" data-interests></div>
+          </fieldset>
+          <fieldset>
+            <legend>Πώς προτιμάς να μαθαίνεις;</legend>
+            <div class="choices-row" data-styles></div>
+          </fieldset>
+          <div class="actions">
+            <button type="submit">Δημιούργησε τη διαδρομή μου</button>
+            <p class="form-note" data-profile-note role="status"></p>
+          </div>
+        </form>
+      </section>
+
+      <section aria-labelledby="checkins-title" class="section journey-checkins" id="checkins">
+        <div class="section-heading">
+          <p class="kicker">Βρόχοι ανατροφοδότησης</p>
+          <h2 id="checkins-title">Έλεγχοι γνώσεων</h2>
+          <p>Ένας σύντομος έλεγχος στο τέλος κάθε κύματος, για να δεις τι έμεινε.</p>
+        </div>
+        <div class="checkin-grid">
+          <div data-checkin="wave1" id="checkin-wave1"></div>
+          <div data-checkin="wave2" id="checkin-wave2"></div>
+          <div data-checkin="wave3" id="checkin-wave3"></div>
+        </div>
+      </section>
+
+      <section aria-labelledby="badges-title" class="section journey-badges" id="badges">
+        <div class="section-heading">
+          <p class="kicker">Επιτεύγματα</p>
+          <h2 id="badges-title">Σήματα</h2>
+        </div>
+        <ul class="badge-grid" data-badges></ul>
+      </section>
+
+      <section aria-labelledby="board-title" class="section journey-board" id="board">
+        <div class="section-heading">
+          <p class="kicker">Πίνακας κατάταξης σταθμού</p>
+          <h2 id="board-title">Ποιος εξερεύνησε περισσότερο;</h2>
+          <p>
+            Ο πίνακας κρατιέται μόνο σε αυτή τη συσκευή, όπως σε ένα περίπτερο του μουσείου. Γράψε
+            ένα ψευδώνυμο, όχι το όνομά σου.
+          </p>
+        </div>
+        <form class="board-form" data-board-form>
+          <label for="board-name">Ψευδώνυμο</label>
+          <input autocomplete="off" id="board-name" maxlength="20" required type="text" />
+          <button type="submit">Καταχώριση του σκορ μου</button>
+        </form>
+        <ol class="board" data-board></ol>
+      </section>
+
+      <section aria-labelledby="keep-title" class="section journey-keep" id="certificate">
+        <div class="section-heading">
+          <p class="kicker">Αναμνηστικό</p>
+          <h2 id="keep-title">Το πιστοποιητικό σου</h2>
+          <p>
+            Ένα αναμνηστικό της επίσκεψής σου με το επίπεδο και τα σήματά σου. Δημιουργείται στη
+            συσκευή σου· δεν χρειάζεται email ή εγγραφή.
+          </p>
+        </div>
+        <div class="actions">
+          <label class="inline-field" for="certificate-name"
+            >Όνομα στο πιστοποιητικό
+            <input autocomplete="name" id="certificate-name" maxlength="40" type="text"
+          /></label>
+          <button data-certificate type="button">Λήψη πιστοποιητικού (PNG)</button>
+        </div>
+        <details class="danger-zone">
+          <summary>Διαγραφή προόδου</summary>
+          <div>
+            <p>Διαγράφει πόντους, σήματα και προφίλ από αυτή τη συσκευή. Δεν αναιρείται.</p>
+            <button class="secondary" data-reset type="button">Διαγραφή όλης της προόδου</button>
+          </div>
+        </details>
+      </section>
+    </main>
+    <!-- uc:footer -->
+    <footer class="uc-footer">
+      <div class="uc-footer__inner">
+        <div>
+          <a class="uc-brand" href="index.html" aria-label="Διάχυτη Υπολογιστική"
+            ><img
+              alt=""
+              height="34"
+              loading="lazy"
+              src="favicon/android-chrome-192x192.png"
+              width="34"
+            /><span class="uc-brand__word" aria-hidden="true"
+              ><span>Διάχυτη</span><span>Υπολογιστική</span></span
+            ></a
+          >
+          <p>
+            Ψηφιακό έκθεμα για τη διάχυτη υπολογιστική, σχεδιασμένο ως πρόταση για το υπό ίδρυση
+            Μουσείο Πληροφορικής και Τηλεπικοινωνιών του ΕΚΠΑ.
+          </p>
+          <p>Η πρόοδός σου αποθηκεύεται μόνο σε αυτή τη συσκευή.</p>
+        </div>
+        <div>
+          <h2>Εξερεύνηση</h2>
+          <ul>
+            <li><a href="index.html">Αφήγηση</a></li>
+            <li><a href="reading.html">Κεφάλαια</a></li>
+            <li><a href="lab.html">Εργαστήριο</a></li>
+            <li><a href="knowledge_quiz.html">Τελικό quiz</a></li>
+            <li><a href="journey.html">Η διαδρομή μου</a></li>
+            <li><a href="guide.html">Οδηγός επίσκεψης</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Η εργασία</h2>
+          <ul>
+            <li><a href="guide.html#about">Σχετικά με την εργασία</a></li>
+            <li>
+              <a href="https://pergamos.lib.uoa.gr/uoa/dl/object/3362706/file.pdf"
+                >Πλήρες κείμενο (PDF)</a
+              >
+            </li>
+            <li><a href="https://museum.di.uoa.gr/">Μουσείο Πληροφορικής ΕΚΠΑ</a></li>
+            <li>
+              <a href="https://github.com/NikosMav/ubiquitous-computing.github.io"
+                >Κώδικας στο GitHub</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <p class="uc-footer__base">
+        Νικόλαος Μαυραπίδης · Πτυχιακή εργασία, Τμήμα Πληροφορικής και Τηλεπικοινωνιών, ΕΚΠΑ, 2023 ·
+        Επιβλέπουσα: Μαρία Ρούσσου · Ολοκληρωμένη έκδοση 2026
+      </p>
+    </footer>
+    <!-- /uc:footer -->
+    <script src="js/shell.js" type="module"></script>
+    <script src="js/journey.js" type="module"></script>
+    <script src="js/checkin.js" type="module"></script>
+  </body>
+</html>

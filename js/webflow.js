@@ -15521,13 +15521,7 @@
           });
         }
         $(document).ready(() => {
-          const watcher = window.matchMedia("(prefers-reduced-motion: reduce)");
-          watcher.addEventListener("change", (e) => {
-            setAllBackgroundVideoStates(!e.matches);
-          });
-          if (watcher.matches) {
-            setAllBackgroundVideoStates(false);
-          }
+          // Exhibit edition: background videos always play; motion is part of the story.
           $("video:not([autoplay])").each(function() {
             $(this).parent().find(".w-background-video--control").each(function() {
               showPlayButton($(this));
@@ -22354,10 +22348,7 @@
         if (!ixSession.active) {
           store.dispatch((0, _IX2EngineActions.sessionInitialized)({
             hasBoundaryNodes: Boolean(document.querySelector(BOUNDARY_SELECTOR)),
-            reducedMotion: (
-              // $FlowFixMe - Remove this attribute on beta launch
-              document.body.hasAttribute("data-wf-ix-vacation") && window.matchMedia("(prefers-reduced-motion)").matches
-            )
+            reducedMotion: false
           }));
           if (allowEvents) {
             bindEvents(store);
@@ -23373,9 +23364,8 @@
         function linksToCurrentPage(link) {
           return validHash.test(link.hash) && link.host + link.pathname === loc.host + loc.pathname;
         }
-        const reducedMotionMediaQuery = typeof window.matchMedia === "function" && window.matchMedia("(prefers-reduced-motion: reduce)");
         function reducedMotionEnabled() {
-          return document.body.getAttribute("data-wf-scroll-motion") === "none" || reducedMotionMediaQuery.matches;
+          return document.body.getAttribute("data-wf-scroll-motion") === "none";
         }
         function setFocusable($el, action) {
           var initialTabindex;

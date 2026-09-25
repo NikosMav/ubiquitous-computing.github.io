@@ -1,45 +1,10 @@
 (() => {
-  const media = matchMedia('(prefers-reduced-motion: reduce)');
-  const motion = document.querySelector('#motion-toggle');
-  let requestedCompact = false,
-    ixData,
-    wasCompact = false;
   function refresh() {
     window.ScrollTrigger?.refresh();
     window.dispatchEvent(new Event('story:layout'));
   }
-  function mode() {
-    const compact = media.matches || requestedCompact;
-    document.documentElement.classList.toggle('story-compact', compact);
-    motion.setAttribute('aria-pressed', String(compact));
-    motion.hidden = media.matches;
-    try {
-      const ix = window.Webflow?.require('ix2');
-      const data = ix?.store?.getState().ixData;
-      if (!ixData && data)
-        ixData = {
-          events: data.events,
-          actionLists: data.actionLists,
-          site: { mediaQueries: data.mediaQueries },
-        };
-      if (compact) ix?.destroy();
-      else if (wasCompact && ixData) ix?.init(ixData);
-      wasCompact = compact;
-    } catch {
-      /* Reading/links still work if the animation runtime is unavailable. */
-    }
-    if (compact) document.querySelectorAll('video').forEach((video) => video.pause());
-    window.dispatchEvent(new Event('story:mode'));
-    refresh();
-  }
-  window.Webflow ||= [];
-  window.Webflow.push(mode);
-  media.addEventListener('change', mode);
-  motion.addEventListener('click', () => {
-    requestedCompact = !requestedCompact;
-    mode();
-  });
 
+  // Theory / application disclosures in each first-wave chapter.
   document.querySelectorAll('[data-story-toggle]').forEach((button) =>
     button.addEventListener('click', () => {
       const id = button.dataset.storyToggle;
@@ -59,6 +24,7 @@
           (control) => control.parentElement === button.parentElement && visible(control),
         ) || controls.find(visible);
       visibleControl?.focus({ preventScroll: true });
+      window.dispatchEvent(new CustomEvent('story:toggle', { detail: { id, open, panel } }));
       window.dispatchEvent(new Event('resize'));
       refresh();
     }),

@@ -63,6 +63,7 @@ function draw(groups) {
     ? `Εντοπισμένα ${kind === 'face' ? 'πρόσωπα' : kind === 'hand' ? 'χέρια' : 'σώματα'}: ${groups.length}`
     : 'Δεν εντοπίζονται σημεία. Δοκίμασε καλύτερο φωτισμό ή άλλαξε θέση.';
   if (summary.textContent !== text) summary.textContent = text;
+  window.dispatchEvent(new CustomEvent('vision:frame', { detail: { kind, groups } }));
 }
 
 async function frame(timestamp, current) {
