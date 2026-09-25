@@ -1,15 +1,21 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { readFile } from 'node:fs/promises';
+import { labs } from '../../js/catalog.js';
 
 const routes = [
   'guide.html',
   'reading.html',
+  'lab.html',
+  'journey.html',
   'intro_quiz.html',
   'knowledge_quiz.html',
   'face_recognition.html',
   'hand_gestures.html',
   'pose_detection.html',
+  ...Object.values(labs)
+    .map((lab) => lab.page)
+    .filter((page) => page.startsWith('lab-')),
 ];
 for (const route of routes) {
   test(`${route}: accessible, no overflow or failed local resources`, async ({ page }) => {
@@ -23,6 +29,7 @@ for (const route of routes) {
     await page.goto('/' + route);
     await expect(page.locator('h1')).toBeVisible();
     if (route.includes('quiz')) await expect(page.locator('fieldset')).toBeVisible();
+    if (route.startsWith('lab-')) await expect(page.locator('.lab-missions')).toBeVisible();
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
     ).toBe(true);
@@ -44,7 +51,7 @@ test('reading and native disclosures work without JavaScript', async ({ browser 
   await page.goto('http://localhost:8000/guide.html');
   await page.locator('summary').filter({ hasText: 'Ασύρματη επικοινωνία' }).click();
   await expect(page.getByText('Το Bluetooth συνδέει', { exact: false })).toBeVisible();
-  await page.getByRole('link', { name: 'Εξερεύνηση', exact: true }).click();
+  await page.locator('#uc-nav').getByRole('link', { name: 'Κεφάλαια', exact: true }).click();
   await expect(page.locator('#future')).toContainText('Άλεξ');
   await context.close();
 });

@@ -41,3 +41,31 @@ test('plain reading and lab pages ship no eager camera or third-party runtime', 
     assert.doesNotMatch(source, /<script[^>]+src="[^\"]*vendor/);
   }
 });
+
+test('every page carries the shared head, header and footer', async () => {
+  const { pages, apply } = await import('../scripts/shell.js');
+  const squash = (text) => text.replace(/\s+/g, '');
+  for (const page of Object.keys(pages)) {
+    const source = await readFile(new URL(page, root), 'utf8');
+    assert.equal(squash(apply(page, source)), squash(source), `${page}: run npm run shell`);
+    assert.match(source, /favicon\/apple-touch-icon\.png/, page);
+    assert.match(source, /css\/brand\.css/, page);
+  }
+});
+
+test('the story no longer ships a reduced-motion mode', async () => {
+  const story = await readFile(new URL('index.html', root), 'utf8');
+  assert.doesNotMatch(story, /motion-toggle|story-compact|prefers-reduced-motion/);
+  for (const file of [
+    'js/story-repairs.js',
+    'js/autoTyping.js',
+    'js/scrollTrigger.js',
+    'css/story-repairs.css',
+    'css/site.css',
+  ])
+    assert.doesNotMatch(
+      await readFile(new URL(file, root), 'utf8'),
+      /reduced-motion|story-compact/,
+      file,
+    );
+});

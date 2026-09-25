@@ -6,9 +6,13 @@ The MIT License applies to original source code authored for this project. It do
 
 - `assets/exhibit/Babbage_Difference_Engine-p-500.jpg` and `assets/exhibit/markweiser4-p-500.jpeg` were carried over from the original 2023 educational prototype. They remain subject to their original owners' terms. Precise upstream license attribution was not established by this refresh; do not assume the repository's MIT license permits independent reuse.
 - `assets/case-study/` contains screenshots of the historical prototype. Third-party material visible in those screenshots retains its respective rights.
-- `assets/exhibit/favicon.svg` is original source artwork for the refreshed site.
+- `assets/exhibit/favicon.svg` is original source artwork from an earlier refresh. It is no longer referenced: every page now uses the original wave favicon set in `favicon/`.
 
 The original `images/`, `fonts/`, `videos/`, `documents/`, `favicon/` and `models/` directories have been restored from `e4c3e53`. They retain their original third-party terms; restoration does not establish new licenses or grant independent reuse rights. Legacy camera helpers/model shards remain in source but are not used by the current experiment pages.
+
+## Shared typography
+
+The 2026 edition uses the story's original typefaces from `fonts/` on every page (Venus Rising, Nasalization, Century Gothic and Morbodoni). They keep their original terms. `Morbodoni-Trial.ttf` is a trial release of that typeface; confirm or replace its license before any commercial or institutional deployment.
 
 ## Original presentation runtimes
 
