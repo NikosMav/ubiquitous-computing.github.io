@@ -3,7 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 import { readFile } from 'node:fs/promises';
 
 const routes = [
-  'index.html',
+  'guide.html',
   'reading.html',
   'intro_quiz.html',
   'knowledge_quiz.html',
@@ -41,7 +41,7 @@ test('reading and native disclosures work without JavaScript', async ({ browser 
     viewport: { width: 390, height: 844 },
   });
   const page = await context.newPage();
-  await page.goto('http://localhost:8000/');
+  await page.goto('http://localhost:8000/guide.html');
   await page.locator('summary').filter({ hasText: 'Ασύρματη επικοινωνία' }).click();
   await expect(page.getByText('Το Bluetooth συνδέει', { exact: false })).toBeVisible();
   await page.getByRole('link', { name: 'Εξερεύνηση', exact: true }).click();

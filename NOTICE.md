@@ -8,7 +8,13 @@ The MIT License applies to original source code authored for this project. It do
 - `assets/case-study/` contains screenshots of the historical prototype. Third-party material visible in those screenshots retains its respective rights.
 - `assets/exhibit/favicon.svg` is original source artwork for the refreshed site.
 
-Unused legacy media and model files were removed from the current tree; the original material remains available in Git history at `e4c3e53`.
+The original `images/`, `fonts/`, `videos/`, `documents/`, `favicon/` and `models/` directories have been restored from `e4c3e53`. They retain their original third-party terms; restoration does not establish new licenses or grant independent reuse rights. Legacy camera helpers/model shards remain in source but are not used by the current experiment pages.
+
+## Original presentation runtimes
+
+The Webflow export and its runtime remain intact. The build serves locked copies of jQuery 3.7.1, Typed.js 2.0.9, Splide 4.0.6 and Chart.js 4.3.3 with their MIT license files under `vendor/story/`. GSAP and ScrollTrigger 3.12.2 retain their own distribution notices and GreenSock license; the package README with its license references is also copied there. These dependencies are not relicensed by this repository.
+
+The original Google font loader, pinned Spline viewer/scene and embedded video retain their providers' terms and require external requests.
 
 ## Computer vision
 

@@ -1,73 +1,57 @@
-# Ubiquitous Computing Museum Experience
+# Ubiquitous Computing: a scrollytelling thesis
 
 [![Site checks](https://github.com/NikosMav/ubiquitous-computing.github.io/actions/workflows/checks.yml/badge.svg)](https://github.com/NikosMav/ubiquitous-computing.github.io/actions/workflows/checks.yml)
 
-**An interactive Greek learning exhibit, based on my 2023 bachelor's thesis at NKUA. Refreshed in 2026.**
+**A desktop scrollytelling experience about ubiquitous computing, created for my 2023 bachelor's thesis at NKUA.**
 
-Explore how computing moved from shared machines to personal devices and into everyday environments. The site combines a readable educational narrative, optional quizzes and three computer-vision experiments that process camera frames on the visitor's device.
+The presentation moves through computing history, the principles of ubiquitous computing, eight enabling technologies and a fictional day in a connected future. The original Webflow scenes, typography, illustrations, videos and scroll transitions are the main experience. An optional plain reading version covers the material without the animated presentation.
 
-[Explore the exhibit](https://nikosmav.github.io/ubiquitous-computing.github.io/) · [Open the laboratory](https://nikosmav.github.io/ubiquitous-computing.github.io/#experiments) · [Read the thesis (PDF)](https://pergamos.lib.uoa.gr/uoa/dl/object/3362706/file.pdf)
+[Open the desktop experience](https://nikosmav.github.io/ubiquitous-computing.github.io/) · [Plain reading version](https://nikosmav.github.io/ubiquitous-computing.github.io/guide.html) · [Camera experiments](https://nikosmav.github.io/ubiquitous-computing.github.io/guide.html#experiments) · [Thesis PDF](https://pergamos.lib.uoa.gr/uoa/dl/object/3362706/file.pdf)
 
-## Why this project exists
+## Context and contribution
 
-Ubiquitous computing is broad and often invisible by design. My thesis explored how a museum-oriented digital experience could make it approachable to visitors with different levels of technical knowledge. The work covered research, interaction design, development and formative evaluation over approximately twelve months.
+My thesis explored how a museum-oriented digital experience could introduce ubiquitous computing to visitors with different levels of technical knowledge. I worked on research, interaction design, implementation and formative evaluation over approximately twelve months.
 
 The project was proposed and supervised by Associate Professor Maria Roussou at the NKUA Department of Informatics and Telecommunications. It was designed for potential adoption as a digital extension of the planned [Museum of Informatics and Telecommunications](https://museum.di.uoa.gr/). It is an academic exhibit concept, not a confirmed museum installation.
 
-## Try it
+The presentation and educational content are in Greek. This README provides the engineering and research context in English.
 
-- **Read freely:** thirteen chapters cover computing history, design principles, the thesis's three-wave structure, eight enabling technologies, connected environments and a future scenario. Reading and chapter navigation work without JavaScript.
-- **Choose a starting point:** an optional eight-question diagnostic suggests history, principles or applications. The result never hides content. This is deterministic score-based guidance, not a learning recommender.
-- **Experiment:** inspect face landmarks, track hands or estimate body pose. Models load only after pressing Start. Stop, cancellation, permission errors, disconnected cameras and background tabs are handled explicitly.
-- **Check your understanding:** a seven-question knowledge quiz gives immediate feedback. Download a plain-text result and answer review locally; no email, account or backend is required.
+## Using the exhibit
 
-The educational experience is in Greek. The homepage includes an English overview, and this README describes the engineering and research context in English.
+- **Desktop story:** open the main page on a desktop or laptop. Scroll through the original scenes, or use the chapter links. Phone layout is outside the scope of this presentation.
+- **Optional diagnostic:** an eight-question quiz suggests one of the original three routes. Questions advance only when you choose Next. You can skip the quiz or restore the entire route after a result.
+- **Theory and applications:** eight technology chapters have working disclosure controls. Short exercises accompany the chapters; the computer-vision chapter links to three camera experiments.
+- **Plain reading:** `guide.html` and `reading.html` provide a restrained, responsive alternative. Reading and chapter navigation work without JavaScript.
+- **Knowledge quiz:** seven questions with feedback and a local result download. No account, email or server is required.
 
-## What changed in 2026
+## Restoration and repairs
 
-| Original prototype                                             | Current implementation                                                       |
-| -------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Desktop Webflow export; mobile maintenance screen              | Responsive semantic HTML and one shared stylesheet                           |
-| Mandatory quiz before content appeared                         | Direct chapter access and an optional suggested route                        |
-| Webflow, jQuery, animation and chart runtimes on the main page | No JavaScript or external runtime requests on the landing and reading pages  |
-| Three independent webcam implementations                       | One shared camera controller and MediaPipe Tasks Vision runtime              |
-| Unbounded/overlapping inference loops                          | Worker inference, one frame in flight, capped at 15 fps                      |
-| Pose joints filtered before applying connection indices        | Original landmark indices retained when testing visibility                   |
-| Age, gender and expression guesses                             | Face geometry only; no identity or demographic inference                     |
-| Fixed poll percentages and unfinished EmailJS souvenir         | Misleading poll removed; local quiz-result download                          |
-| Committed unused media, fonts and model shards                 | Only referenced illustrations and historical screenshots retained            |
-| No automated verification                                      | Unit, link, accessibility and browser journey checks before Pages deployment |
+The 2026 maintenance work restores the original desktop presentation as `index.html`. The earlier reading-oriented replacement is retained at `guide.html`. Original source, fonts, media and model files are present in the repository, and Git history has not been rewritten.
 
-The narrative has been reformatted and selected misleading historical claims corrected. The original theatrical animations, embedded videos and 3D scenes are not reproduced. This edition prioritizes a usable reading experience and functioning experiments. The future scenario remains clearly labeled as a 2023 hypothetical, not a present-day capability claim.
+Repairs around the original presentation include:
 
-The [pre-refresh repository](https://github.com/NikosMav/ubiquitous-computing.github.io/tree/e4c3e53) preserves the original source, media and prototype. Git history was not rewritten.
+- Missing image references, duplicate exported IDs and dead navigation links.
+- Keyboard-operable theory/application controls with focus and expanded-state updates.
+- Optional quiz entry, manual question progression, recoverable question-loading failure and all three score-based routes.
+- Guarded GSAP targets, matching GSAP/ScrollTrigger versions and refreshed scene measurements after layout changes.
+- Reduced-motion controls and a sequential rendering of the original seven future-scenario scenes.
+- A poll clearly labeled as a demonstration with hypothetical percentages; it does not collect visitor votes.
+- A plain reading option with shared navigation back to the original presentation.
 
-## Architecture
+The Webflow runtime and original desktop layouts remain in use. The story still uses external Google fonts, a version-pinned Spline viewer/scene, and embedded media. These can depend on network availability. The plain reading version avoids those dependencies. The future scenario is a speculative narrative written in 2023.
 
-```text
-Static HTML + shared CSS
-  ├── Landing page and reading chapters: no JS required
-  ├── Quizzes: JSON question banks + small browser module
-  └── Vision lab: camera controller
-        └── one ImageBitmap at a time → Web Worker
-              └── pinned MediaPipe runtime + versioned model
-                    └── normalized landmarks → canvas overlay
-```
+## Camera experiments
 
-No application server, framework, database, tracking or persistent storage. The build script copies the site and the locked vision runtime into `dist/`; it does not bundle the site into an application framework. Relative URLs support GitHub Pages project hosting.
+Face landmarks, hand landmarks and body pose use one shared camera controller and a pinned MediaPipe Tasks Vision runtime. The older prototype helpers and model files are retained as source history but are not loaded by the current experiment pages.
 
-### Camera lifecycle and privacy
+- Video access starts only after an explicit button press; microphone access is never requested.
+- Inference runs in a worker, with at most one frame in flight and a 15 fps submission ceiling.
+- Stop, navigation, hidden tabs, model failures and timeouts release the stream and terminate the worker. Late permission responses after cancellation are also cleaned up.
+- Runtime files are served with the site. Versioned models download from Google's `mediapipe-models` storage only after Start.
+- Frames are not recorded or uploaded. Asset requests still disclose ordinary connection metadata to their hosting providers.
+- The demos show geometry; they do not identify people or infer age, gender or emotion.
 
-- Requests video only after an explicit button press; never requests microphone access.
-- Downloads the selected model from Google's `mediapipe-models` storage. Model paths use version `1`, not `latest`.
-- Uses a locally served, lockfile-pinned `@mediapipe/tasks-vision` runtime. Inference runs in a worker with the CPU delegate, keeping the interface responsive.
-- Keeps at most one frame in flight. Skips duplicate video frames and caps submission at 15 fps; this is a ceiling, not a performance guarantee.
-- Stops all media tracks and terminates the worker on Stop, navigation, hidden tab, model failure or timeout. A stream arriving after cancellation is immediately stopped.
-- Does not record or upload frames. Asset requests still disclose ordinary connection metadata to the hosting providers.
-
-Face and hand experiments show landmarks; the pose experiment uses the lite model and draws connections only between sufficiently visible points. None of the demos authenticates people or provides medical, biometric identity or emotion assessment.
-
-## Run locally
+## Run and verify
 
 Use Node.js 22 or newer:
 
@@ -77,9 +61,7 @@ npm run build
 npm start
 ```
 
-Open `http://localhost:8000`. Rebuild after editing source files. `dist/`, installed packages and test output are ignored by Git. Serving the source folder directly will not provide the built vision runtime.
-
-## Verification
+Open `http://localhost:8000`. Rebuild after editing source. The build copies the static site and locked runtime dependencies into `dist/`. Installed packages, generated output and test reports are ignored by Git.
 
 ```bash
 npm test
@@ -89,11 +71,11 @@ npx playwright install chromium
 npm run test:browser
 ```
 
-The checks cover question-bank integrity, score thresholds, non-mutating sampling, landmark-index preservation, track cleanup, local assets/fragment links, all seven pages at desktop and phone sizes, WCAG A/AA checks through axe, reading without JavaScript, quiz completion/download/retry and camera denial/cancellation.
+Unit and source checks cover question banks, score boundaries, sampling, landmark indices, camera cleanup, links and assets. Desktop browser journeys cover the original story's disclosures, seven-scene scroll sequence, three quiz routes and reduced-motion alternative. The guide, reading, quiz and lab pages are checked at desktop and phone sizes, including automated axe accessibility checks. Those accessibility checks do not certify the entire original Webflow presentation.
 
-Browser tests load the real face, hand and pose models and run inference on generated blank video frames, then verify that Stop ends the stream. This validates model integration and lifecycle behavior, **not landmark accuracy on people**. Physical-camera quality across lighting, devices and browsers still needs human testing. Chrome-based desktop and mobile emulation are automated; Safari and Firefox are not certified by this suite.
+Camera integration tests load real models and process synthetic blank video frames, then verify stream cleanup. They do not establish detection accuracy on people. Physical-camera quality and Safari/Firefox behavior still need human testing.
 
-GitHub Actions builds and tests every push and pull request. A successful run on `main` publishes only `dist/` to GitHub Pages. Failed tests block deployment. No generated output is committed.
+GitHub Actions verifies every push and pull request. Only a successful run on `main` deploys `dist/` to GitHub Pages.
 
 ## Original formative evaluation
 
@@ -109,7 +91,7 @@ These are reported perceptions from a small formative study, not a large-scale u
 
 ![The original 2023 desktop prototype](assets/case-study/museum-experience-hero.jpg)
 
-_The original Webflow prototype. The current live site uses the responsive presentation described above._
+_The original desktop presentation, restored as the main experience._
 
 ## Academic reference and reuse
 
