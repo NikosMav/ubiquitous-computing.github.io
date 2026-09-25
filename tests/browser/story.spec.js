@@ -21,7 +21,7 @@ test('original desktop scenes, disclosures and seven-step scroll sequence work',
   await expect(page.locator('#the-content')).toBeVisible();
   await expect(page.locator('#newbie-section')).toBeHidden();
   await expect(page.locator('.intro-video video')).toHaveCount(1);
-  await expect(page.locator('.cta_img-photo')).toHaveCount(7);
+  await expect(page.locator('.cta_component .cta_img-photo')).toHaveCount(7);
   await expect(page.locator('.main-heading')).toBeInViewport();
   for (let i = 0; i < 8; i++) {
     for (const kind of ['theory', 'app']) {
