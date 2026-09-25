@@ -51,9 +51,13 @@
         control.style.display =
           (control.dataset.storyOpen === 'true') === open ? 'none' : 'inline-block';
       });
-      const visibleControl = [...document.querySelectorAll(`[data-story-toggle="${id}"]`)].find(
-        (control) => control.style.display !== 'none',
-      );
+      const controls = [...document.querySelectorAll(`[data-story-toggle="${id}"]`)];
+      const visible = (control) =>
+        control.style.display !== 'none' && control.getClientRects().length;
+      const visibleControl =
+        controls.find(
+          (control) => control.parentElement === button.parentElement && visible(control),
+        ) || controls.find(visible);
       visibleControl?.focus({ preventScroll: true });
       window.dispatchEvent(new Event('resize'));
       refresh();

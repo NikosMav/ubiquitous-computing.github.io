@@ -26,9 +26,9 @@ test('original desktop scenes, disclosures and seven-step scroll sequence work',
   for (let i = 0; i < 8; i++) {
     for (const kind of ['theory', 'app']) {
       const id = `story-${kind}-${i}`;
-      await page.locator(`[data-story-toggle="${id}"][data-story-open="true"]`).click();
+      await page.locator(`[data-story-toggle="${id}"][data-story-open="true"]`).first().click();
       await expect(page.locator('#' + id)).toBeVisible();
-      const close = page.locator(`[data-story-toggle="${id}"][data-story-open="false"]`);
+      const close = page.locator(`[data-story-toggle="${id}"][data-story-open="false"]`).first();
       await expect(close).toBeFocused();
       await close.click();
       await expect(page.locator('#' + id)).toBeHidden();
