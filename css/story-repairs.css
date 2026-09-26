@@ -524,3 +524,37 @@ html {
 .story-page .quiz-button.incorrect-answer {
   background-color: #b3364b;
 }
+
+/* ---------- Quiz gate ---------- */
+.story-gate-note {
+  display: none;
+  max-width: 34em;
+  margin: 26px auto 0;
+  padding: 12px 16px 12px 44px;
+  border-radius: 14px;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fbb454' stroke-width='2' stroke-linecap='round'%3E%3Crect x='5' y='11' width='14' height='10' rx='2'/%3E%3Cpath d='M8 11V8a4 4 0 0 1 8 0v3'/%3E%3C/svg%3E")
+      14px 50% / 20px no-repeat,
+    rgba(8, 10, 31, 0.35);
+  font: 15px/1.55 var(--uc-font-body);
+  color: var(--uc-cream);
+  text-align: left;
+}
+html.story-gated .story-gate-note {
+  display: block;
+}
+.story-page .quiz-welcome {
+  margin: 26px 0 8px;
+}
+.story-page .quiz-welcome p {
+  margin: 0;
+  font: 20px/1.5 var(--uc-font-body);
+  color: #fff;
+}
+.story-page .quiz-welcome .story-route-actions {
+  margin-top: 18px;
+}
+.story-page .story-retake {
+  display: block;
+  margin: 18px auto 0;
+}

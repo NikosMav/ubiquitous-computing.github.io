@@ -33,7 +33,7 @@ The camera experiments also regain the thesis' gesture classification (pointer, 
 ## Using the exhibit
 
 - **Story (`index.html`):** scroll through the original scenes. A fixed bar carries the brand, a live breadcrumb (top left, as in the thesis) and the reading progress. Every breadcrumb level links back to its section.
-- **Diagnostic quiz:** eight optional questions choose one of the original three routes. An optional profile step then personalises the learning path.
+- **Diagnostic quiz:** as in the 2023 prototype, the quiz is the entrance: the chapters stay closed until it is answered, and the score chooses one of the three original routes (newcomers see the history first; the others skip ahead). The route is remembered, so returning visitors are welcomed back rather than gated; deep links from the chapters, labs and journey pass straight through; and a visible choice opens the whole journey without the quiz. An optional profile step then personalises the learning path.
 - **Chapters:** each first-wave technology has theory and a hands-on lab that opens in place. Wave-two labs and the future vote load as you reach them.
 - **Lab (`lab.html`):** all fourteen experiments, with completion status.
 - **My journey (`journey.html`):** level, stats, the personalised path, check-ins, badges, the station leaderboard and the certificate. Progress can be reset.

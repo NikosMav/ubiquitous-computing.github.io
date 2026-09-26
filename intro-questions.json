@@ -32,7 +32,8 @@
   {
     "question": "Ποιος επιστήμονας υπολογιστών είναι γνωστός ως ο πατέρας της επιστήμης των υπολογιστών και της τεχνητής νοημοσύνης;",
     "options": ["Alan Turing", "Albert Einstein", "Isaac Newton", "Charles Babbage"],
-    "answer": "Alan Turing"
+    "answer": "Alan Turing",
+    "feedback": "people"
   },
   {
     "question": "Τι σημαίνει IoT;",
@@ -63,5 +64,17 @@
       "Η δυνατότητα πρόσβασης σε πληροφορίες από οποιαδήποτε τοποθεσία"
     ],
     "answer": "Οι συσκευές έχουν επίγνωση του φυσικού τους περιβάλλοντος και προσαρμόζουν τη συμπεριφορά τους ανάλογα"
+  },
+  {
+    "question": "Ποιος σχεδίασε την Αναλυτική Μηχανή, τον πρώτο σχεδιασμό υπολογιστή γενικής χρήσης;",
+    "options": ["Alan Turing", "Ada Lovelace", "Charles Babbage", "Grace Hopper"],
+    "answer": "Charles Babbage",
+    "feedback": "people"
+  },
+  {
+    "question": "Σε ποιο ερευνητικό κέντρο διατύπωσε ο Mark Weiser την ιδέα της διάχυτης υπολογιστικής, στα τέλη της δεκαετίας του 1980;",
+    "options": ["Xerox PARC", "Bell Labs", "CERN", "MIT Media Lab"],
+    "answer": "Xerox PARC",
+    "feedback": "place"
   }
 ]

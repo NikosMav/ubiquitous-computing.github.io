@@ -1,6 +1,16 @@
 import { test, expect } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 
+// Choosing the whole journey scrolls smoothly to the story's start; wait for it to land.
+async function openWholeJourney(page) {
+  await page.locator('#story-skip-quiz').click();
+  await expect
+    .poll(() =>
+      page.evaluate(() => document.querySelector('#intro-animation').getBoundingClientRect().top),
+    )
+    .toBeLessThan(200);
+}
+
 const desktop = (info) =>
   test.skip(info.project.name !== 'desktop', 'Pinned desktop scenes are covered at 1440px.');
 
@@ -18,11 +28,15 @@ test('original desktop scenes, disclosures and seven-step scroll sequence work',
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('/');
   await expect(page.locator('.main-heading')).toBeVisible();
+  // The quiz is the entrance: the chapters stay closed until it is answered or declined.
+  await expect(page.locator('#the-content')).toBeHidden();
+  await expect(page.locator('html')).toHaveClass(/story-gated/);
+  await expect(page.locator('.main-heading')).toBeInViewport();
+  await openWholeJourney(page);
   await expect(page.locator('#the-content')).toBeVisible();
   await expect(page.locator('#newbie-section')).toBeHidden();
   await expect(page.locator('.intro-video video')).toHaveCount(1);
   await expect(page.locator('.cta_component .cta_img-photo')).toHaveCount(7);
-  await expect(page.locator('.main-heading')).toBeInViewport();
   // The motion switch is gone: the story always runs its animations.
   await expect(page.locator('#motion-toggle')).toHaveCount(0);
   await expect(page.locator('html')).not.toHaveClass(/story-compact/);
@@ -57,6 +71,7 @@ test('breadcrumb follows the scroll position and links back to each level', asyn
   desktop(info);
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/');
+  await openWholeJourney(page);
   const crumbs = page.locator('[data-uc-crumbs]');
   await page
     .locator('#mobile-fp')
@@ -83,6 +98,7 @@ test('a first-wave lab opens in place and awards progress', async ({ page }, inf
   desktop(info);
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/');
+  await openWholeJourney(page);
   await page.locator('[data-story-toggle="story-app-2"][data-story-open="true"]').first().click();
   const lab = page.locator('#story-app-2 .lab');
   await expect(lab).toBeVisible();
@@ -104,6 +120,7 @@ for (const [score, level] of [
     await page.setViewportSize({ width: 1440, height: 900 });
     const bank = JSON.parse(await readFile('intro-questions.json', 'utf8'));
     await page.goto('/');
+    await expect(page.locator('#the-content')).toBeHidden();
     await page.locator('#start-quiz-btn').click();
     for (let i = 0; i < 8; i++) {
       await expect(page.locator('#quiz-question')).toContainText(`${i + 1} / 8`);
@@ -121,14 +138,34 @@ for (const [score, level] of [
     await expect(page.locator('#' + level + '-section')).toBeVisible();
     await expect(page.locator('#quiz-question')).toContainText(`${score}/8`);
     await expect(page.locator('.profile-step')).toBeVisible();
+    await expect(page.locator('#the-content')).toBeVisible();
     if (level !== 'newbie') await expect(page.locator('#istoria')).toBeHidden();
     await page.locator('#' + level + '-section .story-show-all').click();
     await expect(page.locator('#istoria')).toBeVisible();
     await expect(page.locator('#dy')).toBeVisible();
     const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('uc-progress-v1')));
     expect(saved.quizzes.intro.level).toBe(level);
+    // A returning visitor keeps the route instead of meeting the gate again.
+    await page.reload();
+    await expect(page.locator('#the-content')).toBeVisible();
+    await expect(page.locator('.quiz-welcome')).toBeVisible();
   });
 }
+
+test('deep links pass through the quiz gate', async ({ page }, info) => {
+  desktop(info);
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/#smart-car');
+  await expect(page.locator('#the-content')).toBeVisible();
+  await expect
+    .poll(
+      () => page.evaluate(() => document.querySelector('#smart-car').getBoundingClientRect().top),
+      {
+        timeout: 15000,
+      },
+    )
+    .toBeLessThan(120);
+});
 
 test('the story has a phone layout without horizontal scrolling', async ({ page }, info) => {
   test.skip(info.project.name !== 'mobile', 'Phone layout.');
@@ -137,6 +174,8 @@ test('the story has a phone layout without horizontal scrolling', async ({ page 
   await page.goto('/');
   await expect(page.locator('.main-heading')).toBeVisible();
   await expect(page.locator('.uc-menu')).toBeVisible();
+  await openWholeJourney(page);
+
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   // Pinned desktop sequences give way to readable linear versions.
   await expect(page.locator('.cta_component')).toBeHidden();
