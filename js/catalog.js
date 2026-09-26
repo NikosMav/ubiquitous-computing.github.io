@@ -28,7 +28,6 @@ export const chapters = [
     title: 'Φορητές συσκευές',
     story: 'index.html#mobile-fp',
     reading: 'reading.html#mobile-fp',
-    lab: 'mobile',
     minutes: 4,
   },
   {
@@ -37,7 +36,6 @@ export const chapters = [
     title: 'Ασύρματη επικοινωνία',
     story: 'index.html#wireless-com-fp',
     reading: 'reading.html#wireless-com-fp',
-    lab: 'wireless',
     minutes: 5,
   },
   {
@@ -46,7 +44,6 @@ export const chapters = [
     title: 'Τεχνολογία RFID',
     story: 'index.html#rfid-fp',
     reading: 'reading.html#rfid-fp',
-    lab: 'rfid',
     minutes: 4,
   },
   {
@@ -55,7 +52,6 @@ export const chapters = [
     title: 'Cloud computing',
     story: 'index.html#cloud-fp',
     reading: 'reading.html#cloud-fp',
-    lab: 'cloud',
     minutes: 5,
   },
   {
@@ -64,7 +60,6 @@ export const chapters = [
     title: 'Αισθητήρες και ενεργοποιητές',
     story: 'index.html#sensors-fp',
     reading: 'reading.html#sensors-fp',
-    lab: 'sensors',
     minutes: 5,
   },
   {
@@ -82,7 +77,6 @@ export const chapters = [
     title: 'Συστήματα που βασίζονται στη θέση',
     story: 'index.html#lbs-fp',
     reading: 'reading.html#lbs-fp',
-    lab: 'lbs',
     minutes: 5,
   },
   {
@@ -91,7 +85,6 @@ export const chapters = [
     title: 'Επεξεργασία φυσικής γλώσσας',
     story: 'index.html#nlp-fp',
     reading: 'reading.html#nlp-fp',
-    lab: 'nlp',
     minutes: 5,
   },
   {
@@ -100,7 +93,6 @@ export const chapters = [
     title: 'Έξυπνο σπίτι',
     story: 'index.html#smart-house',
     reading: 'reading.html#smart-house',
-    lab: 'smarthome',
     minutes: 5,
   },
   {
@@ -109,7 +101,6 @@ export const chapters = [
     title: 'Έξυπνο αυτοκίνητο',
     story: 'index.html#smart-car',
     reading: 'reading.html#smart-car',
-    lab: 'smartcar',
     minutes: 5,
   },
   {
@@ -118,7 +109,6 @@ export const chapters = [
     title: 'Έξυπνα ρούχα',
     story: 'index.html#smart-clothes',
     reading: 'reading.html#smart-clothes',
-    lab: 'wearables',
     minutes: 5,
   },
   {
@@ -135,7 +125,6 @@ export const chapters = [
     title: 'Τάσεις και ερωτήματα για το μέλλον',
     story: 'index.html#future-trends',
     reading: 'reading.html#trends',
-    lab: 'future',
     minutes: 6,
   },
 ];
@@ -147,108 +136,62 @@ export const groups = {
   wave3: { title: 'Τρίτο κύμα', kicker: 'Το μέλλον' },
 };
 
+// Computer vision is the exhibit's fully built hands-on chapter (the thesis' proof of
+// concept). Every other first-wave chapter keeps an open application slot below.
 export const labs = {
-  mobile: {
-    title: 'Τι κρύβει η τσέπη σου;',
-    chapter: 'mobile',
-    page: 'lab-mobile.html',
-    summary:
-      'Σύγκρινε τον υπολογιστή του Apollo με ένα σημερινό κινητό και ανακάλυψε τους αισθητήρες της συσκευής σου.',
-    icon: '📱',
-  },
-  wireless: {
-    title: 'Στείλε ένα πακέτο',
-    chapter: 'wireless',
-    page: 'lab-wireless.html',
-    summary:
-      'Τοποθέτησε συσκευές, διάλεξε Bluetooth, Wi-Fi ή 5G και δες εμβέλεια, ταχύτητα και καθυστέρηση.',
-    icon: '📡',
-  },
-  rfid: {
-    title: 'Ο αναγνώστης RFID',
-    chapter: 'rfid',
-    page: 'lab-rfid.html',
-    summary:
-      'Φέρε ετικέτες κοντά στον αναγνώστη, διάβασε τα δεδομένα τους και ολοκλήρωσε ένα δάνειο βιβλιοθήκης.',
-    icon: '🏷️',
-  },
-  cloud: {
-    title: 'Κλιμάκωσε το νέφος',
-    chapter: 'cloud',
-    page: 'lab-cloud.html',
-    summary:
-      'Κράτησε μια υπηρεσία όρθια όταν έρχεται κύμα επισκεπτών, ισορροπώντας απόδοση και κόστος.',
-    icon: '☁️',
-  },
-  sensors: {
-    title: 'Ο βρόχος ανάδρασης',
-    chapter: 'sensors',
-    page: 'lab-sensors.html',
-    summary:
-      'Ένας θερμοστάτης: αισθητήρας, ελεγκτής, ενεργοποιητής. Ρύθμισέ τον ώστε το δωμάτιο να μείνει άνετο.',
-    icon: '🌡️',
-  },
   vision: {
     title: 'Πειράματα με την κάμερα',
     chapter: 'vision',
     page: 'lab.html#vision',
     summary:
-      'Τρία πειράματα με την κάμερα: πρόσωπο, χέρια, στάση σώματος. Όλα εκτελούνται στη συσκευή σου.',
+      'Πρόσωπο, χέρια και στάση σώματος: τρία πειράματα υπολογιστικής όρασης που εκτελούνται στη συσκευή σου.',
     icon: '👁️',
-  },
-  lbs: {
-    title: 'Πού βρίσκομαι;',
-    chapter: 'lbs',
-    page: 'lab-lbs.html',
-    summary:
-      'Εντόπισε μια θέση με τριπλευρισμό από δορυφόρους και βρες τη συντομότερη διαδρομή στο μουσείο.',
-    icon: '🛰️',
-  },
-  nlp: {
-    title: 'Μίλα με την Aria',
-    chapter: 'nlp',
-    page: 'lab-nlp.html',
-    summary:
-      'Ένα chatbot που δείχνει πώς «διαβάζει»: λέξεις-κλειδιά, πρόθεση και συναίσθημα κάθε μηνύματος.',
-    icon: '💬',
-  },
-  smarthome: {
-    title: 'Προγραμμάτισε το σπίτι',
-    chapter: 'smart-house',
-    page: 'lab-smarthome.html',
-    summary:
-      'Φτιάξε κανόνες «αν… τότε…» και δες ένα σπίτι να αντιδρά σε όσα συμβαίνουν μέσα σε μια μέρα.',
-    icon: '🏠',
-  },
-  smartcar: {
-    title: 'Αυτόνομο φρενάρισμα',
-    chapter: 'smart-car',
-    page: 'lab-smartcar.html',
-    summary:
-      'Ρύθμισε αισθητήρες και χρόνο αντίδρασης και δες πότε ένα αυτοκίνητο προλαβαίνει να σταματήσει.',
-    icon: '🚗',
-  },
-  wearables: {
-    title: 'Το έξυπνο μπλουζάκι',
-    chapter: 'smart-clothes',
-    page: 'lab-wearables.html',
-    summary:
-      'Ένα ρούχο με αισθητήρες καταγράφει σφυγμό και κίνηση. Διάλεξε τι μοιράζεσαι και με ποιον.',
-    icon: '👕',
-  },
-  future: {
-    title: 'Ψήφισε το μέλλον',
-    chapter: 'trends',
-    page: 'lab-future.html',
-    summary:
-      'Οκτώ τάσεις του τρίτου κύματος. Ζύγισε οφέλη και κινδύνους και δες πώς ψήφισαν όσοι πέρασαν από εδώ.',
-    icon: '🔮',
   },
 };
 
+// Chapters whose application is still to be built, e.g. by a future thesis.
+// Three of the ideas are the thesis' own proposals (section 6.2.4).
+export const openSlots = [
+  {
+    chapter: 'mobile',
+    source: 'Ιδέα',
+    idea: 'Ένα χρονολόγιο που συγκρίνει τον υπολογιστή του Apollo με ένα σημερινό κινητό και μια σάρωση των αισθητήρων της συσκευής του επισκέπτη.',
+  },
+  {
+    chapter: 'wireless',
+    source: 'Πρόταση της εργασίας (§6.2.4)',
+    idea: 'Μια προσομοίωση όπου ο επισκέπτης στήνει εικονικές συσκευές που επικοινωνούν ασύρματα, βλέπει τη μεταφορά δεδομένων και την καθυστέρηση υπό διαφορετικές συνθήκες και «χτίζει» ένα απλό δικό του πρωτόκολλο.',
+  },
+  {
+    chapter: 'rfid',
+    source: 'Ιδέα',
+    idea: 'Ένας εικονικός αναγνώστης όπου ο επισκέπτης φέρνει ετικέτες κοντά του, βλέπει πώς τροφοδοτούνται από το πεδίο και δανείζεται βιβλία χωρίς οπτική επαφή.',
+  },
+  {
+    chapter: 'cloud',
+    source: 'Ιδέα',
+    idea: 'Μια προσομοίωση μιας μέρας κίνησης σε μια υπηρεσία, όπου ο επισκέπτης προσθέτει ή αφαιρεί διακομιστές και ζυγίζει αξιοπιστία και κόστος.',
+  },
+  {
+    chapter: 'sensors',
+    source: 'Ιδέα',
+    idea: 'Ένας θερμοστάτης που δείχνει ζωντανά τον βρόχο ανάδρασης: αισθητήρας, ελεγκτής, ενεργοποιητής και δωμάτιο.',
+  },
+  {
+    chapter: 'lbs',
+    source: 'Πρόταση της εργασίας (§6.2.4)',
+    idea: 'Ένας διαδραστικός χάρτης του μουσείου που εντοπίζει τη θέση του επισκέπτη, με εικονικά ορόσημα και την πρόκληση να βρει τη συντομότερη διαδρομή ανάμεσά τους.',
+  },
+  {
+    chapter: 'nlp',
+    source: 'Πρόταση της εργασίας (§6.2.4)',
+    idea: 'Ένα chatbot που προσαρμόζει τις απαντήσεις του στο επίπεδο γνώσεων του επισκέπτη, αναλύει το συναίσθημα των μηνυμάτων του και εξηγεί πώς τα κατάλαβε.',
+  },
+];
+
 export const visionExperiments = [
   { id: 'face', title: 'Τα σημεία ενός προσώπου', page: 'face_recognition.html', icon: '🙂' },
-  { id: 'hands', title: 'Χέρια και χειρονομίες', page: 'hand_gestures.html', icon: '✋' },
+  { id: 'hand', title: 'Χέρια και χειρονομίες', page: 'hand_gestures.html', icon: '✋' },
   { id: 'pose', title: 'Στάση σώματος', page: 'pose_detection.html', icon: '🧍' },
 ];
 
@@ -294,15 +237,8 @@ export const badges = [
     id: 'hands-on',
     icon: '🛠️',
     title: 'Χέρια στο εργαστήριο',
-    text: 'Ολοκλήρωσες τρία εργαστήρια.',
-    test: (s) => Object.keys(s.labs).length >= 3,
-  },
-  {
-    id: 'lab-master',
-    icon: '🏆',
-    title: 'Μάστορας του εργαστηρίου',
-    text: 'Ολοκλήρωσες όλα τα εργαστήρια.',
-    test: (s) => Object.keys(labs).every((id) => s.labs[id]),
+    text: 'Ολοκλήρωσες και τα τρία πειράματα υπολογιστικής όρασης.',
+    test: (s) => visionExperiments.every((e) => s.labs['vision-' + e.id]),
   },
   {
     id: 'machine-eye',
@@ -336,8 +272,8 @@ export const badges = [
     id: 'voice',
     icon: '🗳️',
     title: 'Φωνή της κοινότητας',
-    text: 'Ψήφισες σε δύο δημοσκοπήσεις.',
-    test: (s) => Object.keys(s.polls).length >= 2,
+    text: 'Ψήφισες στη δημοσκόπηση για το cloud.',
+    test: (s) => Object.keys(s.polls).length >= 1,
   },
   {
     id: 'scholar',
@@ -385,5 +321,5 @@ export const interests = [
 export const styles = [
   { id: 'story', label: 'Να το δω', text: 'Η κινούμενη αφήγηση με εικόνες και σκηνές.' },
   { id: 'reading', label: 'Να το διαβάσω', text: 'Καθαρό κείμενο, στον δικό μου ρυθμό.' },
-  { id: 'hands-on', label: 'Να το δοκιμάσω', text: 'Πρώτα τα εργαστήρια, μετά η θεωρία.' },
+  { id: 'hands-on', label: 'Να το δοκιμάσω', text: 'Πρώτα τα πειράματα, μετά η θεωρία.' },
 ];

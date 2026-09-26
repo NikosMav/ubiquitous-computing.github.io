@@ -62,7 +62,10 @@ test('the personalised path follows level, interests and learning style', () => 
   );
   // Hands-on learners meet each lab before its theory; readers get the reading pages.
   const hands = buildPath({ level: 'advanced', style: 'hands-on' }, s);
-  assert.equal(hands[0].kind, 'lab');
+  const visionSteps = hands.filter((step) => step.chapter === 'vision').map((step) => step.kind);
+  assert.deepEqual(visionSteps, ['lab', 'chapter']);
+  // Only computer vision has a lab; the other chapters keep an open application slot.
+  assert.equal(hands.filter((step) => step.kind === 'lab').length, 1);
   const reading = buildPath({ level: 'advanced', style: 'reading' }, s);
   assert.ok(reading.find((step) => step.kind === 'chapter').href.startsWith('reading.html#'));
 

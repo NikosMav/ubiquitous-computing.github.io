@@ -10,7 +10,7 @@ import {
   addToBoard,
   reset,
 } from './progress.js';
-import { chapters, labs, badges, interests, styles, levels } from './catalog.js';
+import { chapters, badges, interests, styles, levels, visionExperiments } from './catalog.js';
 
 const $ = (selector) => document.querySelector(selector);
 const el = (tag, className, text) => {
@@ -34,7 +34,7 @@ function renderLevel(state) {
   const visited = chapters.filter((c) => state.visited[c.id]).length;
   $('[data-stat="chapters"]').textContent = `${visited}/${chapters.length}`;
   $('[data-stat="labs"]').textContent =
-    `${Object.keys(labs).filter((id) => state.labs[id]).length}/${Object.keys(labs).length}`;
+    `${visionExperiments.filter((e) => state.labs['vision-' + e.id]).length}/${visionExperiments.length}`;
   $('[data-stat="badges"]').textContent = `${Object.keys(state.badges).length}/${badges.length}`;
   const final = state.quizzes.final;
   $('[data-stat="quiz"]').textContent = final ? `${final.best}/${final.total}` : '—';
@@ -62,7 +62,13 @@ function renderPath(state) {
     host.append(empty);
     return;
   }
-  const steps = buildPath(state.profile, state);
+  // The story is desktop-only, so on small screens chapters open in the reading version.
+  const small = matchMedia('(max-width: 991px)').matches;
+  const steps = buildPath(state.profile, state).map((step) =>
+    small && step.kind === 'chapter' && step.href.startsWith('index.html')
+      ? { ...step, href: chapters.find((c) => c.id === step.chapter).reading }
+      : step,
+  );
   const active = steps.filter((s) => !s.skipped);
   const done = active.filter((s) => s.done).length;
   const minutes = active.filter((s) => !s.done).reduce((sum, s) => sum + s.minutes, 0);
@@ -292,7 +298,7 @@ async function certificate() {
   const earned = badges.filter((b) => state.badges[b.id]);
   c.fillText(`ολοκλήρωσε το ταξίδι στη διάχυτη υπολογιστική ως «${level.title}»`, 100, 530);
   c.fillText(
-    `${state.xp} XP · ${earned.length} σήματα · ${chapters.filter((ch) => state.visited[ch.id]).length} κεφάλαια · ${Object.keys(state.labs).length} εργαστήρια`,
+    `${state.xp} XP · ${earned.length} σήματα · ${chapters.filter((ch) => state.visited[ch.id]).length} κεφάλαια · ${visionExperiments.filter((e) => state.labs['vision-' + e.id]).length} πειράματα`,
     100,
     590,
   );

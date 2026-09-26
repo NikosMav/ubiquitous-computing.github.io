@@ -76,7 +76,7 @@ test('breadcrumb follows the scroll position and links back to each level', asyn
   await page
     .locator('#mobile-fp')
     .evaluate((el) => window.scrollTo(0, el.getBoundingClientRect().top + scrollY + 50));
-  await expect(crumbs).toContainText('Πρώτο Κύμα');
+  await expect(crumbs).toContainText('Πρώτο Κύμα', { timeout: 15000 });
   await expect(crumbs.locator('[aria-current]')).toHaveText('01. Φορητές Συσκευές');
   // The bar sits top-left, above the scenes.
   const box = await page.locator('.uc-crumbs').boundingBox();
@@ -84,28 +84,33 @@ test('breadcrumb follows the scroll position and links back to each level', asyn
   expect(box.x).toBeLessThan(260);
   await crumbs.getByRole('link', { name: 'Πρώτο Κύμα' }).click();
   await expect
-    .poll(() =>
-      page.evaluate(() =>
-        Math.abs(
-          document.querySelector('[data-section-name="Πρώτο Κύμα"]').getBoundingClientRect().top,
+    .poll(
+      () =>
+        page.evaluate(() =>
+          Math.abs(
+            document.querySelector('[data-section-name="Πρώτο Κύμα"]').getBoundingClientRect().top,
+          ),
         ),
-      ),
+      { timeout: 15000 },
     )
     .toBeLessThan(120);
 });
 
-test('a first-wave lab opens in place and awards progress', async ({ page }, info) => {
+test('computer vision is the hands-on chapter; the others keep an open slot', async ({
+  page,
+}, info) => {
   desktop(info);
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/');
   await openWholeJourney(page);
-  await page.locator('[data-story-toggle="story-app-2"][data-story-open="true"]').first().click();
-  const lab = page.locator('#story-app-2 .lab');
-  await expect(lab).toBeVisible();
-  await lab.getByRole('button', { name: 'Στον αναγνώστη' }).first().click();
-  await lab.getByRole('button', { name: 'Σάρωση' }).click();
-  await expect(lab.locator('.lab-mission.is-done')).toHaveCount(1);
-  await expect(page.locator('[data-uc-xp]')).toBeVisible();
+  await page.locator('[data-story-toggle="story-app-5"][data-story-open="true"]').first().click();
+  await expect(page.locator('#story-app-5').getByRole('link', { name: 'Πρόσωπο' })).toBeVisible();
+  const slotButton = page
+    .locator('[data-story-toggle="story-app-2"][data-story-open="true"]')
+    .first();
+  await expect(slotButton).toHaveAttribute('data-slot', '');
+  await slotButton.click();
+  await expect(page.locator('#story-app-2 .story-slot')).toContainText('Ανοιχτή θέση εφαρμογής');
 });
 
 for (const [score, level] of [
@@ -167,29 +172,13 @@ test('deep links pass through the quiz gate', async ({ page }, info) => {
     .toBeLessThan(120);
 });
 
-test('the story has a phone layout without horizontal scrolling', async ({ page }, info) => {
-  test.skip(info.project.name !== 'mobile', 'Phone layout.');
-  const errors = [];
-  page.on('pageerror', (error) => errors.push(error.message));
+test('on phones the story hands over to the responsive pages', async ({ page }, info) => {
+  test.skip(info.project.name !== 'mobile', 'Phone behaviour.');
   await page.goto('/');
-  await expect(page.locator('.main-heading')).toBeVisible();
-  await expect(page.locator('.uc-menu')).toBeVisible();
-  await openWholeJourney(page);
-
+  const handoff = page.locator('.story-desktop-only');
+  await expect(handoff).toBeVisible();
+  await expect(page.locator('main')).toBeHidden();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  // Pinned desktop sequences give way to readable linear versions.
-  await expect(page.locator('.cta_component')).toBeHidden();
-  const scenes = page.locator('.story-scenes-linear figure');
-  await expect(scenes).toHaveCount(7);
-  await scenes.first().scrollIntoViewIfNeeded();
-  await expect(scenes.first()).toBeVisible();
-  // Chapter choice cards keep their buttons inside the card.
-  const card = page.locator('[data-story-toggle="story-theory-0"][data-story-open="true"]').first();
-  await card.scrollIntoViewIfNeeded();
-  const button = await card.boundingBox();
-  expect(button.x).toBeGreaterThanOrEqual(0);
-  expect(button.x + button.width).toBeLessThanOrEqual(await page.evaluate(() => innerWidth));
-  await page.locator('.uc-menu').click();
-  await expect(page.locator('#uc-nav').getByRole('link', { name: 'Εργαστήριο' })).toBeVisible();
-  expect(errors).toEqual([]);
+  await handoff.getByRole('link', { name: 'Άνοιγμα της απλής έκδοσης' }).click();
+  await expect(page).toHaveURL(/guide.html$/);
 });

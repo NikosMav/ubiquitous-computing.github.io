@@ -558,3 +558,225 @@ html.story-gated .story-gate-note {
   display: block;
   margin: 18px auto 0;
 }
+
+/* ---------- Theory / application choice cards (all first-wave chapters) ---------- */
+/* The export pinned each button as a thin full-width strip at 1vw. They become
+   proper buttons in the card's flow; each chapter keeps its own accent colours. */
+.story-page [class*='button-div'] {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: clamp(24px, 2.2vw, 36px) clamp(20px, 2vw, 32px) clamp(24px, 2vw, 32px) !important;
+}
+.story-page
+  [class*='button-div']
+  :is(.theory-button-show, .theory-button-hide, .apps-button-show, .apps-button-hide) {
+  position: relative !important;
+  inset: auto !important;
+  align-self: center;
+  width: auto !important;
+  min-height: 50px;
+  margin: auto 0 0 !important;
+  padding: 0 30px 0 32px !important;
+  border: 0 !important;
+  border-radius: 999px;
+  font: 700 clamp(14px, 1vw, 16px) / 50px var(--uc-font-body) !important;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  cursor: pointer !important;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+  transition:
+    background-color 0.3s,
+    color 0.3s,
+    box-shadow 0.3s,
+    transform 0.2s var(--uc-ease);
+}
+.story-page [class*='button-div'] :is(.theory-button-show, .apps-button-show)::after {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-left: 12px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-3px) rotate(45deg);
+}
+.story-page [class*='button-div'] :is(.theory-button-hide, .apps-button-hide)::after {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-left: 12px;
+  border-left: 2px solid currentColor;
+  border-top: 2px solid currentColor;
+  transform: translateY(1px) rotate(45deg);
+}
+.story-page
+  [class*='button-div']
+  :is(.theory-button-show, .theory-button-hide, .apps-button-show, .apps-button-hide):hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 0 2px currentColor,
+    0 14px 30px rgba(0, 0, 0, 0.28);
+}
+.story-page
+  [class*='button-div']
+  :is(
+    .theory-button-show,
+    .theory-button-hide,
+    .apps-button-show,
+    .apps-button-hide
+  ):focus-visible {
+  outline: 3px solid var(--uc-cream);
+  outline-offset: 4px;
+}
+/* Application slots still waiting for their application say so on the button. */
+.story-page .apps-button-show[data-slot]::before {
+  content: 'Σύντομα';
+  display: inline-block;
+  margin-right: 10px;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.25);
+  font: 11px/20px var(--uc-font-ui);
+  letter-spacing: 0.08em;
+  vertical-align: 2px;
+}
+
+/* ---------- Open application slots ---------- */
+.story-slot {
+  max-width: 1100px;
+  margin: 32px auto 0;
+  padding: clamp(24px, 3vw, 40px);
+  border: 1px dashed rgba(255, 225, 156, 0.55);
+  border-radius: 22px;
+  background:
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.025) 0 14px, transparent 14px 28px),
+    rgba(8, 10, 31, 0.5);
+  text-align: left;
+}
+.story-slot p {
+  max-width: 68ch;
+  margin: 0;
+}
+.story-slot__kicker {
+  font: 12px/1.4 var(--uc-font-ui);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--uc-amber);
+}
+.story-slot__title {
+  margin-top: 8px !important;
+  font: 400 clamp(24px, 2.4vw, 32px) / 1.2 var(--uc-font-serif);
+  color: #fff;
+}
+.story-slot__idea {
+  margin-top: 18px !important;
+  padding: 14px 18px;
+  border-left: 3px solid var(--uc-wave-bright);
+  border-radius: 0 12px 12px 0;
+  background: rgba(116, 130, 255, 0.1);
+  color: var(--uc-ink);
+}
+.story-slot__idea span {
+  display: block;
+  margin-bottom: 4px;
+  font: 11px/1.4 var(--uc-font-ui);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--uc-wave-bright);
+}
+.story-slot__note {
+  margin-top: 16px !important;
+  font-size: 16px;
+  color: var(--uc-soft);
+}
+.story-slot__note a {
+  color: var(--uc-cream);
+}
+
+/* ---------- Desktop-only story ---------- */
+/* The scrollytelling exhibit is designed for large screens (thesis, section 6.2.1).
+   Phones and portrait tablets are handed to the responsive guide and reading pages. */
+.story-desktop-only {
+  display: none;
+}
+@media (max-width: 991px) {
+  :root {
+    --uc-crumb-h: 0px;
+  }
+  .story-page main,
+  .story-page .cursor-new,
+  .story-page .uc-crumbs,
+  .story-page .story-nojs {
+    display: none !important;
+  }
+  .story-page .story-desktop-only {
+    display: flex;
+    align-items: center;
+    min-height: 100svh;
+    padding: calc(var(--uc-bar-h) + 32px) 22px 48px;
+    background:
+      linear-gradient(90deg, transparent 0 4px, var(--uc-night) 4px 40px) 0 0 / 40px 40px,
+      linear-gradient(transparent 0 4px, var(--uc-night) 4px 40px) 0 0 / 40px 40px,
+      linear-gradient(160deg, rgba(65, 80, 240, 0.55), rgba(8, 10, 31, 0.2) 70%),
+      var(--uc-night);
+    color: var(--uc-ink);
+    font-family: var(--uc-font-body);
+  }
+  .story-desktop-only__inner {
+    width: min(560px, 100%);
+    margin: 0 auto;
+    padding: 30px 24px;
+    border: 1px solid var(--uc-line);
+    border-radius: 24px;
+    background: rgba(8, 10, 31, 0.86);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+  }
+  .story-desktop-only__kicker {
+    margin: 0 0 12px;
+    font: 12px/1.4 var(--uc-font-ui);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--uc-amber);
+  }
+  .story-desktop-only h2 {
+    margin: 0;
+    font: 400 clamp(30px, 8vw, 44px) / 1.12 var(--uc-font-serif);
+    color: #fff;
+  }
+  .story-desktop-only p {
+    margin: 16px 0 0;
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--uc-soft);
+  }
+  .story-desktop-only__actions {
+    display: grid;
+    gap: 10px;
+    margin-top: 24px;
+  }
+  .story-desktop-only__actions a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    padding: 0 20px;
+    border: 1px solid var(--uc-line-strong);
+    border-radius: 999px;
+    color: var(--uc-ink);
+    font: 14px/1.2 var(--uc-font-ui);
+    letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+  .story-desktop-only__actions .is-primary {
+    border-color: transparent;
+    background: var(--uc-amber);
+    color: var(--uc-night);
+  }
+  .story-desktop-only .story-desktop-only__note {
+    font-size: 14px;
+    color: var(--uc-muted);
+  }
+}

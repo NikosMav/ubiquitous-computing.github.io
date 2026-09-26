@@ -1467,3 +1467,50 @@ details > div a {
     padding: 0;
   }
 }
+
+/* ---------- Open application slots ---------- */
+.slot-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.slot-card {
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
+  padding: 1.6rem;
+  border: 1px dashed rgba(255, 225, 156, 0.45);
+  border-radius: var(--uc-radius);
+  background:
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0 14px, transparent 14px 28px),
+    rgba(8, 10, 31, 0.4);
+}
+.slot-card h3 {
+  font: 400 1.5rem/1.2 var(--uc-font-serif);
+  color: #fff;
+}
+.slot-card p {
+  color: var(--uc-soft);
+  font-size: 0.95rem;
+}
+.slot-card .slot-card__meta {
+  font: 11px/1.4 var(--uc-font-ui);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--uc-amber);
+}
+.slot-card a {
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+}
+
+/* The scrollytelling story is desktop-only; on small screens its links stay out of the way. */
+@media (max-width: 991px) {
+  .chapter-actions a[href^='index.html'],
+  .guide-page .hero a[href='index.html'] {
+    display: none !important;
+  }
+}

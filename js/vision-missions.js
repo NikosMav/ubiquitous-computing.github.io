@@ -114,6 +114,7 @@ if (config) {
       items.get(id).classList.add('is-done');
       if (done.size === config.missions.length) {
         now.textContent = 'Ολοκλήρωσες όλες τις αποστολές! Το πείραμα προστέθηκε στη διαδρομή σου.';
+        completeLab('vision-' + page.dataset.demo);
         completeLab('vision');
       }
     }
