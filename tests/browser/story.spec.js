@@ -9,6 +9,16 @@ async function openWholeJourney(page) {
       page.evaluate(() => document.querySelector('#intro-animation').getBoundingClientRect().top),
     )
     .toBeLessThan(200);
+  // …and has fully stopped, so it cannot override the test's own scrolling.
+  await expect
+    .poll(() =>
+      page.evaluate(async () => {
+        const first = scrollY;
+        await new Promise((resolve) => setTimeout(resolve, 150));
+        return scrollY === first;
+      }),
+    )
+    .toBe(true);
 }
 
 const desktop = (info) =>
