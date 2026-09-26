@@ -516,7 +516,11 @@ html {
 }
 /* Multi-line display headings need room for Greek accents. */
 .story-page .heading-69 {
+  max-width: 100%;
+  font-size: clamp(34px, 4.2vw, 72px) !important;
   line-height: 1.2 !important;
+  text-align: center;
+  text-wrap: balance;
 }
 .story-page .quiz-button.correct-answer {
   background-color: #1d8a66;
@@ -779,4 +783,15 @@ html.story-gated .story-gate-note {
     font-size: 14px;
     color: var(--uc-muted);
   }
+}
+
+/* End of a wave: back to the overview, or on to the next wave. */
+.story-wave-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+}
+.story-page .story-wave-nav .back-to-kymata-link {
+  margin: 0 !important;
 }

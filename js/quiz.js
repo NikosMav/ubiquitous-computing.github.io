@@ -154,7 +154,7 @@ async function load() {
     const response = await fetch(mode === 'intro' ? 'intro-questions.json' : 'questions.json');
     if (!response.ok) throw new Error('Question request failed');
     const bank = validateBank(await response.json());
-    questions = sampleQuestions(bank, mode === 'intro' ? 8 : bank.length);
+    questions = sampleQuestions(bank, mode === 'intro' ? 8 : Math.min(10, bank.length));
     renderQuestion();
   } catch {
     status.textContent = 'Οι ερωτήσεις δεν φορτώθηκαν. Έλεγξε τη σύνδεση και δοκίμασε ξανά.';

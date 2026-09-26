@@ -87,3 +87,12 @@ test('story images come from the repository, not from retired Webflow sites', as
     external.join('\n'),
   );
 });
+
+test('the story invites to the final quiz once, after the third wave', async () => {
+  const story = await readFile(new URL('index.html', root), 'utf8');
+  const invitations = [...story.matchAll(/class="to-the-quiz[^"]*"/g)];
+  assert.equal(invitations.length, 1);
+  assert.ok(invitations[0].index > story.indexOf('id="trito-stadio"'));
+  for (const wave of ['wave1', 'wave2', 'wave3'])
+    assert.match(story, new RegExp(`data-checkin="${wave}"`));
+});

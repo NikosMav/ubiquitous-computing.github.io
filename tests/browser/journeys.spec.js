@@ -58,7 +58,7 @@ test('reading and native disclosures work without JavaScript', async ({ browser 
 
 for (const [route, bankFile, count] of [
   ['intro_quiz.html', 'intro-questions.json', 8],
-  ['knowledge_quiz.html', 'questions.json', 7],
+  ['knowledge_quiz.html', 'questions.json', 10],
 ]) {
   test(`${route}: complete, download and restart`, async ({ page }) => {
     const bank = JSON.parse(await readFile(bankFile, 'utf8'));
