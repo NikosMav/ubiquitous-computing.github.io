@@ -57,8 +57,8 @@ test('reading and native disclosures work without JavaScript', async ({ browser 
 });
 
 for (const [route, bankFile, count] of [
-  ['intro_quiz.html', 'intro-questions.json', 8],
-  ['knowledge_quiz.html', 'questions.json', 10],
+  ['intro_quiz.html', 'data/intro-questions.json', 8],
+  ['knowledge_quiz.html', 'data/questions.json', 10],
 ]) {
   test(`${route}: complete, download and restart`, async ({ page }) => {
     const bank = JSON.parse(await readFile(bankFile, 'utf8'));
@@ -141,6 +141,30 @@ test('cancel pending permission releases a late-arriving stream', async ({ page 
   });
   await expect.poll(() => page.evaluate(() => window.trackStopped)).toBe(true);
   await expect(page.locator('#start-camera')).toBeEnabled();
+});
+
+test('a recognised gesture shows on the image and ticks its mission', async ({ page }) => {
+  await page.goto('/hand_gestures.html');
+  // A synthetic fist: fingertips folded back towards the wrist, thumb away from the index.
+  const fist = () =>
+    page.evaluate(() => {
+      const p = Array.from({ length: 21 }, () => ({ x: 0.5, y: 0.8 }));
+      p[0] = { x: 0.5, y: 0.9 };
+      p[9] = { x: 0.5, y: 0.6 };
+      for (const i of [6, 10, 14, 18]) p[i] = { x: 0.5, y: 0.6 };
+      for (const i of [8, 12, 16, 20]) p[i] = { x: 0.5, y: 0.75 };
+      p[4] = { x: 0.3, y: 0.7 };
+      dispatchEvent(new CustomEvent('vision:frame', { detail: { kind: 'hand', groups: [p] } }));
+    });
+  const label = page.locator('.camera-label');
+  await expect(label).toBeHidden();
+  for (let i = 0; i < 4; i++) await fist();
+  await expect(label).toHaveText('✊ Γροθιά');
+  await expect(page.locator('.vision-missions__count')).toHaveText('1/4');
+  await expect(page.locator('.vision-missions li.is-done')).toHaveCount(1);
+  await page.evaluate(() => dispatchEvent(new Event('vision:stop')));
+  await expect(label).toBeHidden();
+  await expect(page.locator('.demo-next a')).toHaveAttribute('href', 'pose_detection.html');
 });
 
 // Real model loading/inference with synthetic frames; never uses a physical camera.

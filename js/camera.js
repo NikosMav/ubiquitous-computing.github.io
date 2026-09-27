@@ -37,6 +37,7 @@ function stopCamera(message = 'Η κάμερα έκλεισε. Μπορείς ν
   start.disabled = false;
   stop.disabled = true;
   status.textContent = message;
+  window.dispatchEvent(new Event('vision:stop'));
 }
 
 function draw(groups) {

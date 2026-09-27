@@ -6,7 +6,7 @@ import { visibleConnections, stopStream, cameraError } from '../js/vision-core.j
 
 test('both real banks have unique choices and a valid correct answer', async () => {
   for (const file of ['questions.json', 'intro-questions.json']) {
-    const bank = JSON.parse(await readFile(new URL('../' + file, import.meta.url), 'utf8'));
+    const bank = JSON.parse(await readFile(new URL('../data/' + file, import.meta.url), 'utf8'));
     assert.equal(validateBank(bank), bank);
     if (file.startsWith('intro')) assert.ok(bank.length >= 8);
   }

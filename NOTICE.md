@@ -8,7 +8,7 @@ The MIT License applies to original source code authored for this project. It do
 - `assets/case-study/` contains screenshots of the historical prototype. Third-party material visible in those screenshots retains its respective rights.
 - `assets/exhibit/favicon.svg` is original source artwork from an earlier refresh. It is no longer referenced: every page now uses the original wave favicon set in `favicon/`.
 
-The original `images/`, `fonts/`, `videos/`, `documents/`, `favicon/` and `models/` directories have been restored from `e4c3e53`. They retain their original third-party terms; restoration does not establish new licenses or grant independent reuse rights. Legacy camera helpers/model shards remain in source but are not used by the current experiment pages.
+The original `images/`, `fonts/`, `documents/` and `favicon/` directories have been restored from `e4c3e53`. They retain their original third-party terms; restoration does not establish new licenses or grant independent reuse rights. Files that no page uses (unused image sizes, the 2023 face-api models, a local video copy and the legacy camera helpers) were removed in 2026 and remain available in the Git history.
 
 ## Shared typography
 

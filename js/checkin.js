@@ -6,7 +6,7 @@ import { recordCheckin, getState } from './progress.js';
 let banks;
 async function loadBanks() {
   if (!banks) {
-    const response = await fetch('checkins.json');
+    const response = await fetch('data/checkins.json');
     if (!response.ok) throw new Error('Check-in questions unavailable');
     banks = await response.json();
     Object.values(banks).forEach(validateBank);

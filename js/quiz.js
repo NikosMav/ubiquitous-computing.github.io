@@ -151,7 +151,9 @@ function renderResult() {
 async function load() {
   status.textContent = 'Φόρτωση ερωτήσεων…';
   try {
-    const response = await fetch(mode === 'intro' ? 'intro-questions.json' : 'questions.json');
+    const response = await fetch(
+      mode === 'intro' ? 'data/intro-questions.json' : 'data/questions.json',
+    );
     if (!response.ok) throw new Error('Question request failed');
     const bank = validateBank(await response.json());
     questions = sampleQuestions(bank, mode === 'intro' ? 8 : Math.min(10, bank.length));

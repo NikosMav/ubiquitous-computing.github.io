@@ -133,7 +133,7 @@ for (const [score, level] of [
   }, info) => {
     desktop(info);
     await page.setViewportSize({ width: 1440, height: 900 });
-    const bank = JSON.parse(await readFile('intro-questions.json', 'utf8'));
+    const bank = JSON.parse(await readFile('data/intro-questions.json', 'utf8'));
     await page.goto('/');
     await expect(page.locator('#the-content')).toBeHidden();
     await page.locator('#start-quiz-btn').click();

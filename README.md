@@ -53,6 +53,20 @@ Each first-wave chapter's "Εφαρμογή" panel in `index.html` is a slot. To
 
 Progress, votes and the leaderboard are stored in the browser (`localStorage`) only. Nothing is sent to a server. The polls and the leaderboard therefore count the visitors of one device, which suits a museum kiosk.
 
+## Project layout
+
+```text
+*.html          pages: the story (index.html), guide, reading version, lab, journey,
+                the two quizzes and the three camera experiments
+css/            brand.css (shared identity), site.css (subpages),
+                story-repairs.css (fixes on top of the Webflow export) and the export's own sheets
+js/             page scripts; progress.js, catalog.js and quiz-core.js are the shared logic
+data/           question banks and wave check-ins (JSON)
+images/ fonts/ documents/ favicon/ assets/   original exhibit assets
+scripts/        build, local server and the shared page shell
+tests/          unit tests (node --test) and browser tests (tests/browser, Playwright)
+```
+
 ## Design system
 
 All pages share one identity derived from the original story: the wave favicon, royal blue `#4150f0`, amber `#fbb454`, a night-sky navy and the story's typefaces (Venus Rising for the wordmark, Nasalization for labels, Century Gothic for text, Morbodoni for display). `css/brand.css` holds the tokens and the shared bar, breadcrumb, menu, footer and toasts.
@@ -67,7 +81,14 @@ A test fails if any page drifts from the shared blocks.
 
 ## Camera experiments
 
-Face landmarks, hand landmarks and body pose use one shared camera controller and a pinned MediaPipe Tasks Vision runtime. The older prototype helpers and model files are retained as source history but are not loaded by the current experiment pages.
+Face landmarks, hand landmarks and body pose use one shared camera controller (`js/camera.js`) and a pinned MediaPipe Tasks Vision runtime. The three pages share one simple layout:
+
+- **On the image:** the landmarks, and a large label with what the model recognises right now ("✊ Γροθιά").
+- **Missions:** three or four poses to perform, with a counter. Holding a pose for a few frames ticks it off; finishing them all completes the experiment in the visitor's journey.
+- **How it works:** three steps: the camera sees, the model finds points, simple geometric rules interpret them. The rules are the ones in `js/vision-missions.js`.
+- **Next:** a link on to the next experiment (face, hands, body, then back to the lab).
+
+In the story, the computer-vision chapter's "Εφαρμογή" panel shows the same three experiments as cards, with a tick on the ones already completed.
 
 - Video access starts only after an explicit button press; microphone access is never requested.
 - Inference runs in a worker, with at most one frame in flight and a 15 fps submission ceiling.

@@ -137,7 +137,7 @@ async function startQuiz() {
   start.disabled = true;
   try {
     if (!bank.length) {
-      const response = await fetch('intro-questions.json');
+      const response = await fetch('data/intro-questions.json');
       if (!response.ok) throw new Error('Question bank unavailable');
       bank = validateBank(await response.json());
     }

@@ -192,9 +192,6 @@ html {
 .story-page .apps-button-hide {
   font: inherit;
 }
-.story-page .button-div-2 {
-  flex-wrap: wrap;
-}
 .story-page #message {
   line-height: 1.5;
 }
@@ -220,20 +217,6 @@ html {
 .story-application > .uc-lab-host {
   max-width: 1100px;
   margin: 32px auto 0;
-}
-.story-lab-link {
-  display: inline-block;
-  margin: 8px;
-  padding: 15px 25px;
-  background: var(--uc-panel-2);
-  color: white;
-  border: 2px solid var(--uc-amber);
-  border-radius: 999px;
-  font: 16px/1.5 var(--uc-font-ui);
-  text-decoration: none;
-}
-.story-lab-link:hover {
-  background: var(--uc-wave);
 }
 
 /* ---------- Alex's day, linear version (phones and tablets) ---------- */
@@ -580,12 +563,13 @@ html.story-gated .story-gate-note {
   inset: auto !important;
   align-self: center;
   width: auto !important;
-  min-height: 50px;
+  /* Grows with the card on large screens instead of stopping at a phone-sized 16px. */
+  min-height: clamp(50px, 3.3vw, 84px);
   margin: auto 0 0 !important;
-  padding: 0 30px 0 32px !important;
+  padding: 0 clamp(28px, 2vw, 52px) !important;
   border: 0 !important;
   border-radius: 999px;
-  font: 700 clamp(14px, 1vw, 16px) / 50px var(--uc-font-body) !important;
+  font: 700 clamp(15px, 1vw, 26px) / clamp(50px, 3.3vw, 84px) var(--uc-font-body) !important;
   letter-spacing: 0.02em;
   white-space: nowrap;
   cursor: pointer !important;
@@ -599,22 +583,22 @@ html.story-gated .story-gate-note {
 .story-page [class*='button-div'] :is(.theory-button-show, .apps-button-show)::after {
   content: '';
   display: inline-block;
-  width: 7px;
-  height: 7px;
-  margin-left: 12px;
+  width: 0.45em;
+  height: 0.45em;
+  margin-left: 0.75em;
   border-right: 2px solid currentColor;
   border-bottom: 2px solid currentColor;
-  transform: translateY(-3px) rotate(45deg);
+  transform: translateY(-0.2em) rotate(45deg);
 }
 .story-page [class*='button-div'] :is(.theory-button-hide, .apps-button-hide)::after {
   content: '';
   display: inline-block;
-  width: 7px;
-  height: 7px;
-  margin-left: 12px;
+  width: 0.45em;
+  height: 0.45em;
+  margin-left: 0.75em;
   border-left: 2px solid currentColor;
   border-top: 2px solid currentColor;
-  transform: translateY(1px) rotate(45deg);
+  transform: translateY(0.08em) rotate(45deg);
 }
 .story-page
   [class*='button-div']
@@ -639,11 +623,11 @@ html.story-gated .story-gate-note {
 .story-page .apps-button-show[data-slot]::before {
   content: 'Σύντομα';
   display: inline-block;
-  margin-right: 10px;
-  padding: 0 8px;
+  margin-right: 0.7em;
+  padding: 0 0.6em;
   border-radius: 999px;
   background: rgba(0, 0, 0, 0.25);
-  font: 11px/20px var(--uc-font-ui);
+  font: 0.7em/1.8 var(--uc-font-ui);
   letter-spacing: 0.08em;
   vertical-align: 2px;
 }
@@ -794,4 +778,126 @@ html.story-gated .story-gate-note {
 }
 .story-page .story-wave-nav .back-to-kymata-link {
   margin: 0 !important;
+}
+
+/* The final quiz invitation after the third wave: white on the wave's red, like its
+   "back" link, and filled because it is the main action. The export had no third-wave
+   variant, so it fell back to grey on red. */
+.story-page .to-the-quiz.trito {
+  color: #e71414;
+  background-color: #fff;
+  border-color: #fff;
+}
+.story-page .to-the-quiz.trito:hover {
+  color: #fff;
+  background-color: transparent;
+}
+.story-page .to-the-quiz:focus-visible,
+.story-page .back-to-kymata-link:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 6px;
+}
+
+/* ---------- Computer vision: the three experiments ---------- */
+.story-page .comp-vision-application-3 {
+  height: auto;
+  min-height: 100vh;
+  justify-content: center;
+  padding: 12vh 5vw;
+}
+.story-vision {
+  width: min(100%, 1280px);
+  text-align: center;
+}
+.story-vision__kicker {
+  margin: 0 0 0.6em;
+  font: 700 clamp(13px, 0.85vw, 20px) / 1.4 var(--uc-font-ui);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #3ddc97;
+}
+.story-vision__heading {
+  margin: 0 0 clamp(28px, 3vw, 56px);
+  font: 400 clamp(34px, 3.4vw, 76px) / 1.15 var(--uc-font-serif);
+  color: #fff;
+}
+.story-vision__apps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 1.6vw, 32px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.story-vision__app {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6em;
+  height: 100%;
+  padding: clamp(22px, 2vw, 44px);
+  border: 1px solid rgba(8, 166, 92, 0.7);
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.72);
+  color: #fff;
+  font: clamp(16px, 1vw, 24px) / 1.5 var(--uc-font-body);
+  text-align: left;
+  text-decoration: none;
+  transition:
+    transform 0.25s var(--uc-ease),
+    border-color 0.25s,
+    background-color 0.25s;
+}
+.story-vision__app:hover {
+  transform: translateY(-4px);
+  border-color: #3ddc97;
+  background: rgba(8, 40, 26, 0.85);
+}
+.story-vision__app:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
+}
+.story-vision__icon {
+  font-size: 2.2em;
+  line-height: 1;
+}
+.story-vision__title {
+  font: 700 1.45em/1.2 var(--uc-font-body);
+}
+.story-vision__text {
+  color: rgba(255, 255, 255, 0.78);
+}
+.story-vision__go {
+  margin-top: auto;
+  padding: 0.55em 1.2em;
+  border-radius: 999px;
+  background: #08a65c;
+  font-weight: 700;
+}
+.story-vision__go::after {
+  content: ' →';
+}
+.story-vision__app.is-done .story-vision__go {
+  background: transparent;
+  box-shadow: inset 0 0 0 2px #3ddc97;
+}
+.story-vision__app.is-done .story-vision__go::after {
+  content: '';
+}
+.story-page .comp-vision-application-3 .disclaimer-div {
+  width: 100%;
+  margin-top: clamp(20px, 2vw, 40px);
+  padding: clamp(18px, 1.5vw, 32px) clamp(20px, 2vw, 40px);
+  text-align: left;
+}
+.story-page .comp-vision-application-3 .heading-75 {
+  font-size: clamp(20px, 1.4vw, 32px);
+}
+.story-page .comp-vision-application-3 .disclaimer-par {
+  font-size: clamp(15px, 0.95vw, 22px);
+}
+.story-page .comp-vision-application-3 .disclaimer-button {
+  padding: 0.6em 1.2em;
+  border-radius: 999px;
+  font: 700 clamp(14px, 0.85vw, 20px) / 1.4 var(--uc-font-body);
 }

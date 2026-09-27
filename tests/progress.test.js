@@ -99,7 +99,9 @@ test('every interest, chapter and lab points at something real', async () => {
 });
 
 test('check-in banks are valid', async () => {
-  const banks = JSON.parse(await readFile(new URL('../checkins.json', import.meta.url), 'utf8'));
+  const banks = JSON.parse(
+    await readFile(new URL('../data/checkins.json', import.meta.url), 'utf8'),
+  );
   for (const wave of ['wave1', 'wave2', 'wave3']) {
     validateBank(banks[wave]);
     assert.ok(banks[wave].length >= 5, wave);

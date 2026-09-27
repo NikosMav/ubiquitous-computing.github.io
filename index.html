@@ -1866,14 +1866,22 @@ body:hover .cursor-new {opacity:1.0;}
 <div class="line-4 comp"></div>
 </div>
 <section class="comp-vision-application-3 story-flow">
+<div class="story-vision">
+<p class="story-vision__kicker">Τρία πειράματα με την κάμερά σου</p>
+<h3 class="story-vision__heading">Δες πώς «βλέπει» ένας υπολογιστής</h3>
+<ul class="story-vision__apps">
+<li><a class="story-vision__app" data-lab="vision-face" href="face_recognition.html"><span aria-hidden="true" class="story-vision__icon">🙂</span><strong class="story-vision__title">Πρόσωπο</strong><span class="story-vision__text">Άνοιξε το στόμα, γύρνα το κεφάλι. Εκατοντάδες σημεία ακολουθούν κάθε κίνηση.</span><span class="story-vision__go" data-lab-status="">Άνοιγμα</span></a></li>
+<li><a class="story-vision__app" data-lab="vision-hand" href="hand_gestures.html"><span aria-hidden="true" class="story-vision__icon">✋</span><strong class="story-vision__title">Χέρια</strong><span class="story-vision__text">Γροθιά, παλάμη, τσίμπημα. 21 σημεία σε κάθε χέρι γίνονται χειρονομίες.</span><span class="story-vision__go" data-lab-status="">Άνοιγμα</span></a></li>
+<li><a class="story-vision__app" data-lab="vision-pose" href="pose_detection.html"><span aria-hidden="true" class="story-vision__icon">🧍</span><strong class="story-vision__title">Στάση σώματος</strong><span class="story-vision__text">Σήκωσε τα χέρια ή κάνε ένα Τ. Το σώμα σου γίνεται 33 σημεία.</span><span class="story-vision__go" data-lab-status="">Άνοιγμα</span></a></li>
+</ul>
 <div class="disclaimer-div story-flow">
 <h5 class="heading-75">Disclaimer</h5>
 <p class="disclaimer-par">Η κάμερα ανοίγει μόνο όταν πατήσεις «Έναρξη κάμερας» μέσα στο πείραμα. Η επεξεργασία γίνεται στη συσκευή σου, χωρίς καταγραφή ή αποστολή εικόνων.</p>
+<div data-story-panel="" id="story-camera-info" style="display:none"><p class="disclaimer-par">Το μοντέλο εντοπίζει γεωμετρικά σημεία προσώπου, χεριών ή σώματος. Δεν αναγνωρίζει ταυτότητα και δεν εκτιμά ηλικία, φύλο ή συναισθήματα. Η πρώτη εκτέλεση κατεβάζει τα αρχεία του μοντέλου. Πάτησε «Διακοπή» οποιαδήποτε στιγμή για να κλείσεις την κάμερα.</p></div>
 <button aria-controls="story-camera-info" aria-expanded="false" class="disclaimer-button w-button" data-story-open="true" data-story-toggle="story-camera-info" style="display:inline-block" type="button">Διαβάστε περισσότερα</button>
 <button aria-controls="story-camera-info" aria-expanded="false" class="disclaimer-button w-button" data-story-open="false" data-story-toggle="story-camera-info" style="display:none" type="button">Κρύψτε περιττές πληροφορίες</button>
 </div>
-<div class="disclaimer-div more-info story-flow" data-story-panel="" id="story-camera-info" style="display:none"><p class="disclaimer-par">Το μοντέλο εντοπίζει γεωμετρικά σημεία προσώπου, χεριών ή σώματος. Δεν αναγνωρίζει ταυτότητα και δεν εκτιμά ηλικία, φύλο ή συναισθήματα. Η πρώτη εκτέλεση κατεβάζει τα αρχεία του μοντέλου. Πάτησε «Διακοπή» οποιαδήποτε στιγμή για να κλείσεις την κάμερα.</p></div>
-<div class="button-div-2 story-flow"><a class="story-lab-link" href="face_recognition.html">Πρόσωπο</a><a class="story-lab-link" href="hand_gestures.html">Χέρια</a><a class="story-lab-link" href="pose_detection.html">Στάση σώματος</a></div>
+</div>
 </section>
 </div>
 <section class="comp-vision-between-section" data-w-id="fb5b0d22-3feb-9fe5-161f-20cbad99c684">
@@ -2494,6 +2502,7 @@ body:hover .cursor-new {opacity:1.0;}
 <script src="js/story-repairs.js"></script>
 <script src="js/shell.js" type="module"></script>
 <script src="js/story.js" type="module"></script>
+<script src="js/lab-hub.js" type="module"></script>
 <script src="js/checkin.js" type="module"></script>
 </body>
 </html>

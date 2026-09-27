@@ -51,26 +51,26 @@ const catalogue = {
   hand: {
     classify: (groups) => groups.map(handGesture),
     missions: [
-      ['point', '☝️', 'Δείξε με τον δείκτη'],
-      ['fist', '✊', 'Κλείσε τη γροθιά σου'],
-      ['open', '🖐️', 'Άνοιξε την παλάμη'],
-      ['pinch', '🤏', 'Ένωσε αντίχειρα και δείκτη (τσίμπημα)'],
+      ['point', '☝️', 'Δείξε με τον δείκτη', 'Δείκτης'],
+      ['fist', '✊', 'Κλείσε τη γροθιά σου', 'Γροθιά'],
+      ['open', '🖐️', 'Άνοιξε την παλάμη', 'Ανοιχτή παλάμη'],
+      ['pinch', '🤏', 'Ένωσε αντίχειρα και δείκτη (τσίμπημα)', 'Τσίμπημα'],
     ],
   },
   pose: {
     classify: (groups) => groups.map(bodyPose),
     missions: [
-      ['one-up', '🙋', 'Σήκωσε το ένα χέρι πάνω από το κεφάλι'],
-      ['both-up', '🙌', 'Σήκωσε και τα δύο χέρια'],
-      ['t-pose', '🧍', 'Άνοιξε τα χέρια οριζόντια, σε σχήμα Τ'],
+      ['one-up', '🙋', 'Σήκωσε το ένα χέρι πάνω από το κεφάλι', 'Ένα χέρι ψηλά'],
+      ['both-up', '🙌', 'Σήκωσε και τα δύο χέρια', 'Δύο χέρια ψηλά'],
+      ['t-pose', '🧍', 'Άνοιξε τα χέρια οριζόντια, σε σχήμα Τ', 'Σχήμα Τ'],
     ],
   },
   face: {
     classify: (groups) => groups.map(faceAction),
     missions: [
-      ['mouth', '😮', 'Άνοιξε το στόμα'],
-      ['turn-a', '↩️', 'Γύρνα το κεφάλι προς τη μία πλευρά'],
-      ['turn-b', '↪️', 'Γύρνα το κεφάλι προς την άλλη πλευρά'],
+      ['mouth', '😮', 'Άνοιξε το στόμα', 'Ανοιχτό στόμα'],
+      ['turn-a', '↩️', 'Γύρνα το κεφάλι προς τη μία πλευρά', 'Κεφάλι γυρισμένο'],
+      ['turn-b', '↪️', 'Γύρνα το κεφάλι προς την άλλη πλευρά', 'Κεφάλι γυρισμένο'],
     ],
   },
 };
@@ -84,7 +84,7 @@ if (config) {
   const box = document.createElement('section');
   box.className = 'vision-missions';
   box.setAttribute('aria-labelledby', 'vision-missions-title');
-  box.innerHTML = `<h2 id="vision-missions-title">Αποστολές</h2><p class="vision-missions__now" aria-live="polite">Άνοιξε την κάμερα για να ξεκινήσεις.</p>`;
+  box.innerHTML = `<h2 id="vision-missions-title">Αποστολές <span class="vision-missions__count">0/${config.missions.length}</span></h2><p class="vision-missions__now" aria-live="polite">Άνοιξε την κάμερα για να ξεκινήσεις.</p>`;
   const list = document.createElement('ol');
   const items = new Map();
   for (const [id, icon, text] of config.missions) {
@@ -95,28 +95,46 @@ if (config) {
   }
   box.append(list);
   const now = box.querySelector('.vision-missions__now');
+  const counter = box.querySelector('.vision-missions__count');
+  // What the model recognises right now, large, on the camera image itself.
+  const live = document.createElement('p');
+  live.className = 'camera-label';
+  live.setAttribute('aria-hidden', 'true');
+  live.hidden = true;
+  page.querySelector('.camera-stage')?.append(live);
   page.querySelector('.demo-explanation')?.prepend(box);
 
   addEventListener('vision:frame', ({ detail }) => {
     const labels = config.classify(detail.groups).filter(Boolean);
     const label = labels[0] ?? null;
     const mission = config.missions.find(([id]) => id === label);
-    now.textContent = mission
-      ? `Αναγνωρίστηκε: ${mission[2].toLowerCase()} ${mission[1]}`
-      : detail.groups.length
-        ? 'Αναγνώριση σε εξέλιξη…'
-        : 'Δεν εντοπίζεται τίποτα.';
+    live.hidden = !mission;
+    if (mission) live.textContent = `${mission[1]} ${mission[3]}`;
+    // Once every mission is done, the completion message stays.
+    if (done.size < config.missions.length)
+      now.textContent = mission
+        ? `Αναγνωρίστηκε: ${mission[3].toLowerCase()} ${mission[1]}`
+        : detail.groups.length
+          ? 'Αναγνώριση σε εξέλιξη…'
+          : 'Δεν εντοπίζεται τίποτα.';
     for (const [id] of config.missions)
       streak.set(id, labels.includes(id) ? (streak.get(id) ?? 0) + 1 : 0);
     for (const [id, count] of streak) {
       if (count < 4 || done.has(id)) continue;
       done.add(id);
       items.get(id).classList.add('is-done');
+      counter.textContent = `${done.size}/${config.missions.length}`;
       if (done.size === config.missions.length) {
         now.textContent = 'Ολοκλήρωσες όλες τις αποστολές! Το πείραμα προστέθηκε στη διαδρομή σου.';
+        page.querySelector('.demo-next')?.classList.add('is-ready');
         completeLab('vision-' + page.dataset.demo);
         completeLab('vision');
       }
     }
+  });
+  addEventListener('vision:stop', () => {
+    live.hidden = true;
+    if (done.size < config.missions.length)
+      now.textContent = 'Άνοιξε την κάμερα για να συνεχίσεις.';
   });
 }
