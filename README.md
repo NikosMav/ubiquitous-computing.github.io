@@ -2,7 +2,7 @@
 
 [![Site checks](https://github.com/NikosMav/ubiquitous-computing.github.io/actions/workflows/checks.yml/badge.svg)](https://github.com/NikosMav/ubiquitous-computing.github.io/actions/workflows/checks.yml)
 
-**An interactive museum exhibit about ubiquitous computing, created for my 2023 bachelor's thesis at NKUA and completed in 2026.**
+**An interactive museum exhibit about ubiquitous computing, created for my BSc thesis at NKUA (studies 2017–2022; thesis published October 2023) and completed as a full exhibit in 2026.**
 
 The scrollytelling story moves through computing history, the principles of ubiquitous computing, the three waves and a fictional day in a connected future. Around it sit a reading version, a computer-vision lab, check-in quizzes and a personal learning path with points, levels and badges. The scrollytelling story is a desktop exhibit by design; on phones the site hands over to the responsive guide and reading pages.
 
